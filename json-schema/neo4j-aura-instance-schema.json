@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neo4j.com/schemas/neo4j/aura-instance.json",
+  "title": "Neo4j Aura Instance",
+  "description": "Schema for Neo4j AuraDB cloud database instances including configuration, status, and lifecycle management properties.",
+  "type": "object",
+  "required": ["id", "name", "status", "tenant_id", "cloud_provider", "region", "type", "memory"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the AuraDB instance"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the instance",
+      "maxLength": 30
+    },
+    "status": {
+      "type": "string",
+      "description": "Current lifecycle status of the instance",
+      "enum": [
+        "creating",
+        "running",
+        "pausing",
+        "paused",
+        "resuming",
+        "updating",
+        "destroying",
+        "destroyed",
+        "loading",
+        "restoring"
+      ]
+    },
+    "tenant_id": {
+      "type": "string",
+      "description": "Identifier of the tenant (project) this instance belongs to"
+    },
+    "cloud_provider": {
+      "type": "string",
+      "description": "Cloud infrastructure provider hosting the instance",
+      "enum": ["gcp", "aws", "azure"]
+    },
+    "region": {
+      "type": "string",
+      "description": "Cloud region where the instance is deployed",
+      "examples": ["us-east-1", "europe-west1", "eastus"]
+    },
+    "type": {
+      "type": "string",
+      "description": "Instance type determining capabilities and pricing tier",
+      "enum": [
+        "enterprise-db",
+        "enterprise-ds",
+        "professional-db",
+        "free-db"
+      ]
+    },
+    "memory": {
+      "type": "string",
+      "description": "Memory allocated to the instance",
+      "pattern": "^\\d+GB$",
+      "examples": ["2GB", "8GB", "16GB", "32GB"]
+    },
+    "storage": {
+      "type": "string",
+      "description": "Storage allocated to the instance",
+      "pattern": "^\\d+GB$",
+      "examples": ["8GB", "16GB", "64GB"]
+    },
+    "connection_url": {
+      "type": "string",
+      "description": "Bolt connection URI for connecting to the instance",
+      "format": "uri",
+      "examples": ["neo4j+s://xxxxxxxx.databases.neo4j.io"]
+    },
+    "metrics_integration_url": {
+      "type": "string",
+      "description": "URL for the customer metrics integration endpoint",
+      "format": "uri"
+    },
+    "neo4j_version": {
+      "type": "string",
+      "description": "Neo4j database version running on the instance",
+      "examples": ["5"]
+    }
+  },
+  "$defs": {
+    "Tenant": {
+      "type": "object",
+      "description": "A tenant (project) that organizes and manages multiple AuraDB instances under a single administrative unit.",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the tenant"
+        },
+        "name": {
+          "type": "string",
+          "description": "Display name of the tenant"
+        },
+        "instance_configurations": {
+          "type": "array",
+          "description": "Available instance configurations for this tenant",
+          "items": {
+            "$ref": "#/$defs/InstanceConfiguration"
+          }
+        }
+      }
+    },
+    "InstanceConfiguration": {
+      "type": "object",
+      "description": "An available instance configuration option within a tenant.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Instance type"
+        },
+        "regions": {
+          "type": "array",
+          "description": "Available cloud regions for this instance type",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Region identifier"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Snapshot": {
+      "type": "object",
+      "description": "A point-in-time snapshot of an AuraDB instance for backup and restore purposes.",
+      "required": ["snapshot_id", "instance_id", "status", "timestamp"],
+      "properties": {
+        "snapshot_id": {
+          "type": "string",
+          "description": "Unique identifier for the snapshot"
+        },
+        "instance_id": {
+          "type": "string",
+          "description": "Identifier of the instance this snapshot was taken from"
+        },
+        "status": {
+          "type": "string",
+          "description": "Current status of the snapshot",
+          "enum": ["Completed", "InProgress", "Failed"]
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of when the snapshot was created"
+        },
+        "exportable": {
+          "type": "boolean",
+          "description": "Whether the snapshot data can be exported"
+        }
+      }
+    }
+  }
+}

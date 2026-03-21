@@ -1,0 +1,435 @@
+openapi: 3.1.0
+info:
+  title: Neo4j Query API
+  description: >-
+    The Neo4j Query API enables the execution of Cypher statements against a
+    Neo4j server through HTTP requests. It provides a streamlined interface
+    for running graph database queries, supporting both self-managed and
+    cloud-hosted Neo4j instances. The Query API is designed for applications
+    that need to interact with Neo4j programmatically and is particularly
+    useful for languages where a dedicated Neo4j driver is not available.
+    The Query API supersedes the older HTTP API and uses the v2 endpoint
+    format.
+  version: '2.0'
+  contact:
+    name: Neo4j Support
+    url: https://support.neo4j.com
+  termsOfService: https://neo4j.com/terms/
+externalDocs:
+  description: Neo4j Query API Documentation
+  url: https://neo4j.com/docs/query-api/current/
+servers:
+  - url: http://localhost:7474
+    description: Self-managed HTTP server (default port)
+  - url: https://localhost:7473
+    description: Self-managed HTTPS server
+  - url: https://{aura-host}:443
+    description: Neo4j Aura cloud instance (HTTPS only)
+    variables:
+      aura-host:
+        default: xxxxxxxx.databases.neo4j.io
+        description: The Aura instance hostname
+tags:
+  - name: Query
+    description: >-
+      Execute Cypher queries using implicit transactions where the server
+      manages the transaction lifecycle automatically.
+  - name: Transactions
+    description: >-
+      Manage explicit transactions with full control over the transaction
+      lifecycle including open, execute, commit, and rollback operations.
+security:
+  - basicAuth: []
+  - bearerAuth: []
+paths:
+  /db/{databaseName}/query/v2:
+    post:
+      operationId: executeQuery
+      summary: Execute a Cypher query
+      description: >-
+        Executes a Cypher query against the specified database using an
+        implicit transaction. The server wraps the submitted Cypher query
+        in a transaction automatically so that if any part of the query
+        fails the database is reverted to its state before the query was
+        executed. Always use query parameters instead of string
+        concatenation to prevent Cypher injection.
+      tags:
+        - Query
+      parameters:
+        - $ref: '#/components/parameters/databaseName'
+        - $ref: '#/components/parameters/acceptHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Query executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResponse'
+        '400':
+          description: Invalid query or request format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+        '404':
+          description: Database not found
+  /db/{databaseName}/query/v2/tx:
+    post:
+      operationId: openTransaction
+      summary: Open a new explicit transaction
+      description: >-
+        Opens a new explicit transaction on the specified database. The
+        response includes a Location header with the transaction URI
+        containing the transaction ID. Optionally, a Cypher statement can
+        be included in the request body to execute as part of opening the
+        transaction. On Aura instances, the response includes a
+        neo4j-cluster-affinity header that must be replayed on subsequent
+        requests within the same transaction.
+      tags:
+        - Transactions
+      parameters:
+        - $ref: '#/components/parameters/databaseName'
+        - $ref: '#/components/parameters/acceptHeader'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '201':
+          description: Transaction opened successfully
+          headers:
+            Location:
+              description: URI of the new transaction
+              schema:
+                type: string
+            neo4j-cluster-affinity:
+              description: >-
+                Cluster affinity token for Aura instances. Must be replayed
+                on subsequent requests within this transaction.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+        '404':
+          description: Database not found
+  /db/{databaseName}/query/v2/tx/{transactionId}:
+    post:
+      operationId: executeInTransaction
+      summary: Execute a statement in an open transaction
+      description: >-
+        Submits a Cypher statement to be executed within an existing open
+        transaction. The transaction remains open after execution and must
+        be explicitly committed or rolled back.
+      tags:
+        - Transactions
+      parameters:
+        - $ref: '#/components/parameters/databaseName'
+        - $ref: '#/components/parameters/transactionId'
+        - $ref: '#/components/parameters/acceptHeader'
+        - $ref: '#/components/parameters/clusterAffinity'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Statement executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+        '404':
+          description: Transaction or database not found
+    delete:
+      operationId: rollbackTransaction
+      summary: Rollback a transaction
+      description: >-
+        Rolls back an open transaction, restoring the database to the state
+        it was in before the transaction was opened. All changes made within
+        the transaction are discarded.
+      tags:
+        - Transactions
+      parameters:
+        - $ref: '#/components/parameters/databaseName'
+        - $ref: '#/components/parameters/transactionId'
+        - $ref: '#/components/parameters/clusterAffinity'
+      responses:
+        '200':
+          description: Transaction rolled back successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+        '401':
+          description: Authentication required
+        '404':
+          description: Transaction or database not found
+  /db/{databaseName}/query/v2/tx/{transactionId}/commit:
+    post:
+      operationId: commitTransaction
+      summary: Commit a transaction
+      description: >-
+        Commits an open transaction, making all changes permanent in the
+        database. Optionally, a final Cypher statement can be included in
+        the request body to be executed before the transaction is committed.
+      tags:
+        - Transactions
+      parameters:
+        - $ref: '#/components/parameters/databaseName'
+        - $ref: '#/components/parameters/transactionId'
+        - $ref: '#/components/parameters/acceptHeader'
+        - $ref: '#/components/parameters/clusterAffinity'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRequest'
+      responses:
+        '200':
+          description: Transaction committed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+        '400':
+          description: Invalid request or transaction error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+        '404':
+          description: Transaction or database not found
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        HTTP Basic Authentication using the Neo4j database username and
+        password encoded as a base64 hash.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Bearer token authentication supported on Neo4j Aura instances.
+  parameters:
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: >-
+        The name of the database to execute queries against. Use neo4j for
+        the default database.
+      schema:
+        type: string
+        example: neo4j
+    transactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: >-
+        The unique identifier of an open transaction, returned in the
+        Location header when a transaction is opened.
+      schema:
+        type: string
+    acceptHeader:
+      name: Accept
+      in: header
+      required: false
+      description: >-
+        The desired response format. Use application/json for standard JSON
+        format or application/vnd.neo4j.jolt+json-seq for Jolt streaming
+        format.
+      schema:
+        type: string
+        default: application/json
+        enum:
+          - application/json
+          - application/vnd.neo4j.jolt+json-seq
+    clusterAffinity:
+      name: neo4j-cluster-affinity
+      in: header
+      required: false
+      description: >-
+        Cluster affinity token returned by Neo4j Aura when opening a
+        transaction. Must be replayed on all subsequent requests within
+        the same transaction to ensure routing to the correct cluster
+        member.
+      schema:
+        type: string
+  schemas:
+    QueryRequest:
+      type: object
+      description: >-
+        Request body for executing a Cypher query.
+      required:
+        - statement
+      properties:
+        statement:
+          type: string
+          description: The Cypher query string to execute
+          example: MATCH (n:Person {name: $name}) RETURN n
+        parameters:
+          type: object
+          description: >-
+            Named parameters for the Cypher query. Always use parameters
+            instead of string concatenation to protect against Cypher
+            injection when using user input in queries.
+          additionalProperties: true
+          example:
+            name: Alice
+    QueryResponse:
+      type: object
+      description: >-
+        Response containing query results in the default JSON format.
+      properties:
+        data:
+          type: object
+          description: Query result data
+          properties:
+            fields:
+              type: array
+              description: Column names in the result set
+              items:
+                type: string
+            values:
+              type: array
+              description: Array of result rows
+              items:
+                type: array
+                items: {}
+        counters:
+          $ref: '#/components/schemas/QueryCounters'
+        bookmarks:
+          type: array
+          description: >-
+            Bookmarks that can be used to ensure causal consistency in
+            subsequent queries.
+          items:
+            type: string
+    TransactionResponse:
+      type: object
+      description: Response from a transaction operation.
+      properties:
+        data:
+          type: object
+          description: Query result data if a statement was provided
+          properties:
+            fields:
+              type: array
+              description: Column names in the result set
+              items:
+                type: string
+            values:
+              type: array
+              description: Array of result rows
+              items:
+                type: array
+                items: {}
+        counters:
+          $ref: '#/components/schemas/QueryCounters'
+        bookmarks:
+          type: array
+          description: Transaction bookmarks for causal consistency
+          items:
+            type: string
+        errors:
+          type: array
+          description: Array of errors that occurred during execution
+          items:
+            $ref: '#/components/schemas/Neo4jError'
+    QueryCounters:
+      type: object
+      description: Statistics about query execution.
+      properties:
+        containsUpdates:
+          type: boolean
+          description: Whether the query modified the database
+        nodesCreated:
+          type: integer
+          description: Number of nodes created
+        nodesDeleted:
+          type: integer
+          description: Number of nodes deleted
+        propertiesSet:
+          type: integer
+          description: Number of properties set
+        relationshipsCreated:
+          type: integer
+          description: Number of relationships created
+        relationshipsDeleted:
+          type: integer
+          description: Number of relationships deleted
+        labelsAdded:
+          type: integer
+          description: Number of labels added to nodes
+        labelsRemoved:
+          type: integer
+          description: Number of labels removed from nodes
+        indexesAdded:
+          type: integer
+          description: Number of indexes created
+        indexesRemoved:
+          type: integer
+          description: Number of indexes removed
+        constraintsAdded:
+          type: integer
+          description: Number of constraints created
+        constraintsRemoved:
+          type: integer
+          description: Number of constraints removed
+    Neo4jError:
+      type: object
+      description: An error returned by the Neo4j server.
+      properties:
+        code:
+          type: string
+          description: >-
+            Neo4j error code in the format Neo.ErrorClassification.Category.Title
+          example: Neo.ClientError.Statement.SyntaxError
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid input 'X'
+    ErrorResponse:
+      type: object
+      description: Response containing one or more errors.
+      properties:
+        errors:
+          type: array
+          description: Array of errors that occurred
+          items:
+            $ref: '#/components/schemas/Neo4jError'

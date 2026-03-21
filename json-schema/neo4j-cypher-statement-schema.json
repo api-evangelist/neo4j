@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neo4j.com/schemas/neo4j/cypher-statement.json",
+  "title": "Neo4j Cypher Statement",
+  "description": "A Cypher query statement with parameters for execution against a Neo4j database through the HTTP or Query API.",
+  "type": "object",
+  "required": ["statement"],
+  "properties": {
+    "statement": {
+      "type": "string",
+      "description": "The Cypher query string to execute against the Neo4j database",
+      "minLength": 1,
+      "examples": [
+        "MATCH (n:Person {name: $name}) RETURN n",
+        "CREATE (n:Person {name: $name, age: $age}) RETURN n"
+      ]
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Named parameters for the Cypher query. Always use parameters instead of string concatenation to protect against Cypher injection when incorporating user input.",
+      "additionalProperties": true,
+      "examples": [
+        {
+          "name": "Alice",
+          "age": 30
+        }
+      ]
+    },
+    "resultDataContents": {
+      "type": "array",
+      "description": "Requested result formats for the HTTP API. Possible values include row for tabular data and graph for graph visualization data.",
+      "items": {
+        "type": "string",
+        "enum": ["row", "graph"]
+      },
+      "uniqueItems": true
+    },
+    "includeStats": {
+      "type": "boolean",
+      "description": "Whether to include query execution statistics such as nodes created, relationships created, and properties set in the response.",
+      "default": false
+    }
+  },
+  "additionalProperties": false
+}

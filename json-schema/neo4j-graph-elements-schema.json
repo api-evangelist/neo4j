@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://neo4j.com/schemas/neo4j/graph-elements.json",
+  "title": "Neo4j Graph Elements",
+  "description": "Schema for Neo4j graph data elements including nodes and relationships returned by Cypher queries.",
+  "type": "object",
+  "properties": {
+    "nodes": {
+      "type": "array",
+      "description": "Array of graph nodes in the result set",
+      "items": {
+        "$ref": "#/$defs/Node"
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "description": "Array of graph relationships in the result set",
+      "items": {
+        "$ref": "#/$defs/Relationship"
+      }
+    }
+  },
+  "$defs": {
+    "Node": {
+      "type": "object",
+      "description": "A node in the Neo4j graph representing an entity with labels and properties.",
+      "required": ["id", "labels"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The internal element ID of the node"
+        },
+        "labels": {
+          "type": "array",
+          "description": "Labels assigned to the node, representing the types or categories it belongs to",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0
+        },
+        "properties": {
+          "type": "object",
+          "description": "Key-value properties stored on the node",
+          "additionalProperties": true
+        }
+      }
+    },
+    "Relationship": {
+      "type": "object",
+      "description": "A directed relationship between two nodes in the Neo4j graph with a type and properties.",
+      "required": ["id", "type", "startNode", "endNode"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The internal element ID of the relationship"
+        },
+        "type": {
+          "type": "string",
+          "description": "The relationship type, representing the nature of the connection between nodes",
+          "minLength": 1
+        },
+        "startNode": {
+          "type": "string",
+          "description": "The element ID of the start node"
+        },
+        "endNode": {
+          "type": "string",
+          "description": "The element ID of the end node"
+        },
+        "properties": {
+          "type": "object",
+          "description": "Key-value properties stored on the relationship",
+          "additionalProperties": true
+        }
+      }
+    },
+    "Path": {
+      "type": "object",
+      "description": "A path through the graph consisting of alternating nodes and relationships.",
+      "required": ["nodes", "relationships"],
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "description": "Ordered array of nodes along the path",
+          "items": {
+            "$ref": "#/$defs/Node"
+          },
+          "minItems": 1
+        },
+        "relationships": {
+          "type": "array",
+          "description": "Ordered array of relationships connecting the nodes along the path",
+          "items": {
+            "$ref": "#/$defs/Relationship"
+          }
+        }
+      }
+    },
+    "QueryStatistics": {
+      "type": "object",
+      "description": "Statistics about the execution of a Cypher query including counts of created, modified, and deleted elements.",
+      "properties": {
+        "contains_updates": {
+          "type": "boolean",
+          "description": "Whether the query modified the database"
+        },
+        "nodes_created": {
+          "type": "integer",
+          "description": "Number of nodes created by the query",
+          "minimum": 0
+        },
+        "nodes_deleted": {
+          "type": "integer",
+          "description": "Number of nodes deleted by the query",
+          "minimum": 0
+        },
+        "properties_set": {
+          "type": "integer",
+          "description": "Number of properties set on nodes or relationships",
+          "minimum": 0
+        },
+        "relationships_created": {
+          "type": "integer",
+          "description": "Number of relationships created by the query",
+          "minimum": 0
+        },
+        "relationships_deleted": {
+          "type": "integer",
+          "description": "Number of relationships deleted by the query",
+          "minimum": 0
+        },
+        "labels_added": {
+          "type": "integer",
+          "description": "Number of labels added to nodes",
+          "minimum": 0
+        },
+        "labels_removed": {
+          "type": "integer",
+          "description": "Number of labels removed from nodes",
+          "minimum": 0
+        },
+        "indexes_added": {
+          "type": "integer",
+          "description": "Number of indexes created",
+          "minimum": 0
+        },
+        "indexes_removed": {
+          "type": "integer",
+          "description": "Number of indexes removed",
+          "minimum": 0
+        },
+        "constraints_added": {
+          "type": "integer",
+          "description": "Number of constraints created",
+          "minimum": 0
+        },
+        "constraints_removed": {
+          "type": "integer",
+          "description": "Number of constraints removed",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

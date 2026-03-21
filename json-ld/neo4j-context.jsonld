@@ -1,0 +1,128 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "neo4j": "https://neo4j.com/ns/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "GraphDatabase": {
+      "@id": "neo4j:GraphDatabase",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "version": "schema:softwareVersion",
+        "edition": "neo4j:edition",
+        "connectionUrl": {
+          "@id": "neo4j:connectionUrl",
+          "@type": "@id"
+        },
+        "boltUrl": {
+          "@id": "neo4j:boltUrl",
+          "@type": "@id"
+        }
+      }
+    },
+
+    "Node": {
+      "@id": "neo4j:Node",
+      "@context": {
+        "elementId": "neo4j:elementId",
+        "labels": {
+          "@id": "neo4j:labels",
+          "@container": "@set"
+        },
+        "properties": "neo4j:properties"
+      }
+    },
+
+    "Relationship": {
+      "@id": "neo4j:Relationship",
+      "@context": {
+        "elementId": "neo4j:elementId",
+        "relationshipType": "neo4j:relationshipType",
+        "startNode": {
+          "@id": "neo4j:startNode",
+          "@type": "@id"
+        },
+        "endNode": {
+          "@id": "neo4j:endNode",
+          "@type": "@id"
+        },
+        "properties": "neo4j:properties"
+      }
+    },
+
+    "CypherQuery": {
+      "@id": "neo4j:CypherQuery",
+      "@context": {
+        "statement": "neo4j:statement",
+        "parameters": "neo4j:parameters",
+        "database": "neo4j:database"
+      }
+    },
+
+    "AuraInstance": {
+      "@id": "neo4j:AuraInstance",
+      "@context": {
+        "name": "schema:name",
+        "identifier": "schema:identifier",
+        "status": "neo4j:instanceStatus",
+        "cloudProvider": "neo4j:cloudProvider",
+        "region": "neo4j:region",
+        "instanceType": "neo4j:instanceType",
+        "memory": "neo4j:memory",
+        "storage": "neo4j:storage",
+        "connectionUrl": {
+          "@id": "neo4j:connectionUrl",
+          "@type": "@id"
+        },
+        "metricsUrl": {
+          "@id": "neo4j:metricsUrl",
+          "@type": "@id"
+        },
+        "neo4jVersion": "schema:softwareVersion",
+        "tenant": {
+          "@id": "neo4j:tenant",
+          "@type": "@id"
+        },
+        "dateCreated": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Tenant": {
+      "@id": "neo4j:Tenant",
+      "@context": {
+        "name": "schema:name",
+        "identifier": "schema:identifier",
+        "instances": {
+          "@id": "neo4j:instances",
+          "@container": "@set"
+        }
+      }
+    },
+
+    "Snapshot": {
+      "@id": "neo4j:Snapshot",
+      "@context": {
+        "identifier": "schema:identifier",
+        "status": "neo4j:snapshotStatus",
+        "instance": {
+          "@id": "neo4j:instance",
+          "@type": "@id"
+        },
+        "dateCreated": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "exportable": {
+          "@id": "neo4j:exportable",
+          "@type": "xsd:boolean"
+        }
+      }
+    }
+  }
+}
