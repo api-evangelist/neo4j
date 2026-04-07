@@ -30,14 +30,14 @@ tags:
       Manage AuraDB cloud database instances including provisioning,
       configuration, lifecycle operations such as pause and resume, and
       deletion.
-  - name: Tenants
-    description: >-
-      Manage tenants (projects) which organize multiple database instances
-      under a single administrative unit for access control and configuration.
   - name: Snapshots
     description: >-
       Manage database snapshots which are point-in-time copies of instance
       data used for backup and restore operations.
+  - name: Tenants
+    description: >-
+      Manage tenants (projects) which organize multiple database instances
+      under a single administrative unit for access control and configuration.
 security:
   - bearerAuth: []
 paths:
