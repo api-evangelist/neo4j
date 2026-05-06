@@ -4,160 +4,189 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Neo4j
 providerId: neo4j
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Graph Database
+  - AuraDB
   - Cypher
-  - Cloud
-  - GraphQL
-  - Drivers
-  - APIs
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - Knowledge Graph
+  - Vector Search
+description: Neo4j offers a managed cloud graph database (AuraDB) priced per-GB-RAM-per-month, plus self-managed
+  Community (free, GPL3) and Enterprise (sales) editions, plus Aura Graph Analytics priced per-GB-hour.
+  AuraDB sizes scale memory + compute + storage together; Business Critical adds multi-zone HA, RBAC,
+  SSO, and longer backup retention.
+sources:
+  - https://neo4j.com/pricing/
+  - https://neo4j.com/cloud/aura-aws/
 plans:
-  - id: neo4j-free
-    name: Free
+  - id: neo4j-auradb-free
+    name: AuraDB Free
     type: freemium
-    description: Free entry tier for the Neo4j API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+    description: Free managed AuraDB instance for learning and exploration. No credit card required.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
+      - label: Free instance
+        name: free_instance
+        type: flat
+        metric: month
+        limit: 1
         timeFrame: month
         geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains: []
         unit: 1
         price: '0.00'
         userMultiplied: false
     elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Neo4j HTTP API
-      - name: Neo4j Query API
-      - name: Neo4j Aura API
-      - name: Neo4j GraphQL Library
-      - name: Neo4j Bolt Protocol
-      - name: Neo4j Python Driver
-      - name: Neo4j Java Driver
-      - name: Neo4j JavaScript Driver
-  - id: neo4j-pro
-    name: Professional
-    type: paid
-    description: Production tier for Neo4j. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+      - name: Limited node / relationship counts
+      - name: All graph tools access
+      - name: No credit card required
+  - id: neo4j-auradb-professional
+    name: AuraDB Professional
+    type: usage-based
+    description: Production-ready managed AuraDB. Priced per GB of RAM per month, minimum 1 GB. 14-day
+      free trial available.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains: []
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains: []
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
+      - label: Professional GB-RAM-month
+        name: professional_gb_ram
         type: metered
-        metric: requests
+        metric: gb_ram
+        limit: 128
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '65.00'
+        userMultiplied: false
+    elements:
+      - name: Up to 128 GB RAM
+      - name: 1-12 CPU cores (scales with size)
+      - name: 2-128 GB storage
+      - name: Daily backups, 7-day retention
+      - name: Best-effort support
+  - id: neo4j-auradb-business-critical
+    name: AuraDB Business Critical
+    type: usage-based
+    description: Enterprise-scale managed AuraDB with multi-zone HA, premium support, and security controls.
+      Minimum 2 GB.
+    entries:
+      - label: Business Critical GB-RAM-month
+        name: business_critical_gb_ram
+        type: metered
+        metric: gb_ram
+        limit: 512
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '146.00'
+        userMultiplied: false
+    elements:
+      - name: Up to 512 GB RAM
+      - name: 1-96 CPU cores
+      - name: 4-1024 GB storage
+      - name: 99.95% uptime SLA, multi-zone
+      - name: Daily backups, 30-day retention, hourly point-in-time restore
+      - name: 24/7 premium support, one-hour response
+      - name: RBAC, SSO, IP filtering, property-based access control
+  - id: neo4j-auradb-virtual-dedicated
+    name: AuraDB Virtual Dedicated Cloud
+    type: enterprise
+    description: Dedicated VPC-isolated AuraDB infrastructure. Custom pricing.
+    entries:
+      - label: Custom contract
+        name: vdc_contract
+        type: subscription
+        metric: month
+        limit: 512
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Up to 512 GB RAM
+      - name: Dedicated infrastructure with VPC isolation
+      - name: Hourly backups, 60-day retention
+      - name: 24/7 enhanced support
+  - id: neo4j-graph-analytics
+    name: Aura Graph Analytics
+    type: usage-based
+    description: Pay-as-you-go or prepaid graph analytics priced per GB-hour. Works against any data source
+      without ETL.
+    entries:
+      - label: GB-hour
+        name: graph_analytics_gb_hour
+        type: metered
+        metric: gb_hour
+        limit: 512
+        timeFrame: hour
+        geo: global
+        unit: 1
+        price: '0.40'
+        userMultiplied: false
+    elements:
+      - name: Up to 512 GB RAM
+      - name: Pay-as-you-go or prepaid
+      - name: Works with any data source
+  - id: neo4j-community
+    name: Community Edition (Self-Managed)
+    type: freemium
+    description: GPL3-licensed self-hosted Neo4j for learning and non-production use.
+    entries:
+      - label: Self-hosted Community
+        name: community_self_hosted
+        type: flat
+        metric: month
         limit: -1
         timeFrame: month
         geo: global
-        domains: []
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: '0.00'
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Neo4j HTTP API
-      - name: Neo4j Query API
-      - name: Neo4j Aura API
-      - name: Neo4j GraphQL Library
-      - name: Neo4j Bolt Protocol
-      - name: Neo4j Python Driver
-      - name: Neo4j Java Driver
-      - name: Neo4j JavaScript Driver
+      - name: Native graph database
+      - name: Cypher language
+      - name: ACID transactions
+      - name: No high availability
+      - name: Limited Graph Data Science (≤4 CPUs, 3 models max)
   - id: neo4j-enterprise
-    name: Enterprise
+    name: Enterprise Edition (Self-Managed)
     type: enterprise
-    description: Custom-negotiated tier for Neo4j. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+    description: Self-managed Neo4j Enterprise. Contact sales for pricing.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Enterprise contract
+        name: enterprise_contract
+        type: subscription
+        metric: month
         limit: -1
         timeFrame: month
-        geo: configurable
-        domains: []
+        geo: global
         unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains: []
-        unit: 1
-        price: custom
+        price: contact sales
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Neo4j HTTP API
-      - name: Neo4j Query API
-      - name: Neo4j Aura API
-      - name: Neo4j GraphQL Library
-      - name: Neo4j Bolt Protocol
-      - name: Neo4j Python Driver
-      - name: Neo4j Java Driver
-      - name: Neo4j JavaScript Driver
+      - name: All Community features
+      - name: Unlimited read scaling
+      - name: Fine-grained access controls
+      - name: High availability
+      - name: Change Data Capture
+      - name: Fabric federation
+  - id: neo4j-infinigraph
+    name: Infinigraph Edition (Self-Managed)
+    type: enterprise
+    description: AI-ready graph at scale. Contact sales.
+    entries:
+      - label: Infinigraph contract
+        name: infinigraph_contract
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: All Enterprise features
+      - name: Unlimited horizontal scaling with automatic sharding
+      - name: Included Graph Data Science
 maintainers:
-  - FN: API Evangelist
-    email: info@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

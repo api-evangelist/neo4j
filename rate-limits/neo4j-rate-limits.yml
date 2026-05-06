@@ -4,122 +4,55 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Neo4j
 providerId: neo4j
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Graph Database
-  - Cypher
-  - Cloud
-  - GraphQL
-  - Drivers
-  - APIs
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Neo4j API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+  - Graph Database
+  - AuraDB
+notes: Neo4j does not publish per-second request limits for AuraDB or the Bolt protocol. Capacity is
+  governed by instance memory/CPU sizing rather than HTTP quotas. The Aura Console API and Query API
+  do not document explicit RPS caps in the public specification. The Free tier is constrained by node
+  and relationship count, not request rate. Reconcile with Neo4j Aura platform docs when limits are published.
+description: Neo4j is a graph database; capacity scales with instance size (RAM, CPUs, storage) rather
+  than per-second HTTP throttling. The Aura management API and Query API do not publish explicit RPS
+  limits. The AuraDB Free tier limits node and relationship counts. Bolt protocol concurrency depends
+  on the chosen instance size.
+sources:
+  - https://neo4j.com/docs/aura/platform/api/specification/
+  - https://neo4j.com/pricing/
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
   serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Neo4j HTTP API
-      - Neo4j Query API
-      - Neo4j Aura API
-      - Neo4j GraphQL Library
-      - Neo4j Bolt Protocol
-      - Neo4j Python Driver
-      - Neo4j Java Driver
-      - Neo4j JavaScript Driver
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Neo4j HTTP API
-      - Neo4j Query API
-      - Neo4j Aura API
-      - Neo4j GraphQL Library
-      - Neo4j Bolt Protocol
-      - Neo4j Python Driver
-      - Neo4j Java Driver
-      - Neo4j JavaScript Driver
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Neo4j HTTP API
-      - Neo4j Query API
-      - Neo4j Aura API
-      - Neo4j GraphQL Library
-      - Neo4j Bolt Protocol
-      - Neo4j Python Driver
-      - Neo4j Java Driver
-      - Neo4j JavaScript Driver
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Neo4j HTTP API
-      - Neo4j Query API
-      - Neo4j Aura API
-      - Neo4j GraphQL Library
-      - Neo4j Bolt Protocol
-      - Neo4j Python Driver
-      - Neo4j Java Driver
-      - Neo4j JavaScript Driver
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Neo4j HTTP API
-      - Neo4j Query API
-      - Neo4j Aura API
-      - Neo4j GraphQL Library
-      - Neo4j Bolt Protocol
-      - Neo4j Python Driver
-      - Neo4j Java Driver
-      - Neo4j JavaScript Driver
+  - name: AuraDB Free node + relationship count
+    scope: instance
+    metric: nodes_relationships
+    limit: see AuraDB Free tier docs
+    notes: Free tier limits node and relationship counts rather than request rate.
+  - name: AuraDB Professional / Business Critical capacity
+    scope: instance
+    metric: varies
+    limit: bound by selected GB RAM, CPU, storage
+    notes: Throughput scales with selected size (1-512 GB RAM, 1-96 CPU cores).
+  - name: Aura Console / Query API
+    scope: account
+    metric: varies
+    limit: see Aura API specification
+    notes: No explicit RPS limit published in the public Aura API specification.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Capacity-based scaling
+    description: Right-size AuraDB instance memory and CPU to handle target query throughput; Neo4j
+      sizing guidance recommends measuring p95 query latency under load and scaling vertically.
+  - name: Connection pooling
+    description: Use the official Neo4j drivers' connection pool; do not open a new Bolt session per
+      request. Default pool size is 100 connections per driver instance.
+  - name: Query timeouts
+    description: Set `dbms.transaction.timeout` to bound long-running Cypher queries on self-managed
+      Enterprise; AuraDB applies platform timeouts.
+  - name: Backpressure on free tier
+    description: Free tier reaches node/relationship caps; queries that would exceed the cap fail. Upgrade
+      to Professional for production volumes.
 maintainers:
-  - FN: API Evangelist
-    email: info@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
