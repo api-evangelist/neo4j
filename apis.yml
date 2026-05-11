@@ -208,6 +208,10 @@ common:
     url: https://neo4j.com/blog/
   - type: Login
     url: https://console.neo4j.io/
+  - type: Integrations
+    url: https://neo4j.com/partners/
+integrations:
+  - name: Become a Partner
 maintainers:
   - FN: API Evangelist
     email: info@apievangelist.com
