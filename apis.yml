@@ -6,7 +6,7 @@ description: >-
   HTTP, Query, and Aura cloud APIs alongside official drivers for Python,
   Java, and JavaScript, as well as a GraphQL library for rapid API development
   backed by the Neo4j graph database.
-type: Contract
+kind: contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - Graph Database
