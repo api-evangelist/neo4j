@@ -17,7 +17,7 @@ tags:
   - APIs
 url: https://raw.githubusercontent.com/api-evangelist/neo4j/refs/heads/main/apis.yml
 created: '2025-03-05'
-modified: '2026-04-28'
+modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
   - aid: neo4j:http-api
@@ -210,6 +210,9 @@ common:
     url: https://console.neo4j.io/
   - type: Integrations
     url: https://neo4j.com/partners/
+  - name: Agent Skills
+    url: https://neo4j.com/blog/developer/introducing-neo4j-agent-skills/
+    type: AgentSkill
 integrations:
   - name: Become a Partner
 maintainers:
