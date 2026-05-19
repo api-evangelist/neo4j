@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Neo4j Aura API — Authentication
+  description: 'Neo4j Aura API — Authentication. 1 operations. Lead operation: Obtain an OAuth2 access token. Self-contained
+    Naftiko capability covering one Neo4j business surface.'
+  tags:
+  - Neo4j
+  - Authentication
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEO4J_API_KEY: NEO4J_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: aura-authentication
+    baseUri: https://api.neo4j.io/v1
+    description: Neo4j Aura API — Authentication business capability. Self-contained, no shared references.
+    resources:
+    - name: oauth-token
+      path: /oauth/token
+      operations:
+      - name: getaccesstoken
+        method: POST
+        description: Obtain an OAuth2 access token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.NEO4J_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: aura-authentication-rest
+    port: 8080
+    description: REST adapter for Neo4j Aura API — Authentication. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/oauth/token
+      name: oauth-token
+      description: REST surface for oauth-token.
+      operations:
+      - method: POST
+        name: getaccesstoken
+        description: Obtain an OAuth2 access token
+        call: aura-authentication.getaccesstoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: aura-authentication-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Neo4j Aura API — Authentication. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: obtain-oauth2-access-token
+      description: Obtain an OAuth2 access token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: aura-authentication.getaccesstoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

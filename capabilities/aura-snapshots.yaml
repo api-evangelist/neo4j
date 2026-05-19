@@ -1,0 +1,169 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Neo4j Aura API — Snapshots
+  description: 'Neo4j Aura API — Snapshots. 4 operations. Lead operation: List snapshots for an instance. Self-contained Naftiko
+    capability covering one Neo4j business surface.'
+  tags:
+  - Neo4j
+  - Snapshots
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEO4J_API_KEY: NEO4J_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: aura-snapshots
+    baseUri: https://api.neo4j.io/v1
+    description: Neo4j Aura API — Snapshots business capability. Self-contained, no shared references.
+    resources:
+    - name: instances-instanceId-snapshots
+      path: /instances/{instanceId}/snapshots
+      operations:
+      - name: listsnapshots
+        method: GET
+        description: List snapshots for an instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createsnapshot
+        method: POST
+        description: Create a snapshot
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: instances-instanceId-snapshots-snapshotId
+      path: /instances/{instanceId}/snapshots/{snapshotId}
+      operations:
+      - name: getsnapshot
+        method: GET
+        description: Get snapshot details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: instances-instanceId-snapshots-snapshotId-restore
+      path: /instances/{instanceId}/snapshots/{snapshotId}/restore
+      operations:
+      - name: restoresnapshot
+        method: POST
+        description: Restore a snapshot to a new instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.NEO4J_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: aura-snapshots-rest
+    port: 8080
+    description: REST adapter for Neo4j Aura API — Snapshots. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/instances/{instanceid}/snapshots
+      name: instances-instanceid-snapshots
+      description: REST surface for instances-instanceId-snapshots.
+      operations:
+      - method: GET
+        name: listsnapshots
+        description: List snapshots for an instance
+        call: aura-snapshots.listsnapshots
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createsnapshot
+        description: Create a snapshot
+        call: aura-snapshots.createsnapshot
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{instanceid}/snapshots/{snapshotid}
+      name: instances-instanceid-snapshots-snapshotid
+      description: REST surface for instances-instanceId-snapshots-snapshotId.
+      operations:
+      - method: GET
+        name: getsnapshot
+        description: Get snapshot details
+        call: aura-snapshots.getsnapshot
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{instanceid}/snapshots/{snapshotid}/restore
+      name: instances-instanceid-snapshots-snapshotid-restore
+      description: REST surface for instances-instanceId-snapshots-snapshotId-restore.
+      operations:
+      - method: POST
+        name: restoresnapshot
+        description: Restore a snapshot to a new instance
+        call: aura-snapshots.restoresnapshot
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: aura-snapshots-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Neo4j Aura API — Snapshots. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-snapshots-instance
+      description: List snapshots for an instance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: aura-snapshots.listsnapshots
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-snapshot
+      description: Create a snapshot
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: aura-snapshots.createsnapshot
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-snapshot-details
+      description: Get snapshot details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: aura-snapshots.getsnapshot
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: restore-snapshot-new-instance
+      description: Restore a snapshot to a new instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: aura-snapshots.restoresnapshot
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

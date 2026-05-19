@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Neo4j HTTP API — Discovery
+  description: 'Neo4j HTTP API — Discovery. 1 operations. Lead operation: Discovery endpoint. Self-contained Naftiko capability
+    covering one Neo4j business surface.'
+  tags:
+  - Neo4j
+  - Discovery
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEO4J_API_KEY: NEO4J_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: http-discovery
+    baseUri: http://localhost:7474
+    description: Neo4j HTTP API — Discovery business capability. Self-contained, no shared references.
+    resources:
+    - name: root
+      path: /
+      operations:
+      - name: getdiscovery
+        method: GET
+        description: Discovery endpoint
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.NEO4J_USER}}'
+      password: '{{env.NEO4J_PASS}}'
+  exposes:
+  - type: rest
+    namespace: http-discovery-rest
+    port: 8080
+    description: REST adapter for Neo4j HTTP API — Discovery. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1
+      name: root
+      description: REST surface for root.
+      operations:
+      - method: GET
+        name: getdiscovery
+        description: Discovery endpoint
+        call: http-discovery.getdiscovery
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: http-discovery-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Neo4j HTTP API — Discovery. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: discovery-endpoint
+      description: Discovery endpoint
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: http-discovery.getdiscovery
+      outputParameters:
+      - type: object
+        mapping: $.

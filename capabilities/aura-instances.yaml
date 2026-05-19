@@ -1,0 +1,312 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Neo4j Aura API — Instances
+  description: 'Neo4j Aura API — Instances. 8 operations. Lead operation: List all instances. Self-contained Naftiko capability
+    covering one Neo4j business surface.'
+  tags:
+  - Neo4j
+  - Instances
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    NEO4J_API_KEY: NEO4J_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: aura-instances
+    baseUri: https://api.neo4j.io/v1
+    description: Neo4j Aura API — Instances business capability. Self-contained, no shared references.
+    resources:
+    - name: instances
+      path: /instances
+      operations:
+      - name: listinstances
+        method: GET
+        description: List all instances
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tenantId
+          in: query
+          type: string
+          description: Filter instances by tenant ID
+      - name: createinstance
+        method: POST
+        description: Create a new instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: instances-instanceId
+      path: /instances/{instanceId}
+      operations:
+      - name: getinstance
+        method: GET
+        description: Get instance details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateinstance
+        method: PATCH
+        description: Update an instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteinstance
+        method: DELETE
+        description: Delete an instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: instances-instanceId-overwrite
+      path: /instances/{instanceId}/overwrite
+      operations:
+      - name: overwriteinstance
+        method: POST
+        description: Overwrite an instance from a snapshot
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: instances-instanceId-pause
+      path: /instances/{instanceId}/pause
+      operations:
+      - name: pauseinstance
+        method: POST
+        description: Pause an instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: instances-instanceId-resume
+      path: /instances/{instanceId}/resume
+      operations:
+      - name: resumeinstance
+        method: POST
+        description: Resume a paused instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.NEO4J_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: aura-instances-rest
+    port: 8080
+    description: REST adapter for Neo4j Aura API — Instances. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/instances
+      name: instances
+      description: REST surface for instances.
+      operations:
+      - method: GET
+        name: listinstances
+        description: List all instances
+        call: aura-instances.listinstances
+        with:
+          tenantId: rest.tenantId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createinstance
+        description: Create a new instance
+        call: aura-instances.createinstance
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{instanceid}
+      name: instances-instanceid
+      description: REST surface for instances-instanceId.
+      operations:
+      - method: GET
+        name: getinstance
+        description: Get instance details
+        call: aura-instances.getinstance
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateinstance
+        description: Update an instance
+        call: aura-instances.updateinstance
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteinstance
+        description: Delete an instance
+        call: aura-instances.deleteinstance
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{instanceid}/overwrite
+      name: instances-instanceid-overwrite
+      description: REST surface for instances-instanceId-overwrite.
+      operations:
+      - method: POST
+        name: overwriteinstance
+        description: Overwrite an instance from a snapshot
+        call: aura-instances.overwriteinstance
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{instanceid}/pause
+      name: instances-instanceid-pause
+      description: REST surface for instances-instanceId-pause.
+      operations:
+      - method: POST
+        name: pauseinstance
+        description: Pause an instance
+        call: aura-instances.pauseinstance
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/instances/{instanceid}/resume
+      name: instances-instanceid-resume
+      description: REST surface for instances-instanceId-resume.
+      operations:
+      - method: POST
+        name: resumeinstance
+        description: Resume a paused instance
+        call: aura-instances.resumeinstance
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: aura-instances-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Neo4j Aura API — Instances. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-all-instances
+      description: List all instances
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: aura-instances.listinstances
+      with:
+        tenantId: tools.tenantId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-instance
+      description: Create a new instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: aura-instances.createinstance
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-instance-details
+      description: Get instance details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: aura-instances.getinstance
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-instance
+      description: Update an instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: aura-instances.updateinstance
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-instance
+      description: Delete an instance
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: aura-instances.deleteinstance
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: overwrite-instance-snapshot
+      description: Overwrite an instance from a snapshot
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: aura-instances.overwriteinstance
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: pause-instance
+      description: Pause an instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: aura-instances.pauseinstance
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resume-paused-instance
+      description: Resume a paused instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: aura-instances.resumeinstance
+      outputParameters:
+      - type: object
+        mapping: $.
