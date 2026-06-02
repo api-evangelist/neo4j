@@ -2,12 +2,20 @@
   "repo": "neo4j",
   "feeds": [
     {
-      "source": "https://neo4j.com/blog/",
+      "source": "https://neo4j.com/blog/feed/",
       "feed_url": "https://neo4j.com/blog/feed/",
-      "title": "Graph Database & Technology | Neo4j Blog",
-      "saved": 42
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://support.neo4j.com/",
+      "feed_url": "https://support.neo4j.com/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 55,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 67,
+  "fetched": "2026-06-01T23:35:02Z"
 }
