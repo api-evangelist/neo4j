@@ -1,0 +1,1640 @@
+{
+  "item": [
+    {
+      "id": "0c014a7a-6531-46c3-a036-193d6cbf4d34",
+      "name": "Discovery",
+      "description": {
+        "content": "Server discovery endpoint that returns available endpoints, server version, edition, and authentication configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aae34ef3-788a-4179-a946-033e47ccb31c",
+          "name": "Discovery endpoint",
+          "request": {
+            "name": "Discovery endpoint",
+            "description": {
+              "content": "Returns a list of available endpoints on the Neo4j installation, together with basic server information including the Neo4j version, edition, Bolt connection URIs, and authentication configuration. This endpoint does not require authentication.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63519219-6c30-4431-b857-13528c440284",
+              "name": "Server discovery information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bolt_routing\": \"neo4j://localhost:7687\",\n  \"bolt_direct\": \"bolt://localhost:7687\",\n  \"transaction\": \"/db/{databaseName}/tx\",\n  \"neo4j_version\": \"5.26.0\",\n  \"neo4j_edition\": \"enterprise\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0eb0e4e5-b245-4fda-b989-fb8286a096b4",
+      "name": "Query",
+      "description": {
+        "content": "Execute Cypher queries using implicit transactions where the server manages transaction lifecycle automatically.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7eebcda0-619e-4af5-894e-c5a63c4f89c3",
+          "name": "Execute a Cypher query",
+          "request": {
+            "name": "Execute a Cypher query",
+            "description": {
+              "content": "Executes a Cypher query against the specified database using an implicit transaction. The server wraps the submitted Cypher query in a transaction automatically so that if any part of the query fails the database is reverted to its state before the query was executed. Multiple statements can be sent in a single request and the server runs them in sequence.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "db",
+                ":databaseName",
+                "query"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "databaseName",
+                  "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": 1383,\n        \"key_1\": 4821,\n        \"key_2\": 258.66957535067735\n      },\n      \"resultDataContents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": 2863.4913969719946\n      },\n      \"resultDataContents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f72e75bb-716d-400a-a33a-83a755ff0a85",
+              "name": "Query executed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"columns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": true,\n        \"nodes_created\": 7100,\n        \"nodes_deleted\": 1200,\n        \"properties_set\": 1592,\n        \"relationships_created\": 4048,\n        \"relationships_deleted\": 3329,\n        \"labels_added\": 9145,\n        \"labels_removed\": 6219,\n        \"indexes_added\": 2621,\n        \"indexes_removed\": 9130,\n        \"constraints_added\": 1293,\n        \"constraints_removed\": 9271\n      }\n    },\n    {\n      \"columns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": false,\n        \"nodes_created\": 4182,\n        \"nodes_deleted\": 5339,\n        \"properties_set\": 9614,\n        \"relationships_created\": 4362,\n        \"relationships_deleted\": 1261,\n        \"labels_added\": 9629,\n        \"labels_removed\": 1323,\n        \"indexes_added\": 8905,\n        \"indexes_removed\": 6008,\n        \"constraints_added\": 1446,\n        \"constraints_removed\": 4729\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    },\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d4dafbb-75a2-4e20-b1d3-6b4561455c90",
+              "name": "Invalid query or request format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    },\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd45917d-715c-4ba5-84ae-636293c250bf",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "51c76d95-9f37-44c3-ae5b-885140722dfc",
+              "name": "Database not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "query"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "50952343-517f-4e4a-b2b0-c8f18a853ae3",
+      "name": "Transactions",
+      "description": {
+        "content": "Manage explicit transactions with full control over the transaction lifecycle including open, run, commit, and rollback operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c72384b-67c2-467d-9c05-cdf4aa43d308",
+          "name": "Open a new explicit transaction",
+          "request": {
+            "name": "Open a new explicit transaction",
+            "description": {
+              "content": "Opens a new explicit transaction on the specified database. The response includes the transaction location URI which contains the transaction ID needed for subsequent operations. Optionally, Cypher statements can be included in the request body to be executed as part of the transaction opening. Transactions expire automatically after a period of inactivity with a default timeout of 30 seconds, configurable via server.http.transaction_idle_timeout.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "db",
+                ":databaseName",
+                "tx"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "databaseName",
+                  "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": 7708.394786751597,\n        \"key_1\": 9843,\n        \"key_2\": 8463,\n        \"key_3\": 6267.047609939302\n      },\n      \"resultDataContents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": 5798,\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"resultDataContents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1b5210c0-da0d-4513-99f8-0237a6c96ebb",
+              "name": "Transaction opened successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "URI of the new transaction",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"columns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": false,\n        \"nodes_created\": 6838,\n        \"nodes_deleted\": 6898,\n        \"properties_set\": 9284,\n        \"relationships_created\": 5380,\n        \"relationships_deleted\": 134,\n        \"labels_added\": 7858,\n        \"labels_removed\": 628,\n        \"indexes_added\": 365,\n        \"indexes_removed\": 9103,\n        \"constraints_added\": 9923,\n        \"constraints_removed\": 5523\n      }\n    },\n    {\n      \"columns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": true,\n        \"nodes_created\": 2101,\n        \"nodes_deleted\": 9644,\n        \"properties_set\": 2221,\n        \"relationships_created\": 9443,\n        \"relationships_deleted\": 9084,\n        \"labels_added\": 7150,\n        \"labels_removed\": 7422,\n        \"indexes_added\": 8431,\n        \"indexes_removed\": 9883,\n        \"constraints_added\": 2049,\n        \"constraints_removed\": 3148\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    },\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    }\n  ],\n  \"commit\": \"http://localhost:7474/db/neo4j/tx/1/commit\",\n  \"transaction\": {\n    \"expires\": \"Wed, 01 Jan 2025 12:00:30 +0000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d135f0c8-d1cb-4a7a-8445-6b2cf55395f4",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    },\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78dffea7-5ef1-47cf-9f49-d246a0dabf2b",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5c4fc8c3-3e41-4035-a0fe-1579c405f695",
+              "name": "Database not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abc8cdfe-cead-4ed6-abea-db996d25a7dd",
+          "name": "Execute statements in an open transaction",
+          "request": {
+            "name": "Execute statements in an open transaction",
+            "description": {
+              "content": "Submits one or more Cypher statements to be executed within an existing open transaction. The transaction remains open after execution and must be explicitly committed or rolled back. Each request resets the transaction idle timeout.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "db",
+                ":databaseName",
+                "tx",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "databaseName",
+                  "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": 7708.394786751597,\n        \"key_1\": 9843,\n        \"key_2\": 8463,\n        \"key_3\": 6267.047609939302\n      },\n      \"resultDataContents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": 5798,\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"resultDataContents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "32567397-b654-4d7d-8e6d-c541ea05385b",
+              "name": "Statements executed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"columns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": false,\n        \"nodes_created\": 6838,\n        \"nodes_deleted\": 6898,\n        \"properties_set\": 9284,\n        \"relationships_created\": 5380,\n        \"relationships_deleted\": 134,\n        \"labels_added\": 7858,\n        \"labels_removed\": 628,\n        \"indexes_added\": 365,\n        \"indexes_removed\": 9103,\n        \"constraints_added\": 9923,\n        \"constraints_removed\": 5523\n      }\n    },\n    {\n      \"columns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": true,\n        \"nodes_created\": 2101,\n        \"nodes_deleted\": 9644,\n        \"properties_set\": 2221,\n        \"relationships_created\": 9443,\n        \"relationships_deleted\": 9084,\n        \"labels_added\": 7150,\n        \"labels_removed\": 7422,\n        \"indexes_added\": 8431,\n        \"indexes_removed\": 9883,\n        \"constraints_added\": 2049,\n        \"constraints_removed\": 3148\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    },\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    }\n  ],\n  \"commit\": \"http://localhost:7474/db/neo4j/tx/1/commit\",\n  \"transaction\": {\n    \"expires\": \"Wed, 01 Jan 2025 12:00:30 +0000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fbba02b0-c52a-4e88-acc4-002c9484910c",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    },\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70df6dad-681a-4957-aca9-89ad2990a65a",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "af683d30-3ebd-4509-9eac-3abd2aa22309",
+              "name": "Transaction or database not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b27e8dab-6fd1-42e8-98cd-558fa82150f8",
+          "name": "Rollback a transaction",
+          "request": {
+            "name": "Rollback a transaction",
+            "description": {
+              "content": "Rolls back an open transaction, restoring the database to the state it was in before the transaction was opened. All changes made within the transaction are discarded.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "db",
+                ":databaseName",
+                "tx",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "databaseName",
+                  "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d32ff157-c48a-4207-85a9-287a3c517df7",
+              "name": "Transaction rolled back successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"columns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": false,\n        \"nodes_created\": 6838,\n        \"nodes_deleted\": 6898,\n        \"properties_set\": 9284,\n        \"relationships_created\": 5380,\n        \"relationships_deleted\": 134,\n        \"labels_added\": 7858,\n        \"labels_removed\": 628,\n        \"indexes_added\": 365,\n        \"indexes_removed\": 9103,\n        \"constraints_added\": 9923,\n        \"constraints_removed\": 5523\n      }\n    },\n    {\n      \"columns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": true,\n        \"nodes_created\": 2101,\n        \"nodes_deleted\": 9644,\n        \"properties_set\": 2221,\n        \"relationships_created\": 9443,\n        \"relationships_deleted\": 9084,\n        \"labels_added\": 7150,\n        \"labels_removed\": 7422,\n        \"indexes_added\": 8431,\n        \"indexes_removed\": 9883,\n        \"constraints_added\": 2049,\n        \"constraints_removed\": 3148\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    },\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    }\n  ],\n  \"commit\": \"http://localhost:7474/db/neo4j/tx/1/commit\",\n  \"transaction\": {\n    \"expires\": \"Wed, 01 Jan 2025 12:00:30 +0000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e897f771-08b0-449a-aca2-4edd999a36e0",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dbab3274-9334-4cf4-94a6-93b1f7afcc8d",
+              "name": "Transaction or database not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03ce0522-0e80-4b6f-a16d-47d81ddef7a4",
+          "name": "Commit a transaction",
+          "request": {
+            "name": "Commit a transaction",
+            "description": {
+              "content": "Commits an open transaction, making all changes permanent in the database. Optionally, final Cypher statements can be included in the request body to be executed before the transaction is committed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "db",
+                ":databaseName",
+                "tx",
+                ":transactionId",
+                "commit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "databaseName",
+                  "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "transactionId",
+                  "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": 7708.394786751597,\n        \"key_1\": 9843,\n        \"key_2\": 8463,\n        \"key_3\": 6267.047609939302\n      },\n      \"resultDataContents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"key_0\": 5798,\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"resultDataContents\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "589ea610-ca05-4b9e-87c0-ba9e6fd52d19",
+              "name": "Transaction committed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx",
+                    ":transactionId",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"columns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": false,\n        \"nodes_created\": 6838,\n        \"nodes_deleted\": 6898,\n        \"properties_set\": 9284,\n        \"relationships_created\": 5380,\n        \"relationships_deleted\": 134,\n        \"labels_added\": 7858,\n        \"labels_removed\": 628,\n        \"indexes_added\": 365,\n        \"indexes_removed\": 9103,\n        \"constraints_added\": 9923,\n        \"constraints_removed\": 5523\n      }\n    },\n    {\n      \"columns\": [\n        \"string\",\n        \"string\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"labels\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              {\n                \"id\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"type\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"startNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"endNode\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"properties\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": true,\n        \"nodes_created\": 2101,\n        \"nodes_deleted\": 9644,\n        \"properties_set\": 2221,\n        \"relationships_created\": 9443,\n        \"relationships_deleted\": 9084,\n        \"labels_added\": 7150,\n        \"labels_removed\": 7422,\n        \"indexes_added\": 8431,\n        \"indexes_removed\": 9883,\n        \"constraints_added\": 2049,\n        \"constraints_removed\": 3148\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    },\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    }\n  ],\n  \"commit\": \"http://localhost:7474/db/neo4j/tx/1/commit\",\n  \"transaction\": {\n    \"expires\": \"Wed, 01 Jan 2025 12:00:30 +0000\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "594550ad-2b04-4a9d-8bb4-781c787f86e8",
+              "name": "Invalid request or transaction error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx",
+                    ":transactionId",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    },\n    {\n      \"code\": \"Neo.ClientError.Statement.SyntaxError\",\n      \"message\": \"Invalid input 'X'\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c97e426-8c6e-4981-895d-90d290938d66",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx",
+                    ":transactionId",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3667bbc4-2be7-403a-b1a0-b4233bd3105b",
+              "name": "Transaction or database not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "db",
+                    ":databaseName",
+                    "tx",
+                    ":transactionId",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "databaseName",
+                      "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "transactionId",
+                      "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"MATCH (n) RETURN n LIMIT 10\",\n      \"parameters\": {\n        \"name\": \"Alice\",\n        \"age\": 30\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:7474",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f3f56d67-7e0b-4e89-a098-dec8dd937f56",
+    "name": "Neo4j HTTP API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Neo4j HTTP API allows developers to execute Cypher queries against a Neo4j database through HTTP requests. It supports both implicit transactions, where the API handles transaction management automatically, and explicit transactions, where developers control the full transaction lifecycle including open, commit, and rollback operations. By default the API uses port 7474 for HTTP and port 7473 for HTTPS on self-managed instances.\n\nContact Support:\n Name: Neo4j Support",
+      "type": "text/plain"
+    }
+  }
+}

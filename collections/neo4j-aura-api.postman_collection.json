@@ -1,0 +1,3274 @@
+{
+  "item": [
+    {
+      "id": "6467d662-b44d-4e93-a898-c73cb49a8748",
+      "name": "Authentication",
+      "description": {
+        "content": "OAuth2 token management for authenticating API requests. Access tokens are temporary and expire after one hour.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "51ae9e0b-6699-4bb6-afe8-3abb3d0979f0",
+          "name": "Obtain an OAuth2 access token",
+          "request": {
+            "name": "Obtain an OAuth2 access token",
+            "description": {
+              "content": "Authenticates using client credentials to obtain a bearer token for API access. The client ID and client secret are provided using HTTP Basic Authentication. Access tokens expire after one hour and a new token must be obtained when the current one expires. A 403 Forbidden response indicates an expired token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "oauth",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>",
+                  "description": "(Required) The OAuth2 grant type"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5638f57d-ea50-436c-b946-1f847737014a",
+              "name": "Access token issued successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The OAuth2 grant type",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"expires_in\": 3600,\n  \"token_type\": \"bearer\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59543a3a-0138-43e9-8bbc-35172b75b133",
+              "name": "Invalid client credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) The OAuth2 grant type",
+                        "type": "text/plain"
+                      },
+                      "key": "grant_type",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b0deaf88-4b27-4942-8dc3-77261f355b35",
+      "name": "Instances",
+      "description": {
+        "content": "Manage AuraDB cloud database instances including provisioning, configuration, lifecycle operations such as pause and resume, and deletion.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7a4e4ad6-d10c-4f67-af1c-a49f1f6a4137",
+          "name": "List all instances",
+          "request": {
+            "name": "List all instances",
+            "description": {
+              "content": "Returns a list of all AuraDB instances accessible to the authenticated user across all tenants.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tenantId",
+                  "value": "<string>",
+                  "description": "Filter instances by tenant ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "861f84fd-b04d-4583-8fea-956e47db40a3",
+              "name": "List of instances",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenantId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"resuming\",\n      \"tenant_id\": \"string\",\n      \"cloud_provider\": \"azure\",\n      \"region\": \"us-east-1\",\n      \"type\": \"enterprise-ds\",\n      \"memory\": \"8GB\",\n      \"storage\": \"16GB\",\n      \"connection_url\": \"neo4j+s://xxxxxxxx.databases.neo4j.io\",\n      \"metrics_integration_url\": \"string\",\n      \"neo4j_version\": \"5\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"resuming\",\n      \"tenant_id\": \"string\",\n      \"cloud_provider\": \"azure\",\n      \"region\": \"us-east-1\",\n      \"type\": \"free-db\",\n      \"memory\": \"8GB\",\n      \"storage\": \"16GB\",\n      \"connection_url\": \"neo4j+s://xxxxxxxx.databases.neo4j.io\",\n      \"metrics_integration_url\": \"string\",\n      \"neo4j_version\": \"5\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15589ed6-17cf-46d2-bb9f-a8b8680104c4",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenantId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e9aa9ae5-b716-4527-923c-71ff46aa4325",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tenantId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90284b6c-6259-428d-a67e-9f918f71b9b6",
+          "name": "Create a new instance",
+          "request": {
+            "name": "Create a new instance",
+            "description": {
+              "content": "Provisions a new AuraDB cloud database instance with the specified configuration including version, region, memory, cloud provider, and instance type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67fa26fd-347b-476a-b4e4-292e65ff41ae",
+              "name": "Instance creation initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"8GB\",\n  \"region\": \"us-east-1\",\n  \"cloud_provider\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"version\": \"5\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"string\",\n    \"tenant_id\": \"string\",\n    \"connection_url\": \"string\",\n    \"username\": \"neo4j\",\n    \"password\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0bc99e2-9396-4b63-ab10-6dd570a65032",
+              "name": "Invalid configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"8GB\",\n  \"region\": \"us-east-1\",\n  \"cloud_provider\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"version\": \"5\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"message\": \"string\",\n      \"reason\": \"string\",\n      \"field\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"reason\": \"string\",\n      \"field\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38833220-59e0-4c90-8de7-6f246c5b62fa",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"8GB\",\n  \"region\": \"us-east-1\",\n  \"cloud_provider\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"version\": \"5\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "131aac97-fe0b-41d2-9ef9-3844aca601c3",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"8GB\",\n  \"region\": \"us-east-1\",\n  \"cloud_provider\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tenant_id\": \"<string>\",\n  \"version\": \"5\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ed8a42a-d276-4e8c-9823-2d056caa69e0",
+          "name": "Get instance details",
+          "request": {
+            "name": "Get instance details",
+            "description": {
+              "content": "Returns detailed information about a specific AuraDB instance including its status, configuration, connection URI, and metrics integration URL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The unique identifier of an AuraDB instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f275ca1e-e588-4894-95c2-5b20b7118367",
+              "name": "Instance details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"updating\",\n    \"tenant_id\": \"string\",\n    \"cloud_provider\": \"aws\",\n    \"region\": \"us-east-1\",\n    \"type\": \"enterprise-db\",\n    \"memory\": \"8GB\",\n    \"storage\": \"16GB\",\n    \"connection_url\": \"neo4j+s://xxxxxxxx.databases.neo4j.io\",\n    \"metrics_integration_url\": \"string\",\n    \"neo4j_version\": \"5\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4be524f3-da01-45ad-b53e-d39296d94a06",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "390ff4db-e7cb-4614-bf3e-fefa8d21d364",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d374f181-5a3d-47f1-953d-0feaf90e75ea",
+          "name": "Update an instance",
+          "request": {
+            "name": "Update an instance",
+            "description": {
+              "content": "Updates the configuration of an existing AuraDB instance. Supported updates include resizing memory and renaming the instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The unique identifier of an AuraDB instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "86a8c7be-f16f-491a-8f5d-6c48b5773048",
+              "name": "Instance updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"16GB\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"updating\",\n    \"tenant_id\": \"string\",\n    \"cloud_provider\": \"aws\",\n    \"region\": \"us-east-1\",\n    \"type\": \"enterprise-db\",\n    \"memory\": \"8GB\",\n    \"storage\": \"16GB\",\n    \"connection_url\": \"neo4j+s://xxxxxxxx.databases.neo4j.io\",\n    \"metrics_integration_url\": \"string\",\n    \"neo4j_version\": \"5\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47c1dc89-af78-47ac-acbb-0205d4c5e3d7",
+              "name": "Invalid update configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"16GB\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"message\": \"string\",\n      \"reason\": \"string\",\n      \"field\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"reason\": \"string\",\n      \"field\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b589fef0-8272-4235-a4c7-196f02fa18d8",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"16GB\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5966b6d8-dbb2-44bb-ac76-025f016bfff3",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"16GB\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6fb1361-b3ea-4fe2-80a9-5a69c2bc56cd",
+          "name": "Delete an instance",
+          "request": {
+            "name": "Delete an instance",
+            "description": {
+              "content": "Permanently deletes an AuraDB instance and all associated data. This operation cannot be undone.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The unique identifier of an AuraDB instance"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c36decaf-de12-4ce1-bb8a-55280e938615",
+              "name": "Instance deletion initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0510c637-02c1-4d5d-aa2a-ecd4db71a2a1",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3564f07c-b090-47ed-a0f1-b7dff1e666b8",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e1fe11a-a0b6-4bef-93a6-380b458c6c1b",
+          "name": "Pause an instance",
+          "request": {
+            "name": "Pause an instance",
+            "description": {
+              "content": "Pauses a running AuraDB instance, stopping compute charges while retaining the data. A paused instance cannot serve queries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The unique identifier of an AuraDB instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c998ca6-8510-4098-b80d-827f180bab04",
+              "name": "Instance pause initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"updating\",\n    \"tenant_id\": \"string\",\n    \"cloud_provider\": \"aws\",\n    \"region\": \"us-east-1\",\n    \"type\": \"enterprise-db\",\n    \"memory\": \"8GB\",\n    \"storage\": \"16GB\",\n    \"connection_url\": \"neo4j+s://xxxxxxxx.databases.neo4j.io\",\n    \"metrics_integration_url\": \"string\",\n    \"neo4j_version\": \"5\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce30fccd-e18b-45c7-8209-e54d60937603",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "87f6e425-a1f3-40fd-8d14-9f66a82b7eef",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a2718f2-2869-4b27-ad03-bbc2a1b4550e",
+          "name": "Resume a paused instance",
+          "request": {
+            "name": "Resume a paused instance",
+            "description": {
+              "content": "Resumes a paused AuraDB instance, restoring it to a running state so it can serve queries again.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The unique identifier of an AuraDB instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "faed4e91-dee8-46c2-80a5-787460b45166",
+              "name": "Instance resume initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"updating\",\n    \"tenant_id\": \"string\",\n    \"cloud_provider\": \"aws\",\n    \"region\": \"us-east-1\",\n    \"type\": \"enterprise-db\",\n    \"memory\": \"8GB\",\n    \"storage\": \"16GB\",\n    \"connection_url\": \"neo4j+s://xxxxxxxx.databases.neo4j.io\",\n    \"metrics_integration_url\": \"string\",\n    \"neo4j_version\": \"5\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9dc64f7e-2289-42b2-a12b-fb22e6411ba9",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "75ff0961-03b3-401d-9df2-b21371428998",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "934593d1-5066-4076-92f2-41a38cfde780",
+          "name": "Overwrite an instance from a snapshot",
+          "request": {
+            "name": "Overwrite an instance from a snapshot",
+            "description": {
+              "content": "Overwrites the data in an existing instance with data from a specified snapshot, effectively restoring the instance to a previous point in time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId",
+                "overwrite"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The unique identifier of an AuraDB instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"source_snapshot_id\": \"<string>\",\n  \"source_instance_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ac933f24-7030-4eaa-8d3d-f7478fd22c08",
+              "name": "Instance overwrite initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "overwrite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_snapshot_id\": \"<string>\",\n  \"source_instance_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"updating\",\n    \"tenant_id\": \"string\",\n    \"cloud_provider\": \"aws\",\n    \"region\": \"us-east-1\",\n    \"type\": \"enterprise-db\",\n    \"memory\": \"8GB\",\n    \"storage\": \"16GB\",\n    \"connection_url\": \"neo4j+s://xxxxxxxx.databases.neo4j.io\",\n    \"metrics_integration_url\": \"string\",\n    \"neo4j_version\": \"5\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "894da20a-9370-4da9-8e52-f11ee75bfacd",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "overwrite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_snapshot_id\": \"<string>\",\n  \"source_instance_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"message\": \"string\",\n      \"reason\": \"string\",\n      \"field\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"reason\": \"string\",\n      \"field\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da07063d-8d7f-4725-b4c1-f4637aec9025",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "overwrite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_snapshot_id\": \"<string>\",\n  \"source_instance_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "64a8d18b-6934-4559-9b2d-c08406078f7c",
+              "name": "Instance or snapshot not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "overwrite"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"source_snapshot_id\": \"<string>\",\n  \"source_instance_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a528679c-c8b2-4273-98ba-ae8027d423fd",
+      "name": "Snapshots",
+      "description": {
+        "content": "Manage database snapshots which are point-in-time copies of instance data used for backup and restore operations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "301a2a52-4713-4f32-8e91-f3c7cc47cd06",
+          "name": "List snapshots for an instance",
+          "request": {
+            "name": "List snapshots for an instance",
+            "description": {
+              "content": "Returns a list of available snapshots for a specific AuraDB instance. Snapshots are point-in-time copies of the instance data created either automatically by Neo4j or on demand.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId",
+                "snapshots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The unique identifier of an AuraDB instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b44825f9-0aad-42b0-921b-e50c3b27dd4c",
+              "name": "List of snapshots",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"snapshot_id\": \"string\",\n      \"instance_id\": \"string\",\n      \"status\": \"Failed\",\n      \"timestamp\": \"1997-07-30T14:21:43.755Z\",\n      \"exportable\": true\n    },\n    {\n      \"snapshot_id\": \"string\",\n      \"instance_id\": \"string\",\n      \"status\": \"Failed\",\n      \"timestamp\": \"2024-08-11T11:02:07.683Z\",\n      \"exportable\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71f636b1-58a8-4e0f-8c9f-85e3accabbe6",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b806dc67-7129-4b1c-adf9-1ced6a5c8eaa",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72b43aba-c106-48a1-ad7a-48bcc9c23dcf",
+          "name": "Create a snapshot",
+          "request": {
+            "name": "Create a snapshot",
+            "description": {
+              "content": "Creates an on-demand snapshot of the specified AuraDB instance, capturing the current state of all data in the database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId",
+                "snapshots"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The unique identifier of an AuraDB instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97044482-9811-4696-8166-02d8890521a7",
+              "name": "Snapshot creation initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"snapshot_id\": \"string\",\n    \"instance_id\": \"string\",\n    \"status\": \"Completed\",\n    \"timestamp\": \"2019-06-07T19:47:09.552Z\",\n    \"exportable\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f261789b-b123-4478-bfe6-cc111b23e8aa",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "23474b2f-cc56-485c-b5e6-c1b30b9b3df7",
+              "name": "Instance not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "snapshots"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2638680-f4f4-4c11-af90-33a0478c0dde",
+          "name": "Get snapshot details",
+          "request": {
+            "name": "Get snapshot details",
+            "description": {
+              "content": "Returns detailed information about a specific snapshot including its status, creation time, and size.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId",
+                "snapshots",
+                ":snapshotId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The unique identifier of an AuraDB instance"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshotId",
+                  "description": "(Required) The unique identifier of a snapshot"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90f75da6-232f-4f31-817b-474f87481a3d",
+              "name": "Snapshot details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "snapshots",
+                    ":snapshotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshotId",
+                      "description": "(Required) The unique identifier of a snapshot"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"snapshot_id\": \"string\",\n    \"instance_id\": \"string\",\n    \"status\": \"Completed\",\n    \"timestamp\": \"2019-06-07T19:47:09.552Z\",\n    \"exportable\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42a27952-bd03-4c4c-b3a2-68f6322a0b10",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "snapshots",
+                    ":snapshotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshotId",
+                      "description": "(Required) The unique identifier of a snapshot"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b2f5115b-a58a-4fac-bc5d-8fa0e2ddd217",
+              "name": "Instance or snapshot not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "snapshots",
+                    ":snapshotId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshotId",
+                      "description": "(Required) The unique identifier of a snapshot"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e82988da-367a-4f80-bd37-09779eb7d26f",
+          "name": "Restore a snapshot to a new instance",
+          "request": {
+            "name": "Restore a snapshot to a new instance",
+            "description": {
+              "content": "Restores a snapshot to a new AuraDB instance, creating a new database populated with the data from the snapshot.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "instances",
+                ":instanceId",
+                "snapshots",
+                ":snapshotId",
+                "restore"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The unique identifier of an AuraDB instance"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "snapshotId",
+                  "description": "(Required) The unique identifier of a snapshot"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tenant_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c94aa58c-9749-41c9-b11f-4d7c6b0c7bdc",
+              "name": "Restore initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "snapshots",
+                    ":snapshotId",
+                    "restore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshotId",
+                      "description": "(Required) The unique identifier of a snapshot"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tenant_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"string\",\n    \"tenant_id\": \"string\",\n    \"connection_url\": \"string\",\n    \"username\": \"neo4j\",\n    \"password\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90ce1de3-86ba-44dc-97b4-67cba17b05dd",
+              "name": "Invalid restore configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "snapshots",
+                    ":snapshotId",
+                    "restore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshotId",
+                      "description": "(Required) The unique identifier of a snapshot"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tenant_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"message\": \"string\",\n      \"reason\": \"string\",\n      \"field\": \"string\"\n    },\n    {\n      \"message\": \"string\",\n      \"reason\": \"string\",\n      \"field\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe52ba8d-b388-4adf-b2e2-ac36910515f5",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "snapshots",
+                    ":snapshotId",
+                    "restore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshotId",
+                      "description": "(Required) The unique identifier of a snapshot"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tenant_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "39b3c080-be44-4551-b2f7-cf982fbd134d",
+              "name": "Instance or snapshot not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "instances",
+                    ":instanceId",
+                    "snapshots",
+                    ":snapshotId",
+                    "restore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "snapshotId",
+                      "description": "(Required) The unique identifier of a snapshot"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"<string>\",\n  \"type\": \"<string>\",\n  \"tenant_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f81c3aae-f4af-4c8f-a9bc-36698ccb79de",
+      "name": "Tenants",
+      "description": {
+        "content": "Manage tenants (projects) which organize multiple database instances under a single administrative unit for access control and configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c2c34fb-10f5-4684-a82a-7e3401a921b9",
+          "name": "List all tenants",
+          "request": {
+            "name": "List all tenants",
+            "description": {
+              "content": "Returns a list of all tenants (projects) accessible to the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3785995c-467b-474a-9b46-ec4ca79f3fee",
+              "name": "List of tenants",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"instance_configurations\": [\n        {\n          \"type\": \"string\",\n          \"regions\": [\n            {\n              \"name\": \"string\"\n            },\n            {\n              \"name\": \"string\"\n            }\n          ]\n        },\n        {\n          \"type\": \"string\",\n          \"regions\": [\n            {\n              \"name\": \"string\"\n            },\n            {\n              \"name\": \"string\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"instance_configurations\": [\n        {\n          \"type\": \"string\",\n          \"regions\": [\n            {\n              \"name\": \"string\"\n            },\n            {\n              \"name\": \"string\"\n            }\n          ]\n        },\n        {\n          \"type\": \"string\",\n          \"regions\": [\n            {\n              \"name\": \"string\"\n            },\n            {\n              \"name\": \"string\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecde5fca-a306-4d77-8ce1-8d9d27a66467",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9187f65e-6a9f-49ed-b143-8a24c5da6f93",
+          "name": "Get tenant details",
+          "request": {
+            "name": "Get tenant details",
+            "description": {
+              "content": "Returns detailed information about a specific tenant including its configuration and associated instance count.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tenants",
+                ":tenantId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tenantId",
+                  "description": "(Required) The unique identifier of a tenant (project)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8079228f-5daa-42a2-a3f4-dc410496ab10",
+              "name": "Tenant details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) The unique identifier of a tenant (project)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"instance_configurations\": [\n      {\n        \"type\": \"string\",\n        \"regions\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ]\n      },\n      {\n        \"type\": \"string\",\n        \"regions\": [\n          {\n            \"name\": \"string\"\n          },\n          {\n            \"name\": \"string\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ca25ba6-f057-434a-88b7-9dbb1ac21f1e",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) The unique identifier of a tenant (project)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "08877ba7-1589-488f-9f0a-dd17ce2abe12",
+              "name": "Tenant not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tenants",
+                    ":tenantId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tenantId",
+                      "description": "(Required) The unique identifier of a tenant (project)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.neo4j.io/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6fa38a7e-30fa-475a-8508-9a51bf8b5dc4",
+    "name": "Neo4j Aura API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.\n\nContact Support:\n Name: Neo4j Support",
+      "type": "text/plain"
+    }
+  }
+}

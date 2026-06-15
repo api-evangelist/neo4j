@@ -1,0 +1,181 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neo4j HTTP API",
+    "version": "5.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discovery endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:7474/"
+          },
+          "docs": "Returns a list of available endpoints on the Neo4j installation, together with basic server information including the Neo4j version, edition, Bolt connection URIs, and authentication configuration. This endpoint does not require authentication."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute a Cypher query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7474/db/:databaseName/query",
+            "params": [
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the database to execute queries against. Use neo4j for the default database."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a Cypher query against the specified database using an implicit transaction. The server wraps the submitted Cypher query in a transaction automatically so that if any part of the query fails the database is reverted to its state before the query was executed. Multiple statements can be sent in a single request and the server runs them in sequence."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Open a new explicit transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7474/db/:databaseName/tx",
+            "params": [
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the database to execute queries against. Use neo4j for the default database."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Opens a new explicit transaction on the specified database. The response includes the transaction location URI which contains the transaction ID needed for subsequent operations. Optionally, Cypher statements can be included in the request body to be executed as part of the transaction opening. Transactions expire automatically after a period of inactivity with a default timeout of 30 seconds, configurable via server.http.transaction_idle_timeout."
+        },
+        {
+          "info": {
+            "name": "Execute statements in an open transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7474/db/:databaseName/tx/:transactionId",
+            "params": [
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the database to execute queries against. Use neo4j for the default database."
+              },
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits one or more Cypher statements to be executed within an existing open transaction. The transaction remains open after execution and must be explicitly committed or rolled back. Each request resets the transaction idle timeout."
+        },
+        {
+          "info": {
+            "name": "Rollback a transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost:7474/db/:databaseName/tx/:transactionId",
+            "params": [
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the database to execute queries against. Use neo4j for the default database."
+              },
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+              }
+            ]
+          },
+          "docs": "Rolls back an open transaction, restoring the database to the state it was in before the transaction was opened. All changes made within the transaction are discarded."
+        },
+        {
+          "info": {
+            "name": "Commit a transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost:7474/db/:databaseName/tx/:transactionId/commit",
+            "params": [
+              {
+                "name": "databaseName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the database to execute queries against. Use neo4j for the default database."
+              },
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Commits an open transaction, making all changes permanent in the database. Optionally, final Cypher statements can be included in the request body to be executed before the transaction is committed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,346 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neo4j Aura API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Obtain an OAuth2 access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neo4j.io/v1/oauth/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Authenticates using client credentials to obtain a bearer token for API access. The client ID and client secret are provided using HTTP Basic Authentication. Access tokens expire after one hour and a new token must be obtained when the current one expires. A 403 Forbidden response indicates an expired token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neo4j.io/v1/instances",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "query",
+                "description": "Filter instances by tenant ID"
+              }
+            ]
+          },
+          "docs": "Returns a list of all AuraDB instances accessible to the authenticated user across all tenants."
+        },
+        {
+          "info": {
+            "name": "Create a new instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neo4j.io/v1/instances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provisions a new AuraDB cloud database instance with the specified configuration including version, region, memory, cloud provider, and instance type."
+        },
+        {
+          "info": {
+            "name": "Get instance details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific AuraDB instance including its status, configuration, connection URI, and metrics integration URL."
+        },
+        {
+          "info": {
+            "name": "Update an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing AuraDB instance. Supported updates include resizing memory and renaming the instance."
+        },
+        {
+          "info": {
+            "name": "Delete an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ]
+          },
+          "docs": "Permanently deletes an AuraDB instance and all associated data. This operation cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Pause an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/pause",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ]
+          },
+          "docs": "Pauses a running AuraDB instance, stopping compute charges while retaining the data. A paused instance cannot serve queries."
+        },
+        {
+          "info": {
+            "name": "Resume a paused instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/resume",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ]
+          },
+          "docs": "Resumes a paused AuraDB instance, restoring it to a running state so it can serve queries again."
+        },
+        {
+          "info": {
+            "name": "Overwrite an instance from a snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/overwrite",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Overwrites the data in an existing instance with data from a specified snapshot, effectively restoring the instance to a previous point in time."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tenants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neo4j.io/v1/tenants"
+          },
+          "docs": "Returns a list of all tenants (projects) accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Get tenant details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neo4j.io/v1/tenants/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a tenant (project)"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific tenant including its configuration and associated instance count."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List snapshots for an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/snapshots",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ]
+          },
+          "docs": "Returns a list of available snapshots for a specific AuraDB instance. Snapshots are point-in-time copies of the instance data created either automatically by Neo4j or on demand."
+        },
+        {
+          "info": {
+            "name": "Create a snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/snapshots",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ]
+          },
+          "docs": "Creates an on-demand snapshot of the specified AuraDB instance, capturing the current state of all data in the database."
+        },
+        {
+          "info": {
+            "name": "Get snapshot details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/snapshots/:snapshotId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              },
+              {
+                "name": "snapshotId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a snapshot"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific snapshot including its status, creation time, and size."
+        },
+        {
+          "info": {
+            "name": "Restore a snapshot to a new instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/snapshots/:snapshotId/restore",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              },
+              {
+                "name": "snapshotId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a snapshot"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restores a snapshot to a new AuraDB instance, creating a new database populated with the data from the snapshot."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
