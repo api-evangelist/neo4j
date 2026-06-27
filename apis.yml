@@ -197,8 +197,8 @@ common:
   url: https://neo4j.com/partners/
 - name: Agent Skills
   url: https://neo4j.com/blog/developer/introducing-neo4j-agent-skills/
-  type: AgentSkill
-- type: LLMsTxt
+  type: AgentSkills
+- type: LlmsText
   url: https://neo4j.com/llms.txt
 integrations:
 - name: Become a Partner

@@ -2,11 +2,11 @@
   "repo": "neo4j",
   "feeds": [
     {
-      "source": "https://neo4j.com/blog/",
+      "source": "https://neo4j.com/blog/feed/",
       "feed_url": "https://neo4j.com/blog/feed/",
       "title": "",
-      "saved": 0,
-      "method": "discovered"
+      "saved": 3,
+      "method": "feed"
     },
     {
       "source": "https://support.neo4j.com/",
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "post_count": 70,
-  "fetched": "2026-06-14T20:42:17Z"
+  "post_count": 74,
+  "fetched": "2026-06-27T12:03:07Z"
 }
