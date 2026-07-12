@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/neo4j-aura-api-openapi.yml, openapi/neo4j-http-api-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: OAuth2 bearer token obtained from the /oauth/token endpoint using client credentials.
+    Tokens expire after one hour.
+  sources:
+  - openapi/neo4j-aura-api-openapi.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic Authentication using the Neo4j database username and password encoded
+    as a base64 hash.
+  sources:
+  - openapi/neo4j-http-api-openapi.yml

@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://trust.neo4j.com/
+url: https://trust.neo4j.com/
+certifications:
+- SOC 2
+- ISO 27001
+- ISO 27017
+- ISO 27018
+- HIPAA
+- GDPR
+- CSA STAR
+evidence:
+- source: https://trust.neo4j.com/
+  keywords:
+  - soc 2
+  - soc2
+  - iso/iec 27001
+  - hipaa
+  - trust center
+  - gdpr
+  - csa star

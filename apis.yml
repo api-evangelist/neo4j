@@ -173,6 +173,14 @@ apis:
   - type: Documentation
     url: https://neo4j.com/docs/api/javascript-driver/current/
 common:
+- type: TrustCenter
+  url: security/neo4j-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/neo4j-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/neo4j-domain-security.yml
+- type: Authentication
+  url: authentication/neo4j-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/neo4j
 - type: LinkedIn
