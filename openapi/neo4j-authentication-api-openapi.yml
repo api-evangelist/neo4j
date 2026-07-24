@@ -1,0 +1,74 @@
+openapi: 3.1.0
+info:
+  title: Neo4j Aura Authentication API
+  description: 'The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.'
+  version: '1.0'
+  contact:
+    name: Neo4j Support
+    url: https://support.neo4j.com
+  termsOfService: https://neo4j.com/terms/
+servers:
+- url: https://api.neo4j.io/v1
+  description: Neo4j Aura Production API
+security:
+- bearerAuth: []
+tags:
+- name: Authentication
+  description: OAuth2 token management for authenticating API requests. Access tokens are temporary and expire after one hour.
+paths:
+  /oauth/token:
+    post:
+      operationId: getAccessToken
+      summary: Obtain an OAuth2 access token
+      description: Authenticates using client credentials to obtain a bearer token for API access. The client ID and client secret are provided using HTTP Basic Authentication. Access tokens expire after one hour and a new token must be obtained when the current one expires. A 403 Forbidden response indicates an expired token.
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              properties:
+                grant_type:
+                  type: string
+                  description: The OAuth2 grant type
+                  enum:
+                  - client_credentials
+      responses:
+        '200':
+          description: Access token issued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Invalid client credentials
+components:
+  schemas:
+    TokenResponse:
+      type: object
+      description: OAuth2 access token response.
+      properties:
+        access_token:
+          type: string
+          description: The bearer token for authenticating API requests
+        expires_in:
+          type: integer
+          description: Token expiration time in seconds
+          example: 3600
+        token_type:
+          type: string
+          description: The type of token issued
+          example: bearer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 bearer token obtained from the /oauth/token endpoint using client credentials. Tokens expire after one hour.
+externalDocs:
+  description: Neo4j Aura API Specification
+  url: https://neo4j.com/docs/aura/platform/api/specification/

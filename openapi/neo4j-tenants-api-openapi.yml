@@ -1,0 +1,109 @@
+openapi: 3.1.0
+info:
+  title: Neo4j Aura Authentication Tenants API
+  description: 'The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.'
+  version: '1.0'
+  contact:
+    name: Neo4j Support
+    url: https://support.neo4j.com
+  termsOfService: https://neo4j.com/terms/
+servers:
+- url: https://api.neo4j.io/v1
+  description: Neo4j Aura Production API
+security:
+- bearerAuth: []
+tags:
+- name: Tenants
+  description: Manage tenants (projects) which organize multiple database instances under a single administrative unit for access control and configuration.
+paths:
+  /tenants:
+    get:
+      operationId: listTenants
+      summary: List all tenants
+      description: Returns a list of all tenants (projects) accessible to the authenticated user.
+      tags:
+      - Tenants
+      responses:
+        '200':
+          description: List of tenants
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    description: Array of tenant objects
+                    items:
+                      $ref: '#/components/schemas/Tenant'
+        '401':
+          description: Authentication required or token expired
+  /tenants/{tenantId}:
+    get:
+      operationId: getTenant
+      summary: Get tenant details
+      description: Returns detailed information about a specific tenant including its configuration and associated instance count.
+      tags:
+      - Tenants
+      parameters:
+      - $ref: '#/components/parameters/tenantId'
+      responses:
+        '200':
+          description: Tenant details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Tenant'
+        '401':
+          description: Authentication required or token expired
+        '404':
+          description: Tenant not found
+components:
+  parameters:
+    tenantId:
+      name: tenantId
+      in: path
+      required: true
+      description: The unique identifier of a tenant (project)
+      schema:
+        type: string
+  schemas:
+    Tenant:
+      type: object
+      description: A tenant (project) that organizes AuraDB instances.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the tenant
+        name:
+          type: string
+          description: Display name of the tenant
+        instance_configurations:
+          type: array
+          description: Available instance configurations for this tenant
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: Instance type
+              regions:
+                type: array
+                description: Available regions for this instance type
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Region identifier
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 bearer token obtained from the /oauth/token endpoint using client credentials. Tokens expire after one hour.
+externalDocs:
+  description: Neo4j Aura API Specification
+  url: https://neo4j.com/docs/aura/platform/api/specification/

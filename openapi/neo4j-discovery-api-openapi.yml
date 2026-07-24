@@ -1,0 +1,70 @@
+openapi: 3.1.0
+info:
+  title: Neo4j Aura Authentication Discovery API
+  description: 'The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.'
+  version: '1.0'
+  contact:
+    name: Neo4j Support
+    url: https://support.neo4j.com
+  termsOfService: https://neo4j.com/terms/
+servers:
+- url: https://api.neo4j.io/v1
+  description: Neo4j Aura Production API
+security:
+- bearerAuth: []
+tags:
+- name: Discovery
+  description: Server discovery endpoint that returns available endpoints, server version, edition, and authentication configuration.
+paths:
+  /:
+    get:
+      operationId: getDiscovery
+      summary: Discovery endpoint
+      description: Returns a list of available endpoints on the Neo4j installation, together with basic server information including the Neo4j version, edition, Bolt connection URIs, and authentication configuration. This endpoint does not require authentication.
+      tags:
+      - Discovery
+      security: []
+      responses:
+        '200':
+          description: Server discovery information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscoveryResponse'
+components:
+  schemas:
+    DiscoveryResponse:
+      type: object
+      description: Server discovery information including available endpoints, version, and connection details.
+      properties:
+        bolt_routing:
+          type: string
+          description: Neo4j Bolt routing connection URI for clustered deployments
+          example: neo4j://localhost:7687
+        bolt_direct:
+          type: string
+          description: Direct Bolt connection URI
+          example: bolt://localhost:7687
+        transaction:
+          type: string
+          description: URI pattern for the transaction endpoint
+          example: /db/{databaseName}/tx
+        neo4j_version:
+          type: string
+          description: The version of the Neo4j server
+          example: 5.26.0
+        neo4j_edition:
+          type: string
+          description: The edition of the Neo4j server
+          enum:
+          - community
+          - enterprise
+          example: enterprise
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 bearer token obtained from the /oauth/token endpoint using client credentials. Tokens expire after one hour.
+externalDocs:
+  description: Neo4j Aura API Specification
+  url: https://neo4j.com/docs/aura/platform/api/specification/

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Neo4j Aura Authentication Query API
+  title: Neo4j Aura Authentication Transactions API
   description: 'The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.'
   version: '1.0'
   contact:
@@ -13,33 +13,38 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: Query
-  description: Execute Cypher queries using implicit transactions where the server manages transaction lifecycle automatically.
+- name: Transactions
+  description: Manage explicit transactions with full control over the transaction lifecycle including open, run, commit, and rollback operations.
 paths:
-  /db/{databaseName}/query:
+  /db/{databaseName}/tx:
     post:
-      operationId: executeQuery
-      summary: Execute a Cypher query
-      description: Executes a Cypher query against the specified database using an implicit transaction. The server wraps the submitted Cypher query in a transaction automatically so that if any part of the query fails the database is reverted to its state before the query was executed. Multiple statements can be sent in a single request and the server runs them in sequence.
+      operationId: openTransaction
+      summary: Open a new explicit transaction
+      description: Opens a new explicit transaction on the specified database. The response includes the transaction location URI which contains the transaction ID needed for subsequent operations. Optionally, Cypher statements can be included in the request body to be executed as part of the transaction opening. Transactions expire automatically after a period of inactivity with a default timeout of 30 seconds, configurable via server.http.transaction_idle_timeout.
       tags:
-      - Query
+      - Transactions
       parameters:
       - $ref: '#/components/parameters/databaseName'
       requestBody:
-        required: true
+        required: false
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/QueryRequest'
+              $ref: '#/components/schemas/TransactionRequest'
       responses:
-        '200':
-          description: Query executed successfully
+        '201':
+          description: Transaction opened successfully
+          headers:
+            Location:
+              description: URI of the new transaction
+              schema:
+                type: string
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/QueryResponse'
+                $ref: '#/components/schemas/TransactionResponse'
         '400':
-          description: Invalid query or request format
+          description: Invalid request
           content:
             application/json:
               schema:
@@ -48,6 +53,92 @@ paths:
           description: Authentication required
         '404':
           description: Database not found
+  /db/{databaseName}/tx/{transactionId}:
+    post:
+      operationId: executeInTransaction
+      summary: Execute statements in an open transaction
+      description: Submits one or more Cypher statements to be executed within an existing open transaction. The transaction remains open after execution and must be explicitly committed or rolled back. Each request resets the transaction idle timeout.
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/databaseName'
+      - $ref: '#/components/parameters/transactionId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionRequest'
+      responses:
+        '200':
+          description: Statements executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+        '404':
+          description: Transaction or database not found
+    delete:
+      operationId: rollbackTransaction
+      summary: Rollback a transaction
+      description: Rolls back an open transaction, restoring the database to the state it was in before the transaction was opened. All changes made within the transaction are discarded.
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/databaseName'
+      - $ref: '#/components/parameters/transactionId'
+      responses:
+        '200':
+          description: Transaction rolled back successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+        '401':
+          description: Authentication required
+        '404':
+          description: Transaction or database not found
+  /db/{databaseName}/tx/{transactionId}/commit:
+    post:
+      operationId: commitTransaction
+      summary: Commit a transaction
+      description: Commits an open transaction, making all changes permanent in the database. Optionally, final Cypher statements can be included in the request body to be executed before the transaction is committed.
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/databaseName'
+      - $ref: '#/components/parameters/transactionId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionRequest'
+      responses:
+        '200':
+          description: Transaction committed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionResponse'
+        '400':
+          description: Invalid request or transaction error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+        '404':
+          description: Transaction or database not found
 components:
   schemas:
     QueryStatistics:
@@ -149,6 +240,18 @@ components:
                       $ref: '#/components/schemas/GraphRelationship'
         stats:
           $ref: '#/components/schemas/QueryStatistics'
+    Neo4jError:
+      type: object
+      description: An error returned by the Neo4j server.
+      properties:
+        code:
+          type: string
+          description: Neo4j error code in the format Neo.ErrorClassification.Category.Title
+          example: Neo.ClientError.Statement.SyntaxError
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid input 'X'
     CypherStatement:
       type: object
       description: A single Cypher statement with optional parameters and result format.
@@ -191,9 +294,18 @@ components:
           description: Array of errors that occurred
           items:
             $ref: '#/components/schemas/Neo4jError'
-    QueryResponse:
+    TransactionRequest:
       type: object
-      description: Response containing query results from an implicit transaction.
+      description: Request body for executing Cypher statements within a transaction.
+      properties:
+        statements:
+          type: array
+          description: Array of Cypher statements to execute within the transaction
+          items:
+            $ref: '#/components/schemas/CypherStatement'
+    TransactionResponse:
+      type: object
+      description: Response from a transaction operation.
       properties:
         results:
           type: array
@@ -205,29 +317,18 @@ components:
           description: Array of errors that occurred during execution
           items:
             $ref: '#/components/schemas/Neo4jError'
-    QueryRequest:
-      type: object
-      description: Request body for executing one or more Cypher statements using an implicit transaction.
-      required:
-      - statements
-      properties:
-        statements:
-          type: array
-          description: Array of Cypher statements to execute
-          items:
-            $ref: '#/components/schemas/CypherStatement'
-    Neo4jError:
-      type: object
-      description: An error returned by the Neo4j server.
-      properties:
-        code:
+        commit:
           type: string
-          description: Neo4j error code in the format Neo.ErrorClassification.Category.Title
-          example: Neo.ClientError.Statement.SyntaxError
-        message:
-          type: string
-          description: Human-readable error message
-          example: Invalid input 'X'
+          description: URI to commit the transaction
+          example: http://localhost:7474/db/neo4j/tx/1/commit
+        transaction:
+          type: object
+          description: Transaction metadata
+          properties:
+            expires:
+              type: string
+              description: Timestamp when the transaction will expire if idle
+              example: Wed, 01 Jan 2025 12:00:30 +0000
     GraphNode:
       type: object
       description: A node returned in graph result format.
@@ -253,6 +354,13 @@ components:
       schema:
         type: string
         example: neo4j
+    transactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: The unique identifier of an open transaction, returned in the Location header when a transaction is opened.
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,0 +1,257 @@
+openapi: 3.1.0
+info:
+  title: Neo4j Aura Authentication Snapshots API
+  description: 'The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.'
+  version: '1.0'
+  contact:
+    name: Neo4j Support
+    url: https://support.neo4j.com
+  termsOfService: https://neo4j.com/terms/
+servers:
+- url: https://api.neo4j.io/v1
+  description: Neo4j Aura Production API
+security:
+- bearerAuth: []
+tags:
+- name: Snapshots
+  description: Manage database snapshots which are point-in-time copies of instance data used for backup and restore operations.
+paths:
+  /instances/{instanceId}/snapshots:
+    get:
+      operationId: listSnapshots
+      summary: List snapshots for an instance
+      description: Returns a list of available snapshots for a specific AuraDB instance. Snapshots are point-in-time copies of the instance data created either automatically by Neo4j or on demand.
+      tags:
+      - Snapshots
+      parameters:
+      - $ref: '#/components/parameters/instanceId'
+      responses:
+        '200':
+          description: List of snapshots
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    description: Array of snapshot objects
+                    items:
+                      $ref: '#/components/schemas/Snapshot'
+        '401':
+          description: Authentication required or token expired
+        '404':
+          description: Instance not found
+    post:
+      operationId: createSnapshot
+      summary: Create a snapshot
+      description: Creates an on-demand snapshot of the specified AuraDB instance, capturing the current state of all data in the database.
+      tags:
+      - Snapshots
+      parameters:
+      - $ref: '#/components/parameters/instanceId'
+      responses:
+        '202':
+          description: Snapshot creation initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Snapshot'
+        '401':
+          description: Authentication required or token expired
+        '404':
+          description: Instance not found
+  /instances/{instanceId}/snapshots/{snapshotId}:
+    get:
+      operationId: getSnapshot
+      summary: Get snapshot details
+      description: Returns detailed information about a specific snapshot including its status, creation time, and size.
+      tags:
+      - Snapshots
+      parameters:
+      - $ref: '#/components/parameters/instanceId'
+      - $ref: '#/components/parameters/snapshotId'
+      responses:
+        '200':
+          description: Snapshot details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Snapshot'
+        '401':
+          description: Authentication required or token expired
+        '404':
+          description: Instance or snapshot not found
+  /instances/{instanceId}/snapshots/{snapshotId}/restore:
+    post:
+      operationId: restoreSnapshot
+      summary: Restore a snapshot to a new instance
+      description: Restores a snapshot to a new AuraDB instance, creating a new database populated with the data from the snapshot.
+      tags:
+      - Snapshots
+      parameters:
+      - $ref: '#/components/parameters/instanceId'
+      - $ref: '#/components/parameters/snapshotId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RestoreSnapshotRequest'
+      responses:
+        '202':
+          description: Restore initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/InstanceCreated'
+        '400':
+          description: Invalid restore configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuraError'
+        '401':
+          description: Authentication required or token expired
+        '404':
+          description: Instance or snapshot not found
+components:
+  parameters:
+    instanceId:
+      name: instanceId
+      in: path
+      required: true
+      description: The unique identifier of an AuraDB instance
+      schema:
+        type: string
+    snapshotId:
+      name: snapshotId
+      in: path
+      required: true
+      description: The unique identifier of a snapshot
+      schema:
+        type: string
+  schemas:
+    InstanceCreated:
+      type: object
+      description: Response when an instance is created, including initial credentials.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the new instance
+        name:
+          type: string
+          description: Display name of the instance
+        status:
+          type: string
+          description: Current status of the instance
+        tenant_id:
+          type: string
+          description: ID of the tenant this instance belongs to
+        connection_url:
+          type: string
+          description: Bolt connection URI for the instance
+        username:
+          type: string
+          description: Initial database username
+          example: neo4j
+        password:
+          type: string
+          description: Initial database password. This value is only returned once at creation time and cannot be retrieved later.
+    AuraError:
+      type: object
+      description: Error response from the Aura API.
+      properties:
+        errors:
+          type: array
+          description: Array of error objects
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Human-readable error message
+              reason:
+                type: string
+                description: Machine-readable error reason code
+              field:
+                type: string
+                description: Field that caused the error if applicable
+    RestoreSnapshotRequest:
+      type: object
+      description: Request body for restoring a snapshot to a new instance.
+      required:
+      - name
+      - memory
+      - region
+      - cloud_provider
+      - type
+      - tenant_id
+      properties:
+        name:
+          type: string
+          description: Name for the new restored instance
+        memory:
+          type: string
+          description: Memory allocation for the restored instance
+        region:
+          type: string
+          description: Cloud region for the restored instance
+        cloud_provider:
+          type: string
+          description: Cloud provider for the restored instance
+          enum:
+          - gcp
+          - aws
+          - azure
+        type:
+          type: string
+          description: Instance type for the restored instance
+          enum:
+          - enterprise-db
+          - enterprise-ds
+          - professional-db
+        tenant_id:
+          type: string
+          description: Tenant ID for the restored instance
+    Snapshot:
+      type: object
+      description: A point-in-time snapshot of an AuraDB instance.
+      properties:
+        snapshot_id:
+          type: string
+          description: Unique identifier for the snapshot
+        instance_id:
+          type: string
+          description: ID of the instance this snapshot belongs to
+        status:
+          type: string
+          description: Current status of the snapshot
+          enum:
+          - Completed
+          - InProgress
+          - Failed
+        timestamp:
+          type: string
+          format: date-time
+          description: When the snapshot was created
+        exportable:
+          type: boolean
+          description: Whether the snapshot can be exported
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 bearer token obtained from the /oauth/token endpoint using client credentials. Tokens expire after one hour.
+externalDocs:
+  description: Neo4j Aura API Specification
+  url: https://neo4j.com/docs/aura/platform/api/specification/

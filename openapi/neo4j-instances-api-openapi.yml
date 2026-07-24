@@ -1,0 +1,432 @@
+openapi: 3.1.0
+info:
+  title: Neo4j Aura Authentication Instances API
+  description: 'The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.'
+  version: '1.0'
+  contact:
+    name: Neo4j Support
+    url: https://support.neo4j.com
+  termsOfService: https://neo4j.com/terms/
+servers:
+- url: https://api.neo4j.io/v1
+  description: Neo4j Aura Production API
+security:
+- bearerAuth: []
+tags:
+- name: Instances
+  description: Manage AuraDB cloud database instances including provisioning, configuration, lifecycle operations such as pause and resume, and deletion.
+paths:
+  /instances:
+    get:
+      operationId: listInstances
+      summary: List all instances
+      description: Returns a list of all AuraDB instances accessible to the authenticated user across all tenants.
+      tags:
+      - Instances
+      parameters:
+      - name: tenantId
+        in: query
+        required: false
+        description: Filter instances by tenant ID
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of instances
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    description: Array of instance objects
+                    items:
+                      $ref: '#/components/schemas/Instance'
+        '401':
+          description: Authentication required or token expired
+        '403':
+          description: Insufficient permissions
+    post:
+      operationId: createInstance
+      summary: Create a new instance
+      description: Provisions a new AuraDB cloud database instance with the specified configuration including version, region, memory, cloud provider, and instance type.
+      tags:
+      - Instances
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateInstanceRequest'
+      responses:
+        '202':
+          description: Instance creation initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/InstanceCreated'
+        '400':
+          description: Invalid configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuraError'
+        '401':
+          description: Authentication required or token expired
+        '403':
+          description: Insufficient permissions
+  /instances/{instanceId}:
+    get:
+      operationId: getInstance
+      summary: Get instance details
+      description: Returns detailed information about a specific AuraDB instance including its status, configuration, connection URI, and metrics integration URL.
+      tags:
+      - Instances
+      parameters:
+      - $ref: '#/components/parameters/instanceId'
+      responses:
+        '200':
+          description: Instance details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Instance'
+        '401':
+          description: Authentication required or token expired
+        '404':
+          description: Instance not found
+    patch:
+      operationId: updateInstance
+      summary: Update an instance
+      description: Updates the configuration of an existing AuraDB instance. Supported updates include resizing memory and renaming the instance.
+      tags:
+      - Instances
+      parameters:
+      - $ref: '#/components/parameters/instanceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateInstanceRequest'
+      responses:
+        '200':
+          description: Instance updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Instance'
+        '400':
+          description: Invalid update configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuraError'
+        '401':
+          description: Authentication required or token expired
+        '404':
+          description: Instance not found
+    delete:
+      operationId: deleteInstance
+      summary: Delete an instance
+      description: Permanently deletes an AuraDB instance and all associated data. This operation cannot be undone.
+      tags:
+      - Instances
+      parameters:
+      - $ref: '#/components/parameters/instanceId'
+      responses:
+        '202':
+          description: Instance deletion initiated
+        '401':
+          description: Authentication required or token expired
+        '404':
+          description: Instance not found
+  /instances/{instanceId}/pause:
+    post:
+      operationId: pauseInstance
+      summary: Pause an instance
+      description: Pauses a running AuraDB instance, stopping compute charges while retaining the data. A paused instance cannot serve queries.
+      tags:
+      - Instances
+      parameters:
+      - $ref: '#/components/parameters/instanceId'
+      responses:
+        '200':
+          description: Instance pause initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Instance'
+        '401':
+          description: Authentication required or token expired
+        '404':
+          description: Instance not found
+  /instances/{instanceId}/resume:
+    post:
+      operationId: resumeInstance
+      summary: Resume a paused instance
+      description: Resumes a paused AuraDB instance, restoring it to a running state so it can serve queries again.
+      tags:
+      - Instances
+      parameters:
+      - $ref: '#/components/parameters/instanceId'
+      responses:
+        '200':
+          description: Instance resume initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Instance'
+        '401':
+          description: Authentication required or token expired
+        '404':
+          description: Instance not found
+  /instances/{instanceId}/overwrite:
+    post:
+      operationId: overwriteInstance
+      summary: Overwrite an instance from a snapshot
+      description: Overwrites the data in an existing instance with data from a specified snapshot, effectively restoring the instance to a previous point in time.
+      tags:
+      - Instances
+      parameters:
+      - $ref: '#/components/parameters/instanceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OverwriteInstanceRequest'
+      responses:
+        '200':
+          description: Instance overwrite initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Instance'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuraError'
+        '401':
+          description: Authentication required or token expired
+        '404':
+          description: Instance or snapshot not found
+components:
+  parameters:
+    instanceId:
+      name: instanceId
+      in: path
+      required: true
+      description: The unique identifier of an AuraDB instance
+      schema:
+        type: string
+  schemas:
+    InstanceCreated:
+      type: object
+      description: Response when an instance is created, including initial credentials.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the new instance
+        name:
+          type: string
+          description: Display name of the instance
+        status:
+          type: string
+          description: Current status of the instance
+        tenant_id:
+          type: string
+          description: ID of the tenant this instance belongs to
+        connection_url:
+          type: string
+          description: Bolt connection URI for the instance
+        username:
+          type: string
+          description: Initial database username
+          example: neo4j
+        password:
+          type: string
+          description: Initial database password. This value is only returned once at creation time and cannot be retrieved later.
+    OverwriteInstanceRequest:
+      type: object
+      description: Request body for overwriting an instance from a snapshot.
+      required:
+      - source_snapshot_id
+      - source_instance_id
+      properties:
+        source_snapshot_id:
+          type: string
+          description: ID of the snapshot to use as the data source
+        source_instance_id:
+          type: string
+          description: ID of the instance the snapshot belongs to
+    AuraError:
+      type: object
+      description: Error response from the Aura API.
+      properties:
+        errors:
+          type: array
+          description: Array of error objects
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Human-readable error message
+              reason:
+                type: string
+                description: Machine-readable error reason code
+              field:
+                type: string
+                description: Field that caused the error if applicable
+    Instance:
+      type: object
+      description: An AuraDB cloud database instance.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the instance
+        name:
+          type: string
+          description: Display name of the instance
+        status:
+          type: string
+          description: Current status of the instance
+          enum:
+          - creating
+          - running
+          - pausing
+          - paused
+          - resuming
+          - updating
+          - destroying
+          - destroyed
+          - loading
+          - restoring
+        tenant_id:
+          type: string
+          description: ID of the tenant this instance belongs to
+        cloud_provider:
+          type: string
+          description: Cloud provider hosting the instance
+          enum:
+          - gcp
+          - aws
+          - azure
+        region:
+          type: string
+          description: Cloud region where the instance is deployed
+          example: us-east-1
+        type:
+          type: string
+          description: Instance type
+          enum:
+          - enterprise-db
+          - enterprise-ds
+          - professional-db
+          - free-db
+        memory:
+          type: string
+          description: Memory allocated to the instance
+          example: 8GB
+        storage:
+          type: string
+          description: Storage allocated to the instance
+          example: 16GB
+        connection_url:
+          type: string
+          description: Bolt connection URI for the instance
+          example: neo4j+s://xxxxxxxx.databases.neo4j.io
+        metrics_integration_url:
+          type: string
+          description: URL for metrics integration endpoint
+        neo4j_version:
+          type: string
+          description: Neo4j database version running on the instance
+          example: '5'
+    CreateInstanceRequest:
+      type: object
+      description: Request body for creating a new AuraDB instance.
+      required:
+      - name
+      - memory
+      - region
+      - cloud_provider
+      - type
+      - tenant_id
+      properties:
+        name:
+          type: string
+          description: Display name for the instance
+          maxLength: 30
+        version:
+          type: string
+          description: Neo4j version for the instance
+          example: '5'
+        region:
+          type: string
+          description: Cloud region where the instance should be deployed
+          example: us-east-1
+        memory:
+          type: string
+          description: Memory to allocate to the instance
+          example: 8GB
+        type:
+          type: string
+          description: Instance type
+          enum:
+          - enterprise-db
+          - enterprise-ds
+          - professional-db
+          - free-db
+        tenant_id:
+          type: string
+          description: ID of the tenant to create the instance in
+        cloud_provider:
+          type: string
+          description: Cloud provider for hosting
+          enum:
+          - gcp
+          - aws
+          - azure
+    UpdateInstanceRequest:
+      type: object
+      description: Request body for updating an instance configuration.
+      properties:
+        name:
+          type: string
+          description: Updated display name for the instance
+          maxLength: 30
+        memory:
+          type: string
+          description: Updated memory allocation
+          example: 16GB
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth2 bearer token obtained from the /oauth/token endpoint using client credentials. Tokens expire after one hour.
+externalDocs:
+  description: Neo4j Aura API Specification
+  url: https://neo4j.com/docs/aura/platform/api/specification/
