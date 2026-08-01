@@ -1,0 +1,921 @@
+{
+  "info": {
+    "_postman_id": "ba9399bd-5a50-433a-9455-e8befae9b182",
+    "name": "Neo4j Aura Authentication Snapshots API",
+    "description": "The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.\n\nContact Support:\n Name: Neo4j Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:51.000Z",
+    "updatedAt": "2026-07-28T02:16:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ba9399bd-5a50-433a-9455-e8befae9b182"
+  },
+  "item": [
+    {
+      "name": "instances",
+      "item": [
+        {
+          "name": "{instanceId}",
+          "item": [
+            {
+              "name": "snapshots",
+              "item": [
+                {
+                  "name": "{snapshotId}",
+                  "item": [
+                    {
+                      "name": "restore",
+                      "item": [
+                        {
+                          "name": "Restore a snapshot to a new instance",
+                          "id": "1bc84d18-cf6f-4606-b50d-43b586c50dda",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"gcp\",\n  \"type\": \"professional-db\",\n  \"tenant_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/instances/:instanceId/snapshots/:snapshotId/restore",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "instances",
+                                ":instanceId",
+                                "snapshots",
+                                ":snapshotId",
+                                "restore"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "834b61d4-f795-4840-8a61-611c78679d93",
+                                  "key": "instanceId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of an AuraDB instance"
+                                },
+                                {
+                                  "id": "4b850e91-7cc1-43a3-a4cc-ad87d5279576",
+                                  "key": "snapshotId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of a snapshot"
+                                }
+                              ]
+                            },
+                            "description": "Restores a snapshot to a new AuraDB instance, creating a new database populated with the data from the snapshot."
+                          },
+                          "response": [
+                            {
+                              "id": "df04a757-caf3-40bb-bdd7-ad8716552098",
+                              "name": "Restore initiated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"gcp\",\n  \"type\": \"professional-db\",\n  \"tenant_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/instances/:instanceId/snapshots/:snapshotId/restore",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "instances",
+                                    ":instanceId",
+                                    "snapshots",
+                                    ":snapshotId",
+                                    "restore"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "instanceId"
+                                    },
+                                    {
+                                      "key": "snapshotId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Accepted",
+                              "code": 202,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"<string>\",\n    \"tenant_id\": \"<string>\",\n    \"connection_url\": \"<string>\",\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:16:52.000Z",
+                              "updatedAt": "2026-07-28T02:16:52.000Z",
+                              "uid": "35240-df04a757-caf3-40bb-bdd7-ad8716552098"
+                            },
+                            {
+                              "id": "c2d086d4-8869-4b40-9eb3-a9b0b21ab690",
+                              "name": "Invalid restore configuration",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"gcp\",\n  \"type\": \"professional-db\",\n  \"tenant_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/instances/:instanceId/snapshots/:snapshotId/restore",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "instances",
+                                    ":instanceId",
+                                    "snapshots",
+                                    ":snapshotId",
+                                    "restore"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "instanceId"
+                                    },
+                                    {
+                                      "key": "snapshotId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"message\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"message\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"field\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:16:52.000Z",
+                              "updatedAt": "2026-07-28T02:16:52.000Z",
+                              "uid": "35240-c2d086d4-8869-4b40-9eb3-a9b0b21ab690"
+                            },
+                            {
+                              "id": "46d7773c-391f-43a1-97d7-23e179b7c997",
+                              "name": "Authentication required or token expired",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"gcp\",\n  \"type\": \"professional-db\",\n  \"tenant_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/instances/:instanceId/snapshots/:snapshotId/restore",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "instances",
+                                    ":instanceId",
+                                    "snapshots",
+                                    ":snapshotId",
+                                    "restore"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "instanceId"
+                                    },
+                                    {
+                                      "key": "snapshotId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:16:52.000Z",
+                              "updatedAt": "2026-07-28T02:16:52.000Z",
+                              "uid": "35240-46d7773c-391f-43a1-97d7-23e179b7c997"
+                            },
+                            {
+                              "id": "7a59e346-1b38-475a-9dc0-4f085c135143",
+                              "name": "Instance or snapshot not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"gcp\",\n  \"type\": \"professional-db\",\n  \"tenant_id\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/instances/:instanceId/snapshots/:snapshotId/restore",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "instances",
+                                    ":instanceId",
+                                    "snapshots",
+                                    ":snapshotId",
+                                    "restore"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "instanceId"
+                                    },
+                                    {
+                                      "key": "snapshotId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:16:52.000Z",
+                              "updatedAt": "2026-07-28T02:16:52.000Z",
+                              "uid": "35240-7a59e346-1b38-475a-9dc0-4f085c135143"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:16:52.000Z",
+                          "updatedAt": "2026-07-28T02:16:52.000Z",
+                          "uid": "35240-1bc84d18-cf6f-4606-b50d-43b586c50dda"
+                        }
+                      ],
+                      "id": "a19cabc5-b467-41ec-b53b-7f8ad6888fd2",
+                      "createdAt": "2026-07-28T02:16:52.000Z",
+                      "updatedAt": "2026-07-28T02:16:52.000Z",
+                      "uid": "35240-a19cabc5-b467-41ec-b53b-7f8ad6888fd2"
+                    },
+                    {
+                      "name": "Get snapshot details",
+                      "id": "a784d5b2-edd6-42b7-a029-991200a6aa32",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/snapshots/:snapshotId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "snapshots",
+                            ":snapshotId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5d67a72e-74ba-4e88-a700-7157b7363700",
+                              "key": "instanceId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of an AuraDB instance"
+                            },
+                            {
+                              "id": "1bb846bb-8dc0-4dad-8d9d-6cdc2034b272",
+                              "key": "snapshotId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of a snapshot"
+                            }
+                          ]
+                        },
+                        "description": "Returns detailed information about a specific snapshot including its status, creation time, and size."
+                      },
+                      "response": [
+                        {
+                          "id": "d81f4cd0-01d4-4c91-9f28-f98097144818",
+                          "name": "Snapshot details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/instances/:instanceId/snapshots/:snapshotId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "instances",
+                                ":instanceId",
+                                "snapshots",
+                                ":snapshotId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "instanceId"
+                                },
+                                {
+                                  "key": "snapshotId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"snapshot_id\": \"<string>\",\n    \"instance_id\": \"<string>\",\n    \"status\": \"Failed\",\n    \"timestamp\": \"<dateTime>\",\n    \"exportable\": \"<boolean>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:16:52.000Z",
+                          "updatedAt": "2026-07-28T02:16:52.000Z",
+                          "uid": "35240-d81f4cd0-01d4-4c91-9f28-f98097144818"
+                        },
+                        {
+                          "id": "64a14e23-a6b5-41ed-bbad-b461a1df6f08",
+                          "name": "Authentication required or token expired",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/instances/:instanceId/snapshots/:snapshotId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "instances",
+                                ":instanceId",
+                                "snapshots",
+                                ":snapshotId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "instanceId"
+                                },
+                                {
+                                  "key": "snapshotId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:16:52.000Z",
+                          "updatedAt": "2026-07-28T02:16:52.000Z",
+                          "uid": "35240-64a14e23-a6b5-41ed-bbad-b461a1df6f08"
+                        },
+                        {
+                          "id": "dcb5db7f-bc71-4c08-9223-b88a3fa03e45",
+                          "name": "Instance or snapshot not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/instances/:instanceId/snapshots/:snapshotId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "instances",
+                                ":instanceId",
+                                "snapshots",
+                                ":snapshotId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "instanceId"
+                                },
+                                {
+                                  "key": "snapshotId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:16:52.000Z",
+                          "updatedAt": "2026-07-28T02:16:52.000Z",
+                          "uid": "35240-dcb5db7f-bc71-4c08-9223-b88a3fa03e45"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:16:52.000Z",
+                      "updatedAt": "2026-07-28T02:16:52.000Z",
+                      "uid": "35240-a784d5b2-edd6-42b7-a029-991200a6aa32"
+                    }
+                  ],
+                  "id": "f0c50c01-b0be-480d-98f9-e64a48f72d28",
+                  "createdAt": "2026-07-28T02:16:52.000Z",
+                  "updatedAt": "2026-07-28T02:16:52.000Z",
+                  "uid": "35240-f0c50c01-b0be-480d-98f9-e64a48f72d28"
+                },
+                {
+                  "name": "List snapshots for an instance",
+                  "id": "88c409f0-31a9-4ed8-bb92-c8853339a933",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId/snapshots",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId",
+                        "snapshots"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eda798de-dbb1-47a8-80f8-88feb703a44d",
+                          "key": "instanceId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of an AuraDB instance"
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of available snapshots for a specific AuraDB instance. Snapshots are point-in-time copies of the instance data created either automatically by Neo4j or on demand."
+                  },
+                  "response": [
+                    {
+                      "id": "47b86d85-f2be-45cc-b5a4-8bceb76b8551",
+                      "name": "List of snapshots",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/snapshots",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "snapshots"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"snapshot_id\": \"<string>\",\n      \"instance_id\": \"<string>\",\n      \"status\": \"Failed\",\n      \"timestamp\": \"<dateTime>\",\n      \"exportable\": \"<boolean>\"\n    },\n    {\n      \"snapshot_id\": \"<string>\",\n      \"instance_id\": \"<string>\",\n      \"status\": \"InProgress\",\n      \"timestamp\": \"<dateTime>\",\n      \"exportable\": \"<boolean>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:16:52.000Z",
+                      "updatedAt": "2026-07-28T02:16:52.000Z",
+                      "uid": "35240-47b86d85-f2be-45cc-b5a4-8bceb76b8551"
+                    },
+                    {
+                      "id": "e085dcc6-e100-42f4-9ed0-2c32b9b5a838",
+                      "name": "Authentication required or token expired",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/snapshots",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "snapshots"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:52.000Z",
+                      "updatedAt": "2026-07-28T02:16:52.000Z",
+                      "uid": "35240-e085dcc6-e100-42f4-9ed0-2c32b9b5a838"
+                    },
+                    {
+                      "id": "f8c2abdc-8f09-4c87-bc14-c28ae2d39036",
+                      "name": "Instance not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/snapshots",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "snapshots"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:52.000Z",
+                      "updatedAt": "2026-07-28T02:16:52.000Z",
+                      "uid": "35240-f8c2abdc-8f09-4c87-bc14-c28ae2d39036"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:52.000Z",
+                  "updatedAt": "2026-07-28T02:16:52.000Z",
+                  "uid": "35240-88c409f0-31a9-4ed8-bb92-c8853339a933"
+                },
+                {
+                  "name": "Create a snapshot",
+                  "id": "ee7150fc-a246-4881-ac68-c5cfa8dde7b0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId/snapshots",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId",
+                        "snapshots"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8f702379-4e56-4988-b56b-98e91f519419",
+                          "key": "instanceId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of an AuraDB instance"
+                        }
+                      ]
+                    },
+                    "description": "Creates an on-demand snapshot of the specified AuraDB instance, capturing the current state of all data in the database."
+                  },
+                  "response": [
+                    {
+                      "id": "73943762-fc2f-49d9-89cb-8341e666f854",
+                      "name": "Snapshot creation initiated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/snapshots",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "snapshots"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"snapshot_id\": \"<string>\",\n    \"instance_id\": \"<string>\",\n    \"status\": \"Failed\",\n    \"timestamp\": \"<dateTime>\",\n    \"exportable\": \"<boolean>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:52.000Z",
+                      "updatedAt": "2026-07-28T02:16:52.000Z",
+                      "uid": "35240-73943762-fc2f-49d9-89cb-8341e666f854"
+                    },
+                    {
+                      "id": "deab546a-6f8e-4fd8-bdc0-bc04d6c2c0ff",
+                      "name": "Authentication required or token expired",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/snapshots",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "snapshots"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:52.000Z",
+                      "updatedAt": "2026-07-28T02:16:52.000Z",
+                      "uid": "35240-deab546a-6f8e-4fd8-bdc0-bc04d6c2c0ff"
+                    },
+                    {
+                      "id": "d8a6fa55-71d3-466f-8c36-bc32e8e66547",
+                      "name": "Instance not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/snapshots",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "snapshots"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:52.000Z",
+                      "updatedAt": "2026-07-28T02:16:52.000Z",
+                      "uid": "35240-d8a6fa55-71d3-466f-8c36-bc32e8e66547"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:52.000Z",
+                  "updatedAt": "2026-07-28T02:16:52.000Z",
+                  "uid": "35240-ee7150fc-a246-4881-ac68-c5cfa8dde7b0"
+                }
+              ],
+              "id": "116e7108-a8d9-41f1-9d09-3c23d0f78821",
+              "createdAt": "2026-07-28T02:16:52.000Z",
+              "updatedAt": "2026-07-28T02:16:52.000Z",
+              "uid": "35240-116e7108-a8d9-41f1-9d09-3c23d0f78821"
+            }
+          ],
+          "id": "c4ea3ab6-3390-4a03-9264-b9c081652544",
+          "createdAt": "2026-07-28T02:16:52.000Z",
+          "updatedAt": "2026-07-28T02:16:52.000Z",
+          "uid": "35240-c4ea3ab6-3390-4a03-9264-b9c081652544"
+        }
+      ],
+      "id": "1ce021d4-a52f-4061-a2b4-fefa832dd615",
+      "createdAt": "2026-07-28T02:16:52.000Z",
+      "updatedAt": "2026-07-28T02:16:52.000Z",
+      "uid": "35240-1ce021d4-a52f-4061-a2b4-fefa832dd615"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.neo4j.io/v1"
+    }
+  ]
+}

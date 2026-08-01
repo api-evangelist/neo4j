@@ -1,0 +1,1191 @@
+{
+  "info": {
+    "_postman_id": "75e0dbec-c481-42b0-a897-ba829c071211",
+    "name": "Neo4j Aura Authentication Transactions API",
+    "description": "The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.\n\nContact Support:\n Name: Neo4j Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:17:03.000Z",
+    "updatedAt": "2026-07-28T02:17:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-75e0dbec-c481-42b0-a897-ba829c071211"
+  },
+  "item": [
+    {
+      "name": "db",
+      "item": [
+        {
+          "name": "{databaseName}",
+          "item": [
+            {
+              "name": "tx",
+              "item": [
+                {
+                  "name": "{transactionId}",
+                  "item": [
+                    {
+                      "name": "commit",
+                      "item": [
+                        {
+                          "name": "Commit a transaction",
+                          "id": "796f06f1-39af-49a4-b478-eea11f002c40",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId/commit",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "db",
+                                ":databaseName",
+                                "tx",
+                                ":transactionId",
+                                "commit"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "488f9731-ca2f-4ca1-9d31-e95c597372bb",
+                                  "key": "databaseName",
+                                  "value": "<string>",
+                                  "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                                },
+                                {
+                                  "id": "b34a2305-a60c-4b89-8b11-34039552a43f",
+                                  "key": "transactionId",
+                                  "value": "<string>",
+                                  "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                                }
+                              ]
+                            },
+                            "description": "Commits an open transaction, making all changes permanent in the database. Optionally, final Cypher statements can be included in the request body to be executed before the transaction is committed."
+                          },
+                          "response": [
+                            {
+                              "id": "0662a5d6-984b-4f5f-aac4-3424e76c803b",
+                              "name": "Transaction committed successfully",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId/commit",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "db",
+                                    ":databaseName",
+                                    "tx",
+                                    ":transactionId",
+                                    "commit"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "databaseName"
+                                    },
+                                    {
+                                      "key": "transactionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"results\": [\n    {\n      \"columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"eac\": true,\n                  \"pariaturd54\": 58513359\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"esse4a\": false,\n                  \"consequat_a9\": 83796504.84726113,\n                  \"cupidatat_6\": -17764477\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"laborise1f\": 7912722.539889216,\n                  \"id_cac\": \"qui irure cillum\"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"adipisicingc67\": \"ut cupidatat qui enim\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"sint4\": 24570633,\n                  \"dolore_09\": true,\n                  \"reprehenderit_f\": 9010699.097943231\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"occaecat_f81\": -52703772\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"ad_47e\": false,\n                  \"minim_e3\": \"mollit\",\n                  \"deserunt4\": true\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"sit_8\": -22816351,\n                  \"occaecat38\": 56834409,\n                  \"aliqua_c01\": -55393859.568633765,\n                  \"magna_b\": false\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": \"<boolean>\",\n        \"nodes_created\": \"<integer>\",\n        \"nodes_deleted\": \"<integer>\",\n        \"properties_set\": \"<integer>\",\n        \"relationships_created\": \"<integer>\",\n        \"relationships_deleted\": \"<integer>\",\n        \"labels_added\": \"<integer>\",\n        \"labels_removed\": \"<integer>\",\n        \"indexes_added\": \"<integer>\",\n        \"indexes_removed\": \"<integer>\",\n        \"constraints_added\": \"<integer>\",\n        \"constraints_removed\": \"<integer>\"\n      }\n    },\n    {\n      \"columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"veniam0a6\": \"anim\",\n                  \"culpab8\": 31766473.128934562,\n                  \"aliqua_98\": \"eiusmod ea \"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"aliqua_2d\": 23550250,\n                  \"temporbe2\": true,\n                  \"sed_4\": 39363298\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"ine3d\": \"veniam dolore aliquip\"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"minim_04\": \"laborum sed\",\n                  \"ad_d5c\": 77959467\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"commodo0bc\": 19664247,\n                  \"officia_7\": -70605860,\n                  \"sit_8a\": -1706932.8087827414\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"eu8\": true,\n                  \"dolore_5\": 58951713\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"Duis7a3\": -14582648\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"magna_f5_\": false,\n                  \"exf\": true\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": \"<boolean>\",\n        \"nodes_created\": \"<integer>\",\n        \"nodes_deleted\": \"<integer>\",\n        \"properties_set\": \"<integer>\",\n        \"relationships_created\": \"<integer>\",\n        \"relationships_deleted\": \"<integer>\",\n        \"labels_added\": \"<integer>\",\n        \"labels_removed\": \"<integer>\",\n        \"indexes_added\": \"<integer>\",\n        \"indexes_removed\": \"<integer>\",\n        \"constraints_added\": \"<integer>\",\n        \"constraints_removed\": \"<integer>\"\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"commit\": \"<string>\",\n  \"transaction\": {\n    \"expires\": \"<string>\"\n  }\n}",
+                              "createdAt": "2026-07-28T02:17:04.000Z",
+                              "updatedAt": "2026-07-28T02:17:04.000Z",
+                              "uid": "35240-0662a5d6-984b-4f5f-aac4-3424e76c803b"
+                            },
+                            {
+                              "id": "772817b7-ccbb-4245-989f-1f3a3d0acd93",
+                              "name": "Invalid request or transaction error",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId/commit",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "db",
+                                    ":databaseName",
+                                    "tx",
+                                    ":transactionId",
+                                    "commit"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "databaseName"
+                                    },
+                                    {
+                                      "key": "transactionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:17:04.000Z",
+                              "updatedAt": "2026-07-28T02:17:04.000Z",
+                              "uid": "35240-772817b7-ccbb-4245-989f-1f3a3d0acd93"
+                            },
+                            {
+                              "id": "c80a665d-785c-47f1-8a0c-aa73fd536e57",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId/commit",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "db",
+                                    ":databaseName",
+                                    "tx",
+                                    ":transactionId",
+                                    "commit"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "databaseName"
+                                    },
+                                    {
+                                      "key": "transactionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:17:04.000Z",
+                              "updatedAt": "2026-07-28T02:17:04.000Z",
+                              "uid": "35240-c80a665d-785c-47f1-8a0c-aa73fd536e57"
+                            },
+                            {
+                              "id": "bf1a623a-9629-47ef-a4e5-3e93a74f19cf",
+                              "name": "Transaction or database not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId/commit",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "db",
+                                    ":databaseName",
+                                    "tx",
+                                    ":transactionId",
+                                    "commit"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "databaseName"
+                                    },
+                                    {
+                                      "key": "transactionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:17:04.000Z",
+                              "updatedAt": "2026-07-28T02:17:04.000Z",
+                              "uid": "35240-bf1a623a-9629-47ef-a4e5-3e93a74f19cf"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:17:04.000Z",
+                          "updatedAt": "2026-07-28T02:17:04.000Z",
+                          "uid": "35240-796f06f1-39af-49a4-b478-eea11f002c40"
+                        }
+                      ],
+                      "id": "f539bcd7-2d7e-448a-84b0-5e544f00cbc9",
+                      "createdAt": "2026-07-28T02:17:04.000Z",
+                      "updatedAt": "2026-07-28T02:17:04.000Z",
+                      "uid": "35240-f539bcd7-2d7e-448a-84b0-5e544f00cbc9"
+                    },
+                    {
+                      "name": "Execute statements in an open transaction",
+                      "id": "a0f738e1-5156-4bc2-83ee-fea996ede42e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "db",
+                            ":databaseName",
+                            "tx",
+                            ":transactionId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "958e2884-f350-4915-bcaa-fd9502607606",
+                              "key": "databaseName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                            },
+                            {
+                              "id": "8a4567b3-7ae1-4705-b1eb-a46ac4195c03",
+                              "key": "transactionId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                            }
+                          ]
+                        },
+                        "description": "Submits one or more Cypher statements to be executed within an existing open transaction. The transaction remains open after execution and must be explicitly committed or rolled back. Each request resets the transaction idle timeout."
+                      },
+                      "response": [
+                        {
+                          "id": "2a9de197-71a7-4ab4-a009-0673c0af9a8c",
+                          "name": "Statements executed successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "db",
+                                ":databaseName",
+                                "tx",
+                                ":transactionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "databaseName"
+                                },
+                                {
+                                  "key": "transactionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"results\": [\n    {\n      \"columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"eac\": true,\n                  \"pariaturd54\": 58513359\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"esse4a\": false,\n                  \"consequat_a9\": 83796504.84726113,\n                  \"cupidatat_6\": -17764477\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"laborise1f\": 7912722.539889216,\n                  \"id_cac\": \"qui irure cillum\"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"adipisicingc67\": \"ut cupidatat qui enim\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"sint4\": 24570633,\n                  \"dolore_09\": true,\n                  \"reprehenderit_f\": 9010699.097943231\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"occaecat_f81\": -52703772\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"ad_47e\": false,\n                  \"minim_e3\": \"mollit\",\n                  \"deserunt4\": true\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"sit_8\": -22816351,\n                  \"occaecat38\": 56834409,\n                  \"aliqua_c01\": -55393859.568633765,\n                  \"magna_b\": false\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": \"<boolean>\",\n        \"nodes_created\": \"<integer>\",\n        \"nodes_deleted\": \"<integer>\",\n        \"properties_set\": \"<integer>\",\n        \"relationships_created\": \"<integer>\",\n        \"relationships_deleted\": \"<integer>\",\n        \"labels_added\": \"<integer>\",\n        \"labels_removed\": \"<integer>\",\n        \"indexes_added\": \"<integer>\",\n        \"indexes_removed\": \"<integer>\",\n        \"constraints_added\": \"<integer>\",\n        \"constraints_removed\": \"<integer>\"\n      }\n    },\n    {\n      \"columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"veniam0a6\": \"anim\",\n                  \"culpab8\": 31766473.128934562,\n                  \"aliqua_98\": \"eiusmod ea \"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"aliqua_2d\": 23550250,\n                  \"temporbe2\": true,\n                  \"sed_4\": 39363298\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"ine3d\": \"veniam dolore aliquip\"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"minim_04\": \"laborum sed\",\n                  \"ad_d5c\": 77959467\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"commodo0bc\": 19664247,\n                  \"officia_7\": -70605860,\n                  \"sit_8a\": -1706932.8087827414\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"eu8\": true,\n                  \"dolore_5\": 58951713\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"Duis7a3\": -14582648\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"magna_f5_\": false,\n                  \"exf\": true\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": \"<boolean>\",\n        \"nodes_created\": \"<integer>\",\n        \"nodes_deleted\": \"<integer>\",\n        \"properties_set\": \"<integer>\",\n        \"relationships_created\": \"<integer>\",\n        \"relationships_deleted\": \"<integer>\",\n        \"labels_added\": \"<integer>\",\n        \"labels_removed\": \"<integer>\",\n        \"indexes_added\": \"<integer>\",\n        \"indexes_removed\": \"<integer>\",\n        \"constraints_added\": \"<integer>\",\n        \"constraints_removed\": \"<integer>\"\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"commit\": \"<string>\",\n  \"transaction\": {\n    \"expires\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:17:04.000Z",
+                          "updatedAt": "2026-07-28T02:17:04.000Z",
+                          "uid": "35240-2a9de197-71a7-4ab4-a009-0673c0af9a8c"
+                        },
+                        {
+                          "id": "38beefc6-4a67-4879-86d4-434193b248ff",
+                          "name": "Invalid request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "db",
+                                ":databaseName",
+                                "tx",
+                                ":transactionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "databaseName"
+                                },
+                                {
+                                  "key": "transactionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:17:04.000Z",
+                          "updatedAt": "2026-07-28T02:17:04.000Z",
+                          "uid": "35240-38beefc6-4a67-4879-86d4-434193b248ff"
+                        },
+                        {
+                          "id": "610ceae4-01ad-408f-bb2e-c332f5f890c0",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "db",
+                                ":databaseName",
+                                "tx",
+                                ":transactionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "databaseName"
+                                },
+                                {
+                                  "key": "transactionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:17:04.000Z",
+                          "updatedAt": "2026-07-28T02:17:04.000Z",
+                          "uid": "35240-610ceae4-01ad-408f-bb2e-c332f5f890c0"
+                        },
+                        {
+                          "id": "1027ba7f-bb26-41c2-a847-d215a992384a",
+                          "name": "Transaction or database not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "db",
+                                ":databaseName",
+                                "tx",
+                                ":transactionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "databaseName"
+                                },
+                                {
+                                  "key": "transactionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:17:04.000Z",
+                          "updatedAt": "2026-07-28T02:17:04.000Z",
+                          "uid": "35240-1027ba7f-bb26-41c2-a847-d215a992384a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:17:04.000Z",
+                      "updatedAt": "2026-07-28T02:17:04.000Z",
+                      "uid": "35240-a0f738e1-5156-4bc2-83ee-fea996ede42e"
+                    },
+                    {
+                      "name": "Rollback a transaction",
+                      "id": "adf863da-9da8-4256-a820-0627ec7d974e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "db",
+                            ":databaseName",
+                            "tx",
+                            ":transactionId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "698c9388-b273-4a06-82b6-bc01ed48ce82",
+                              "key": "databaseName",
+                              "value": "<string>",
+                              "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                            },
+                            {
+                              "id": "56cbd7a2-2120-49d9-b546-2d116060dd3a",
+                              "key": "transactionId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of an open transaction, returned in the Location header when a transaction is opened."
+                            }
+                          ]
+                        },
+                        "description": "Rolls back an open transaction, restoring the database to the state it was in before the transaction was opened. All changes made within the transaction are discarded."
+                      },
+                      "response": [
+                        {
+                          "id": "6170590d-8476-43a2-8b84-2648f5d7255c",
+                          "name": "Transaction rolled back successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "db",
+                                ":databaseName",
+                                "tx",
+                                ":transactionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "databaseName"
+                                },
+                                {
+                                  "key": "transactionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"results\": [\n    {\n      \"columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"eac\": true,\n                  \"pariaturd54\": 58513359\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"esse4a\": false,\n                  \"consequat_a9\": 83796504.84726113,\n                  \"cupidatat_6\": -17764477\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"laborise1f\": 7912722.539889216,\n                  \"id_cac\": \"qui irure cillum\"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"adipisicingc67\": \"ut cupidatat qui enim\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"sint4\": 24570633,\n                  \"dolore_09\": true,\n                  \"reprehenderit_f\": 9010699.097943231\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"occaecat_f81\": -52703772\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"ad_47e\": false,\n                  \"minim_e3\": \"mollit\",\n                  \"deserunt4\": true\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"sit_8\": -22816351,\n                  \"occaecat38\": 56834409,\n                  \"aliqua_c01\": -55393859.568633765,\n                  \"magna_b\": false\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": \"<boolean>\",\n        \"nodes_created\": \"<integer>\",\n        \"nodes_deleted\": \"<integer>\",\n        \"properties_set\": \"<integer>\",\n        \"relationships_created\": \"<integer>\",\n        \"relationships_deleted\": \"<integer>\",\n        \"labels_added\": \"<integer>\",\n        \"labels_removed\": \"<integer>\",\n        \"indexes_added\": \"<integer>\",\n        \"indexes_removed\": \"<integer>\",\n        \"constraints_added\": \"<integer>\",\n        \"constraints_removed\": \"<integer>\"\n      }\n    },\n    {\n      \"columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"veniam0a6\": \"anim\",\n                  \"culpab8\": 31766473.128934562,\n                  \"aliqua_98\": \"eiusmod ea \"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"aliqua_2d\": 23550250,\n                  \"temporbe2\": true,\n                  \"sed_4\": 39363298\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"ine3d\": \"veniam dolore aliquip\"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"minim_04\": \"laborum sed\",\n                  \"ad_d5c\": 77959467\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"commodo0bc\": 19664247,\n                  \"officia_7\": -70605860,\n                  \"sit_8a\": -1706932.8087827414\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"eu8\": true,\n                  \"dolore_5\": 58951713\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"Duis7a3\": -14582648\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"magna_f5_\": false,\n                  \"exf\": true\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": \"<boolean>\",\n        \"nodes_created\": \"<integer>\",\n        \"nodes_deleted\": \"<integer>\",\n        \"properties_set\": \"<integer>\",\n        \"relationships_created\": \"<integer>\",\n        \"relationships_deleted\": \"<integer>\",\n        \"labels_added\": \"<integer>\",\n        \"labels_removed\": \"<integer>\",\n        \"indexes_added\": \"<integer>\",\n        \"indexes_removed\": \"<integer>\",\n        \"constraints_added\": \"<integer>\",\n        \"constraints_removed\": \"<integer>\"\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"commit\": \"<string>\",\n  \"transaction\": {\n    \"expires\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:17:04.000Z",
+                          "updatedAt": "2026-07-28T02:17:04.000Z",
+                          "uid": "35240-6170590d-8476-43a2-8b84-2648f5d7255c"
+                        },
+                        {
+                          "id": "a57ebe9a-ceb1-453f-a811-12118e83cdf9",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "db",
+                                ":databaseName",
+                                "tx",
+                                ":transactionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "databaseName"
+                                },
+                                {
+                                  "key": "transactionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:17:04.000Z",
+                          "updatedAt": "2026-07-28T02:17:04.000Z",
+                          "uid": "35240-a57ebe9a-ceb1-453f-a811-12118e83cdf9"
+                        },
+                        {
+                          "id": "eccdca7a-6629-43f8-8b9a-4e5436a00b96",
+                          "name": "Transaction or database not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/db/:databaseName/tx/:transactionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "db",
+                                ":databaseName",
+                                "tx",
+                                ":transactionId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "databaseName"
+                                },
+                                {
+                                  "key": "transactionId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:17:04.000Z",
+                          "updatedAt": "2026-07-28T02:17:04.000Z",
+                          "uid": "35240-eccdca7a-6629-43f8-8b9a-4e5436a00b96"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:17:04.000Z",
+                      "updatedAt": "2026-07-28T02:17:04.000Z",
+                      "uid": "35240-adf863da-9da8-4256-a820-0627ec7d974e"
+                    }
+                  ],
+                  "id": "dcf7a535-5202-4f0e-bffc-b367a5c41bef",
+                  "createdAt": "2026-07-28T02:17:04.000Z",
+                  "updatedAt": "2026-07-28T02:17:04.000Z",
+                  "uid": "35240-dcf7a535-5202-4f0e-bffc-b367a5c41bef"
+                },
+                {
+                  "name": "Open a new explicit transaction",
+                  "id": "57e7ae1a-a5db-4fb8-a765-1a9df16bb71b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/db/:databaseName/tx",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "db",
+                        ":databaseName",
+                        "tx"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d23148a0-4f22-446f-9933-80e7a89fdeac",
+                          "key": "databaseName",
+                          "value": "<string>",
+                          "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                        }
+                      ]
+                    },
+                    "description": "Opens a new explicit transaction on the specified database. The response includes the transaction location URI which contains the transaction ID needed for subsequent operations. Optionally, Cypher statements can be included in the request body to be executed as part of the transaction opening. Transactions expire automatically after a period of inactivity with a default timeout of 30 seconds, configurable via server.http.transaction_idle_timeout."
+                  },
+                  "response": [
+                    {
+                      "id": "ef2d7962-5f90-42e0-98ad-ea3fe7d6f514",
+                      "name": "Transaction opened successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/db/:databaseName/tx",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "db",
+                            ":databaseName",
+                            "tx"
+                          ],
+                          "variable": [
+                            {
+                              "key": "databaseName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "URI of the new transaction",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": "<string>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"results\": [\n    {\n      \"columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"eac\": true,\n                  \"pariaturd54\": 58513359\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"esse4a\": false,\n                  \"consequat_a9\": 83796504.84726113,\n                  \"cupidatat_6\": -17764477\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"laborise1f\": 7912722.539889216,\n                  \"id_cac\": \"qui irure cillum\"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"adipisicingc67\": \"ut cupidatat qui enim\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"sint4\": 24570633,\n                  \"dolore_09\": true,\n                  \"reprehenderit_f\": 9010699.097943231\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"occaecat_f81\": -52703772\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"ad_47e\": false,\n                  \"minim_e3\": \"mollit\",\n                  \"deserunt4\": true\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"sit_8\": -22816351,\n                  \"occaecat38\": 56834409,\n                  \"aliqua_c01\": -55393859.568633765,\n                  \"magna_b\": false\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": \"<boolean>\",\n        \"nodes_created\": \"<integer>\",\n        \"nodes_deleted\": \"<integer>\",\n        \"properties_set\": \"<integer>\",\n        \"relationships_created\": \"<integer>\",\n        \"relationships_deleted\": \"<integer>\",\n        \"labels_added\": \"<integer>\",\n        \"labels_removed\": \"<integer>\",\n        \"indexes_added\": \"<integer>\",\n        \"indexes_removed\": \"<integer>\",\n        \"constraints_added\": \"<integer>\",\n        \"constraints_removed\": \"<integer>\"\n      }\n    },\n    {\n      \"columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"veniam0a6\": \"anim\",\n                  \"culpab8\": 31766473.128934562,\n                  \"aliqua_98\": \"eiusmod ea \"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"aliqua_2d\": 23550250,\n                  \"temporbe2\": true,\n                  \"sed_4\": 39363298\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"ine3d\": \"veniam dolore aliquip\"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"minim_04\": \"laborum sed\",\n                  \"ad_d5c\": 77959467\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"commodo0bc\": 19664247,\n                  \"officia_7\": -70605860,\n                  \"sit_8a\": -1706932.8087827414\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"eu8\": true,\n                  \"dolore_5\": 58951713\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"Duis7a3\": -14582648\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"magna_f5_\": false,\n                  \"exf\": true\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": \"<boolean>\",\n        \"nodes_created\": \"<integer>\",\n        \"nodes_deleted\": \"<integer>\",\n        \"properties_set\": \"<integer>\",\n        \"relationships_created\": \"<integer>\",\n        \"relationships_deleted\": \"<integer>\",\n        \"labels_added\": \"<integer>\",\n        \"labels_removed\": \"<integer>\",\n        \"indexes_added\": \"<integer>\",\n        \"indexes_removed\": \"<integer>\",\n        \"constraints_added\": \"<integer>\",\n        \"constraints_removed\": \"<integer>\"\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ],\n  \"commit\": \"<string>\",\n  \"transaction\": {\n    \"expires\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:17:04.000Z",
+                      "updatedAt": "2026-07-28T02:17:04.000Z",
+                      "uid": "35240-ef2d7962-5f90-42e0-98ad-ea3fe7d6f514"
+                    },
+                    {
+                      "id": "e39a648a-c04d-471c-839c-bc37d444c6d1",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/db/:databaseName/tx",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "db",
+                            ":databaseName",
+                            "tx"
+                          ],
+                          "variable": [
+                            {
+                              "key": "databaseName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:17:04.000Z",
+                      "updatedAt": "2026-07-28T02:17:04.000Z",
+                      "uid": "35240-e39a648a-c04d-471c-839c-bc37d444c6d1"
+                    },
+                    {
+                      "id": "c26de505-a13e-4910-97e1-6aa8e3b5fa25",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/db/:databaseName/tx",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "db",
+                            ":databaseName",
+                            "tx"
+                          ],
+                          "variable": [
+                            {
+                              "key": "databaseName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:17:04.000Z",
+                      "updatedAt": "2026-07-28T02:17:04.000Z",
+                      "uid": "35240-c26de505-a13e-4910-97e1-6aa8e3b5fa25"
+                    },
+                    {
+                      "id": "5690ba0d-2e0c-4e33-8a61-0b8235cb0fef",
+                      "name": "Database not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"aute_0a7\": \"dolor Lorem adipisicing\"\n      },\n      \"resultDataContents\": [\n        \"row\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"exercitation218\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/db/:databaseName/tx",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "db",
+                            ":databaseName",
+                            "tx"
+                          ],
+                          "variable": [
+                            {
+                              "key": "databaseName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:17:04.000Z",
+                      "updatedAt": "2026-07-28T02:17:04.000Z",
+                      "uid": "35240-5690ba0d-2e0c-4e33-8a61-0b8235cb0fef"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:17:04.000Z",
+                  "updatedAt": "2026-07-28T02:17:04.000Z",
+                  "uid": "35240-57e7ae1a-a5db-4fb8-a765-1a9df16bb71b"
+                }
+              ],
+              "id": "3eb125e8-26b1-4f26-a3f1-6c071484e0b1",
+              "createdAt": "2026-07-28T02:17:04.000Z",
+              "updatedAt": "2026-07-28T02:17:04.000Z",
+              "uid": "35240-3eb125e8-26b1-4f26-a3f1-6c071484e0b1"
+            }
+          ],
+          "id": "4dc197e2-42af-4dbf-950b-28f86c2cd869",
+          "createdAt": "2026-07-28T02:17:04.000Z",
+          "updatedAt": "2026-07-28T02:17:04.000Z",
+          "uid": "35240-4dc197e2-42af-4dbf-950b-28f86c2cd869"
+        }
+      ],
+      "id": "35387758-4a07-48ce-a8e0-a0bc522a1e78",
+      "createdAt": "2026-07-28T02:17:04.000Z",
+      "updatedAt": "2026-07-28T02:17:04.000Z",
+      "uid": "35240-35387758-4a07-48ce-a8e0-a0bc522a1e78"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.neo4j.io/v1"
+    }
+  ]
+}

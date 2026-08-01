@@ -1,0 +1,346 @@
+{
+  "info": {
+    "_postman_id": "8710289f-950b-4c6a-8c5b-6771b9cd5d55",
+    "name": "Neo4j Aura Authentication Query API",
+    "description": "The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.\n\nContact Support:\n Name: Neo4j Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:38.000Z",
+    "updatedAt": "2026-07-28T02:16:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8710289f-950b-4c6a-8c5b-6771b9cd5d55"
+  },
+  "item": [
+    {
+      "name": "db",
+      "item": [
+        {
+          "name": "{databaseName}",
+          "item": [
+            {
+              "name": "query",
+              "item": [
+                {
+                  "name": "Execute a Cypher query",
+                  "id": "a0c74db3-ec00-4ff9-9933-459a47850aae",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"magna_b0a\": \"cillum dolor aliqua Ut fugiat\"\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"laborum__d9\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/db/:databaseName/query",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "db",
+                        ":databaseName",
+                        "query"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fc1ef90b-d142-47f2-8317-6fc53010d53e",
+                          "key": "databaseName",
+                          "value": "<string>",
+                          "description": "(Required) The name of the database to execute queries against. Use neo4j for the default database."
+                        }
+                      ]
+                    },
+                    "description": "Executes a Cypher query against the specified database using an implicit transaction. The server wraps the submitted Cypher query in a transaction automatically so that if any part of the query fails the database is reverted to its state before the query was executed. Multiple statements can be sent in a single request and the server runs them in sequence."
+                  },
+                  "response": [
+                    {
+                      "id": "bcaa6fe2-b3e5-47fa-9ea4-1779bf253c05",
+                      "name": "Query executed successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"magna_b0a\": \"cillum dolor aliqua Ut fugiat\"\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"laborum__d9\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/db/:databaseName/query",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "db",
+                            ":databaseName",
+                            "query"
+                          ],
+                          "variable": [
+                            {
+                              "key": "databaseName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"results\": [\n    {\n      \"columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"commodo5\": 72910815\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"labore_5c\": 42801832.25059226,\n                  \"exercitation_4\": 81813877.37032336\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"esse_5\": true,\n                  \"do09_\": 71840704\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"in_136\": -93432102.1502806\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"mollit48\": \"nulla ut qui\"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"consequated\": \"dolore ullamco consequat velit\",\n                  \"Utb\": 65574928.330610484,\n                  \"tempor_82a\": \"commodo anim sint esse\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"adipisicingc\": true\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"consequat0\": \"exercitation\",\n                  \"adipisicinga\": -74117318\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": \"<boolean>\",\n        \"nodes_created\": \"<integer>\",\n        \"nodes_deleted\": \"<integer>\",\n        \"properties_set\": \"<integer>\",\n        \"relationships_created\": \"<integer>\",\n        \"relationships_deleted\": \"<integer>\",\n        \"labels_added\": \"<integer>\",\n        \"labels_removed\": \"<integer>\",\n        \"indexes_added\": \"<integer>\",\n        \"indexes_removed\": \"<integer>\",\n        \"constraints_added\": \"<integer>\",\n        \"constraints_removed\": \"<integer>\"\n      }\n    },\n    {\n      \"columns\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"data\": [\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"ad_52\": 11269755.483318895,\n                  \"est94\": \"est in magna\",\n                  \"doac6\": false\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"cillum_c11\": -97814278,\n                  \"officia7da\": \"sint adipisicing\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"in_2c\": \"id amet\",\n                  \"labore_7bf\": true,\n                  \"voluptate_c5\": -72071422.18140894\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"commodo7\": \"amet \",\n                  \"eta\": false,\n                  \"dobea\": \"cillum ut Lorem consequat\"\n                }\n              }\n            ]\n          }\n        },\n        {\n          \"graph\": {\n            \"nodes\": [\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"magna_96\": \"non velit commodo enim\",\n                  \"aute_b\": \"et nisi\"\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"labels\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"properties\": {\n                  \"cillum5\": \"aliqua pariatur culpa\"\n                }\n              }\n            ],\n            \"relationships\": [\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"sed_37\": \"laboris irure anim\",\n                  \"adb\": 29532842.607882246\n                }\n              },\n              {\n                \"id\": \"<string>\",\n                \"type\": \"<string>\",\n                \"startNode\": \"<string>\",\n                \"endNode\": \"<string>\",\n                \"properties\": {\n                  \"ullamco36\": \"deserunt amet mollit\"\n                }\n              }\n            ]\n          }\n        }\n      ],\n      \"stats\": {\n        \"contains_updates\": \"<boolean>\",\n        \"nodes_created\": \"<integer>\",\n        \"nodes_deleted\": \"<integer>\",\n        \"properties_set\": \"<integer>\",\n        \"relationships_created\": \"<integer>\",\n        \"relationships_deleted\": \"<integer>\",\n        \"labels_added\": \"<integer>\",\n        \"labels_removed\": \"<integer>\",\n        \"indexes_added\": \"<integer>\",\n        \"indexes_removed\": \"<integer>\",\n        \"constraints_added\": \"<integer>\",\n        \"constraints_removed\": \"<integer>\"\n      }\n    }\n  ],\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:16:39.000Z",
+                      "updatedAt": "2026-07-28T02:16:39.000Z",
+                      "uid": "35240-bcaa6fe2-b3e5-47fa-9ea4-1779bf253c05"
+                    },
+                    {
+                      "id": "a0b420b5-26bf-47d5-9346-de702f607cbf",
+                      "name": "Invalid query or request format",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"magna_b0a\": \"cillum dolor aliqua Ut fugiat\"\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"laborum__d9\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/db/:databaseName/query",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "db",
+                            ":databaseName",
+                            "query"
+                          ],
+                          "variable": [
+                            {
+                              "key": "databaseName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:16:39.000Z",
+                      "updatedAt": "2026-07-28T02:16:39.000Z",
+                      "uid": "35240-a0b420b5-26bf-47d5-9346-de702f607cbf"
+                    },
+                    {
+                      "id": "0dfe50ae-12ef-4d40-9589-7c5cd5a8662d",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"magna_b0a\": \"cillum dolor aliqua Ut fugiat\"\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"laborum__d9\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/db/:databaseName/query",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "db",
+                            ":databaseName",
+                            "query"
+                          ],
+                          "variable": [
+                            {
+                              "key": "databaseName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:39.000Z",
+                      "updatedAt": "2026-07-28T02:16:39.000Z",
+                      "uid": "35240-0dfe50ae-12ef-4d40-9589-7c5cd5a8662d"
+                    },
+                    {
+                      "id": "0c98bb75-3851-42d7-8dec-184ef02db7c0",
+                      "name": "Database not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"statements\": [\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"magna_b0a\": \"cillum dolor aliqua Ut fugiat\"\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"row\"\n      ],\n      \"includeStats\": false\n    },\n    {\n      \"statement\": \"<string>\",\n      \"parameters\": {\n        \"laborum__d9\": true\n      },\n      \"resultDataContents\": [\n        \"graph\",\n        \"graph\"\n      ],\n      \"includeStats\": false\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/db/:databaseName/query",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "db",
+                            ":databaseName",
+                            "query"
+                          ],
+                          "variable": [
+                            {
+                              "key": "databaseName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:39.000Z",
+                      "updatedAt": "2026-07-28T02:16:39.000Z",
+                      "uid": "35240-0c98bb75-3851-42d7-8dec-184ef02db7c0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:39.000Z",
+                  "updatedAt": "2026-07-28T02:16:39.000Z",
+                  "uid": "35240-a0c74db3-ec00-4ff9-9933-459a47850aae"
+                }
+              ],
+              "id": "af3661a8-d22e-44af-b08b-a75e9892cc73",
+              "createdAt": "2026-07-28T02:16:39.000Z",
+              "updatedAt": "2026-07-28T02:16:39.000Z",
+              "uid": "35240-af3661a8-d22e-44af-b08b-a75e9892cc73"
+            }
+          ],
+          "id": "bf8ec694-5f1e-493e-84b5-a81ec6142e8e",
+          "createdAt": "2026-07-28T02:16:39.000Z",
+          "updatedAt": "2026-07-28T02:16:39.000Z",
+          "uid": "35240-bf8ec694-5f1e-493e-84b5-a81ec6142e8e"
+        }
+      ],
+      "id": "808f7d99-0334-44c5-8030-3ca770409424",
+      "createdAt": "2026-07-28T02:16:39.000Z",
+      "updatedAt": "2026-07-28T02:16:39.000Z",
+      "uid": "35240-808f7d99-0334-44c5-8030-3ca770409424"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.neo4j.io/v1"
+    }
+  ]
+}

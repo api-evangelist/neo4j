@@ -1,0 +1,320 @@
+{
+  "info": {
+    "_postman_id": "a614b3a9-9c84-4eef-aae6-01773308b19e",
+    "name": "Neo4j Aura Authentication Tenants API",
+    "description": "The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.\n\nContact Support:\n Name: Neo4j Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:52.000Z",
+    "updatedAt": "2026-07-28T02:16:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a614b3a9-9c84-4eef-aae6-01773308b19e"
+  },
+  "item": [
+    {
+      "name": "tenants",
+      "item": [
+        {
+          "name": "{tenantId}",
+          "item": [
+            {
+              "name": "Get tenant details",
+              "id": "7db9b345-1121-401f-b691-f0b4307b8551",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tenants/:tenantId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants",
+                    ":tenantId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1737e29f-dd75-4d4f-ba96-ba3933bb0480",
+                      "key": "tenantId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of a tenant (project)"
+                    }
+                  ]
+                },
+                "description": "Returns detailed information about a specific tenant including its configuration and associated instance count."
+              },
+              "response": [
+                {
+                  "id": "70cd0bd8-8556-4720-9348-129cff5c2ddf",
+                  "name": "Tenant details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenantId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenantId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenantId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"instance_configurations\": [\n      {\n        \"type\": \"<string>\",\n        \"regions\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"<string>\",\n        \"regions\": [\n          {\n            \"name\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:53.000Z",
+                  "updatedAt": "2026-07-28T02:16:53.000Z",
+                  "uid": "35240-70cd0bd8-8556-4720-9348-129cff5c2ddf"
+                },
+                {
+                  "id": "71750eb4-308c-425a-ad97-5949f781cc6a",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenantId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenantId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenantId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:53.000Z",
+                  "updatedAt": "2026-07-28T02:16:53.000Z",
+                  "uid": "35240-71750eb4-308c-425a-ad97-5949f781cc6a"
+                },
+                {
+                  "id": "c7bd0f54-0ac2-4e9e-93a5-cddb1029fc35",
+                  "name": "Tenant not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tenants/:tenantId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tenants",
+                        ":tenantId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "tenantId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:53.000Z",
+                  "updatedAt": "2026-07-28T02:16:53.000Z",
+                  "uid": "35240-c7bd0f54-0ac2-4e9e-93a5-cddb1029fc35"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:53.000Z",
+              "updatedAt": "2026-07-28T02:16:53.000Z",
+              "uid": "35240-7db9b345-1121-401f-b691-f0b4307b8551"
+            }
+          ],
+          "id": "123e5b85-fe9c-4d66-9fdf-29df79c0b317",
+          "createdAt": "2026-07-28T02:16:53.000Z",
+          "updatedAt": "2026-07-28T02:16:53.000Z",
+          "uid": "35240-123e5b85-fe9c-4d66-9fdf-29df79c0b317"
+        },
+        {
+          "name": "List all tenants",
+          "id": "8032d00d-0ab7-47a2-9758-2665f36f61a6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tenants",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tenants"
+              ]
+            },
+            "description": "Returns a list of all tenants (projects) accessible to the authenticated user."
+          },
+          "response": [
+            {
+              "id": "280a2081-e7ae-4486-bb63-80605b1e5e7b",
+              "name": "List of tenants",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tenants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"instance_configurations\": [\n        {\n          \"type\": \"<string>\",\n          \"regions\": [\n            {\n              \"name\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"type\": \"<string>\",\n          \"regions\": [\n            {\n              \"name\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"instance_configurations\": [\n        {\n          \"type\": \"<string>\",\n          \"regions\": [\n            {\n              \"name\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"type\": \"<string>\",\n          \"regions\": [\n            {\n              \"name\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:53.000Z",
+              "updatedAt": "2026-07-28T02:16:53.000Z",
+              "uid": "35240-280a2081-e7ae-4486-bb63-80605b1e5e7b"
+            },
+            {
+              "id": "5a685103-80e8-45e0-ac17-80771a3bf291",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tenants",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tenants"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:16:53.000Z",
+              "updatedAt": "2026-07-28T02:16:53.000Z",
+              "uid": "35240-5a685103-80e8-45e0-ac17-80771a3bf291"
+            }
+          ],
+          "createdAt": "2026-07-28T02:16:53.000Z",
+          "updatedAt": "2026-07-28T02:16:53.000Z",
+          "uid": "35240-8032d00d-0ab7-47a2-9758-2665f36f61a6"
+        }
+      ],
+      "id": "3fec8f4d-7e07-4b50-a14f-631b9bd6166d",
+      "createdAt": "2026-07-28T02:16:53.000Z",
+      "updatedAt": "2026-07-28T02:16:53.000Z",
+      "uid": "35240-3fec8f4d-7e07-4b50-a14f-631b9bd6166d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.neo4j.io/v1"
+    }
+  ]
+}

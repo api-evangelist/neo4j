@@ -1,0 +1,1724 @@
+{
+  "info": {
+    "_postman_id": "589f47de-3db3-477b-b514-1643b3dd9243",
+    "name": "Neo4j Aura Authentication Instances API",
+    "description": "The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.\n\nContact Support:\n Name: Neo4j Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:49.000Z",
+    "updatedAt": "2026-07-28T02:16:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-589f47de-3db3-477b-b514-1643b3dd9243"
+  },
+  "item": [
+    {
+      "name": "instances",
+      "item": [
+        {
+          "name": "{instanceId}",
+          "item": [
+            {
+              "name": "pause",
+              "item": [
+                {
+                  "name": "Pause an instance",
+                  "id": "0d4e7460-0d0b-4457-8d15-cfb36f9b8e47",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId/pause",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId",
+                        "pause"
+                      ],
+                      "variable": [
+                        {
+                          "id": "37f1093b-5435-4534-8641-5c78650f2000",
+                          "key": "instanceId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of an AuraDB instance"
+                        }
+                      ]
+                    },
+                    "description": "Pauses a running AuraDB instance, stopping compute charges while retaining the data. A paused instance cannot serve queries."
+                  },
+                  "response": [
+                    {
+                      "id": "3b52c1a1-00ac-43b1-944f-59a426805891",
+                      "name": "Instance pause initiated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/pause",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "pause"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"resuming\",\n    \"tenant_id\": \"<string>\",\n    \"cloud_provider\": \"azure\",\n    \"region\": \"<string>\",\n    \"type\": \"free-db\",\n    \"memory\": \"<string>\",\n    \"storage\": \"<string>\",\n    \"connection_url\": \"<string>\",\n    \"metrics_integration_url\": \"<string>\",\n    \"neo4j_version\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:49.000Z",
+                      "updatedAt": "2026-07-28T02:16:49.000Z",
+                      "uid": "35240-3b52c1a1-00ac-43b1-944f-59a426805891"
+                    },
+                    {
+                      "id": "5b8a8c8f-5f84-4e71-9b45-626aba317518",
+                      "name": "Authentication required or token expired",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/pause",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "pause"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:49.000Z",
+                      "updatedAt": "2026-07-28T02:16:49.000Z",
+                      "uid": "35240-5b8a8c8f-5f84-4e71-9b45-626aba317518"
+                    },
+                    {
+                      "id": "a2de3c6c-22f5-4cdc-9b9e-96e9f5822da3",
+                      "name": "Instance not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/pause",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "pause"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:49.000Z",
+                      "updatedAt": "2026-07-28T02:16:49.000Z",
+                      "uid": "35240-a2de3c6c-22f5-4cdc-9b9e-96e9f5822da3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-0d4e7460-0d0b-4457-8d15-cfb36f9b8e47"
+                }
+              ],
+              "id": "c1a538d2-93fd-4022-a22b-4e7c62835dc7",
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-c1a538d2-93fd-4022-a22b-4e7c62835dc7"
+            },
+            {
+              "name": "resume",
+              "item": [
+                {
+                  "name": "Resume a paused instance",
+                  "id": "ce299aa5-79a1-48de-a502-7ef0cc8719b3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId/resume",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId",
+                        "resume"
+                      ],
+                      "variable": [
+                        {
+                          "id": "60d9928d-8bab-486d-8a7a-f3f8b0fd2e33",
+                          "key": "instanceId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of an AuraDB instance"
+                        }
+                      ]
+                    },
+                    "description": "Resumes a paused AuraDB instance, restoring it to a running state so it can serve queries again."
+                  },
+                  "response": [
+                    {
+                      "id": "c1c4995d-618f-4473-a4c2-5001f32c5231",
+                      "name": "Instance resume initiated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/resume",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "resume"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"resuming\",\n    \"tenant_id\": \"<string>\",\n    \"cloud_provider\": \"azure\",\n    \"region\": \"<string>\",\n    \"type\": \"free-db\",\n    \"memory\": \"<string>\",\n    \"storage\": \"<string>\",\n    \"connection_url\": \"<string>\",\n    \"metrics_integration_url\": \"<string>\",\n    \"neo4j_version\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:49.000Z",
+                      "updatedAt": "2026-07-28T02:16:49.000Z",
+                      "uid": "35240-c1c4995d-618f-4473-a4c2-5001f32c5231"
+                    },
+                    {
+                      "id": "adac0a69-67a2-4967-9e74-c346eaaefbf7",
+                      "name": "Authentication required or token expired",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/resume",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "resume"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:49.000Z",
+                      "updatedAt": "2026-07-28T02:16:49.000Z",
+                      "uid": "35240-adac0a69-67a2-4967-9e74-c346eaaefbf7"
+                    },
+                    {
+                      "id": "f30192c8-b419-4797-8bb3-5cfdcc075f54",
+                      "name": "Instance not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/resume",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "resume"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:49.000Z",
+                      "updatedAt": "2026-07-28T02:16:49.000Z",
+                      "uid": "35240-f30192c8-b419-4797-8bb3-5cfdcc075f54"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-ce299aa5-79a1-48de-a502-7ef0cc8719b3"
+                }
+              ],
+              "id": "d2742574-3a70-40e4-93f0-7593e8902c8a",
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-d2742574-3a70-40e4-93f0-7593e8902c8a"
+            },
+            {
+              "name": "overwrite",
+              "item": [
+                {
+                  "name": "Overwrite an instance from a snapshot",
+                  "id": "d61ef42e-ae1b-4e90-a4a8-32faddd05d5e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"source_snapshot_id\": \"<string>\",\n  \"source_instance_id\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId/overwrite",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId",
+                        "overwrite"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bdb86b41-bd12-447b-bb37-6e69ff9d09a4",
+                          "key": "instanceId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of an AuraDB instance"
+                        }
+                      ]
+                    },
+                    "description": "Overwrites the data in an existing instance with data from a specified snapshot, effectively restoring the instance to a previous point in time."
+                  },
+                  "response": [
+                    {
+                      "id": "e87209a1-a51a-4603-ba03-0ea8457f838b",
+                      "name": "Instance overwrite initiated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"source_snapshot_id\": \"<string>\",\n  \"source_instance_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/overwrite",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "overwrite"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"resuming\",\n    \"tenant_id\": \"<string>\",\n    \"cloud_provider\": \"azure\",\n    \"region\": \"<string>\",\n    \"type\": \"free-db\",\n    \"memory\": \"<string>\",\n    \"storage\": \"<string>\",\n    \"connection_url\": \"<string>\",\n    \"metrics_integration_url\": \"<string>\",\n    \"neo4j_version\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:16:49.000Z",
+                      "updatedAt": "2026-07-28T02:16:49.000Z",
+                      "uid": "35240-e87209a1-a51a-4603-ba03-0ea8457f838b"
+                    },
+                    {
+                      "id": "dd3ff2d5-6577-4759-86f4-f49011530955",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"source_snapshot_id\": \"<string>\",\n  \"source_instance_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/overwrite",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "overwrite"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"errors\": [\n    {\n      \"message\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"message\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"field\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:16:49.000Z",
+                      "updatedAt": "2026-07-28T02:16:49.000Z",
+                      "uid": "35240-dd3ff2d5-6577-4759-86f4-f49011530955"
+                    },
+                    {
+                      "id": "066c6210-fc92-4489-a2ca-d20c00cda32f",
+                      "name": "Authentication required or token expired",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"source_snapshot_id\": \"<string>\",\n  \"source_instance_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/overwrite",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "overwrite"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:49.000Z",
+                      "updatedAt": "2026-07-28T02:16:49.000Z",
+                      "uid": "35240-066c6210-fc92-4489-a2ca-d20c00cda32f"
+                    },
+                    {
+                      "id": "285c0454-ce70-4037-ba1d-0b002daab5b8",
+                      "name": "Instance or snapshot not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"source_snapshot_id\": \"<string>\",\n  \"source_instance_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/instances/:instanceId/overwrite",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "instances",
+                            ":instanceId",
+                            "overwrite"
+                          ],
+                          "variable": [
+                            {
+                              "key": "instanceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:16:49.000Z",
+                      "updatedAt": "2026-07-28T02:16:49.000Z",
+                      "uid": "35240-285c0454-ce70-4037-ba1d-0b002daab5b8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-d61ef42e-ae1b-4e90-a4a8-32faddd05d5e"
+                }
+              ],
+              "id": "cd51572e-3b45-4f82-ba02-de06bf39a945",
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-cd51572e-3b45-4f82-ba02-de06bf39a945"
+            },
+            {
+              "name": "Get instance details",
+              "id": "c346ad38-8c42-4acd-afc7-8730f9f9a41a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances/:instanceId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f1dcdcb7-9998-4c2b-afb0-2fa591205f85",
+                      "key": "instanceId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "description": "Returns detailed information about a specific AuraDB instance including its status, configuration, connection URI, and metrics integration URL."
+              },
+              "response": [
+                {
+                  "id": "072b78e6-1909-4ee7-947e-baa0c2eb526c",
+                  "name": "Instance details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"resuming\",\n    \"tenant_id\": \"<string>\",\n    \"cloud_provider\": \"azure\",\n    \"region\": \"<string>\",\n    \"type\": \"free-db\",\n    \"memory\": \"<string>\",\n    \"storage\": \"<string>\",\n    \"connection_url\": \"<string>\",\n    \"metrics_integration_url\": \"<string>\",\n    \"neo4j_version\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-072b78e6-1909-4ee7-947e-baa0c2eb526c"
+                },
+                {
+                  "id": "5c7e2fd3-acf5-47d0-a025-e6f49a7c8a0c",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-5c7e2fd3-acf5-47d0-a025-e6f49a7c8a0c"
+                },
+                {
+                  "id": "fbba3562-bcc6-4f58-aaf9-5c4b412cfa25",
+                  "name": "Instance not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-fbba3562-bcc6-4f58-aaf9-5c4b412cfa25"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-c346ad38-8c42-4acd-afc7-8730f9f9a41a"
+            },
+            {
+              "name": "Update an instance",
+              "id": "06a0e9bf-0a0b-4436-95fb-c19dadfc8c1d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/instances/:instanceId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "609cc80c-8d84-4e76-ac9b-656813ca647e",
+                      "key": "instanceId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "description": "Updates the configuration of an existing AuraDB instance. Supported updates include resizing memory and renaming the instance."
+              },
+              "response": [
+                {
+                  "id": "2d52c050-2a04-4c9c-9f7e-7afd34744486",
+                  "name": "Instance updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"resuming\",\n    \"tenant_id\": \"<string>\",\n    \"cloud_provider\": \"azure\",\n    \"region\": \"<string>\",\n    \"type\": \"free-db\",\n    \"memory\": \"<string>\",\n    \"storage\": \"<string>\",\n    \"connection_url\": \"<string>\",\n    \"metrics_integration_url\": \"<string>\",\n    \"neo4j_version\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-2d52c050-2a04-4c9c-9f7e-7afd34744486"
+                },
+                {
+                  "id": "c46bac6a-d202-452f-ad43-5942273ea925",
+                  "name": "Invalid update configuration",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"message\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"message\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"field\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-c46bac6a-d202-452f-ad43-5942273ea925"
+                },
+                {
+                  "id": "334ff69a-bb52-448d-8bea-001ce5092ae3",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-334ff69a-bb52-448d-8bea-001ce5092ae3"
+                },
+                {
+                  "id": "760e9d8e-3186-4cad-8a43-3f00eea2860f",
+                  "name": "Instance not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-760e9d8e-3186-4cad-8a43-3f00eea2860f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-06a0e9bf-0a0b-4436-95fb-c19dadfc8c1d"
+            },
+            {
+              "name": "Delete an instance",
+              "id": "4ce5fc9a-3bdb-41d5-ac25-12f56ed8544f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/instances/:instanceId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances",
+                    ":instanceId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a9b33b41-e7f0-46ab-8d45-36e54f27c077",
+                      "key": "instanceId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of an AuraDB instance"
+                    }
+                  ]
+                },
+                "description": "Permanently deletes an AuraDB instance and all associated data. This operation cannot be undone."
+              },
+              "response": [
+                {
+                  "id": "e066c46b-a206-4a72-bb33-8b924b8d0eaa",
+                  "name": "Instance deletion initiated",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-e066c46b-a206-4a72-bb33-8b924b8d0eaa"
+                },
+                {
+                  "id": "638b31ad-a82d-4760-9d1b-29d4c2eaa156",
+                  "name": "Authentication required or token expired",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-638b31ad-a82d-4760-9d1b-29d4c2eaa156"
+                },
+                {
+                  "id": "4b8923cc-589d-4814-94c8-b7a030b2e1f2",
+                  "name": "Instance not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/instances/:instanceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "instances",
+                        ":instanceId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "instanceId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:49.000Z",
+                  "updatedAt": "2026-07-28T02:16:49.000Z",
+                  "uid": "35240-4b8923cc-589d-4814-94c8-b7a030b2e1f2"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-4ce5fc9a-3bdb-41d5-ac25-12f56ed8544f"
+            }
+          ],
+          "id": "8849aff8-b109-4848-a5a2-2db034df3f12",
+          "createdAt": "2026-07-28T02:16:49.000Z",
+          "updatedAt": "2026-07-28T02:16:49.000Z",
+          "uid": "35240-8849aff8-b109-4848-a5a2-2db034df3f12"
+        },
+        {
+          "name": "List all instances",
+          "id": "3c0a54b3-9280-4c22-823b-65d4013151f3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/instances?tenantId=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "instances"
+              ],
+              "query": [
+                {
+                  "description": "Filter instances by tenant ID",
+                  "key": "tenantId",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of all AuraDB instances accessible to the authenticated user across all tenants."
+          },
+          "response": [
+            {
+              "id": "d980d669-13fc-40d3-b7bb-55729262fbcc",
+              "name": "List of instances",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances?tenantId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter instances by tenant ID",
+                      "key": "tenantId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"paused\",\n      \"tenant_id\": \"<string>\",\n      \"cloud_provider\": \"azure\",\n      \"region\": \"<string>\",\n      \"type\": \"enterprise-db\",\n      \"memory\": \"<string>\",\n      \"storage\": \"<string>\",\n      \"connection_url\": \"<string>\",\n      \"metrics_integration_url\": \"<string>\",\n      \"neo4j_version\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"running\",\n      \"tenant_id\": \"<string>\",\n      \"cloud_provider\": \"gcp\",\n      \"region\": \"<string>\",\n      \"type\": \"enterprise-ds\",\n      \"memory\": \"<string>\",\n      \"storage\": \"<string>\",\n      \"connection_url\": \"<string>\",\n      \"metrics_integration_url\": \"<string>\",\n      \"neo4j_version\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-d980d669-13fc-40d3-b7bb-55729262fbcc"
+            },
+            {
+              "id": "4ca6a6f2-6180-4747-9aca-9d062ca7f2b8",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances?tenantId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter instances by tenant ID",
+                      "key": "tenantId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-4ca6a6f2-6180-4747-9aca-9d062ca7f2b8"
+            },
+            {
+              "id": "e8fbf629-ce26-4c8c-a222-acd3aea4a8b5",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/instances?tenantId=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter instances by tenant ID",
+                      "key": "tenantId",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-e8fbf629-ce26-4c8c-a222-acd3aea4a8b5"
+            }
+          ],
+          "createdAt": "2026-07-28T02:16:49.000Z",
+          "updatedAt": "2026-07-28T02:16:49.000Z",
+          "uid": "35240-3c0a54b3-9280-4c22-823b-65d4013151f3"
+        },
+        {
+          "name": "Create a new instance",
+          "id": "f91b55da-ad02-4510-a99b-9e14ebb08265",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"aws\",\n  \"type\": \"professional-db\",\n  \"tenant_id\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/instances",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "instances"
+              ]
+            },
+            "description": "Provisions a new AuraDB cloud database instance with the specified configuration including version, region, memory, cloud provider, and instance type."
+          },
+          "response": [
+            {
+              "id": "59135cab-c03f-4e8a-bb3c-d239531829cb",
+              "name": "Instance creation initiated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"aws\",\n  \"type\": \"professional-db\",\n  \"tenant_id\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"<string>\",\n    \"tenant_id\": \"<string>\",\n    \"connection_url\": \"<string>\",\n    \"username\": \"<string>\",\n    \"password\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-59135cab-c03f-4e8a-bb3c-d239531829cb"
+            },
+            {
+              "id": "492e9efa-4687-4094-9012-2e8f421c35ed",
+              "name": "Invalid configuration",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"aws\",\n  \"type\": \"professional-db\",\n  \"tenant_id\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"message\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"field\": \"<string>\"\n    },\n    {\n      \"message\": \"<string>\",\n      \"reason\": \"<string>\",\n      \"field\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-492e9efa-4687-4094-9012-2e8f421c35ed"
+            },
+            {
+              "id": "d6e1b679-e091-4726-947c-0571e375dacb",
+              "name": "Authentication required or token expired",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"aws\",\n  \"type\": \"professional-db\",\n  \"tenant_id\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-d6e1b679-e091-4726-947c-0571e375dacb"
+            },
+            {
+              "id": "152917b1-60e8-4ed7-883a-aef021f67ef2",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"memory\": \"<string>\",\n  \"region\": \"<string>\",\n  \"cloud_provider\": \"aws\",\n  \"type\": \"professional-db\",\n  \"tenant_id\": \"<string>\",\n  \"version\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/instances",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "instances"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:16:49.000Z",
+              "updatedAt": "2026-07-28T02:16:49.000Z",
+              "uid": "35240-152917b1-60e8-4ed7-883a-aef021f67ef2"
+            }
+          ],
+          "createdAt": "2026-07-28T02:16:49.000Z",
+          "updatedAt": "2026-07-28T02:16:49.000Z",
+          "uid": "35240-f91b55da-ad02-4510-a99b-9e14ebb08265"
+        }
+      ],
+      "id": "1c874a7a-b509-4256-8e4c-752e0b74bdea",
+      "createdAt": "2026-07-28T02:16:49.000Z",
+      "updatedAt": "2026-07-28T02:16:49.000Z",
+      "uid": "35240-1c874a7a-b509-4256-8e4c-752e0b74bdea"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.neo4j.io/v1"
+    }
+  ]
+}

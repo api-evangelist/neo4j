@@ -1,0 +1,112 @@
+{
+  "info": {
+    "_postman_id": "b8f7264f-cb1e-4566-b7b1-87ebafc6282a",
+    "name": "Neo4j Aura Authentication Discovery API",
+    "description": "The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.\n\nContact Support:\n Name: Neo4j Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:48.000Z",
+    "updatedAt": "2026-07-28T02:16:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b8f7264f-cb1e-4566-b7b1-87ebafc6282a"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "Discovery endpoint",
+          "id": "f98a754b-03d8-44e2-a60a-5a9f2d0c1f14",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "Returns a list of available endpoints on the Neo4j installation, together with basic server information including the Neo4j version, edition, Bolt connection URIs, and authentication configuration. This endpoint does not require authentication."
+          },
+          "response": [
+            {
+              "id": "ef98c105-d527-4d9d-a743-5495e87f90ad",
+              "name": "Server discovery information",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"bolt_routing\": \"<string>\",\n  \"bolt_direct\": \"<string>\",\n  \"transaction\": \"<string>\",\n  \"neo4j_version\": \"<string>\",\n  \"neo4j_edition\": \"enterprise\"\n}",
+              "createdAt": "2026-07-28T02:16:48.000Z",
+              "updatedAt": "2026-07-28T02:16:48.000Z",
+              "uid": "35240-ef98c105-d527-4d9d-a743-5495e87f90ad"
+            }
+          ],
+          "createdAt": "2026-07-28T02:16:48.000Z",
+          "updatedAt": "2026-07-28T02:16:48.000Z",
+          "uid": "35240-f98a754b-03d8-44e2-a60a-5a9f2d0c1f14"
+        }
+      ],
+      "id": "3558edd1-80f1-4826-a969-82a408ae8e8b",
+      "createdAt": "2026-07-28T02:16:48.000Z",
+      "updatedAt": "2026-07-28T02:16:48.000Z",
+      "uid": "35240-3558edd1-80f1-4826-a969-82a408ae8e8b"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.neo4j.io/v1"
+    }
+  ]
+}

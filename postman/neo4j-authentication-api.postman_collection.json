@@ -1,0 +1,199 @@
+{
+  "info": {
+    "_postman_id": "2fa7aa3c-bdd6-41fc-beef-9b6e56a6dc15",
+    "name": "Neo4j Aura Authentication API",
+    "description": "The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.\n\nContact Support:\n Name: Neo4j Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:16:44.000Z",
+    "updatedAt": "2026-07-28T02:16:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2fa7aa3c-bdd6-41fc-beef-9b6e56a6dc15"
+  },
+  "item": [
+    {
+      "name": "oauth",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Obtain an OAuth2 access token",
+              "id": "03ba2b9d-c2ff-4d06-a75c-29927aa74749",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) The OAuth2 grant type",
+                      "key": "grant_type",
+                      "value": "client_credentials"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/oauth/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "oauth",
+                    "token"
+                  ]
+                },
+                "description": "Authenticates using client credentials to obtain a bearer token for API access. The client ID and client secret are provided using HTTP Basic Authentication. Access tokens expire after one hour and a new token must be obtained when the current one expires. A 403 Forbidden response indicates an expired token."
+              },
+              "response": [
+                {
+                  "id": "65fc080d-8887-4326-89e0-19c6ac88af9c",
+                  "name": "Access token issued successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) The OAuth2 grant type",
+                          "key": "grant_type",
+                          "value": "client_credentials"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"token_type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:16:44.000Z",
+                  "updatedAt": "2026-07-28T02:16:44.000Z",
+                  "uid": "35240-65fc080d-8887-4326-89e0-19c6ac88af9c"
+                },
+                {
+                  "id": "b94e5bbc-fd3b-49f1-ada0-9340a94ce4ca",
+                  "name": "Invalid client credentials",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) The OAuth2 grant type",
+                          "key": "grant_type",
+                          "value": "client_credentials"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/oauth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "oauth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:16:44.000Z",
+                  "updatedAt": "2026-07-28T02:16:44.000Z",
+                  "uid": "35240-b94e5bbc-fd3b-49f1-ada0-9340a94ce4ca"
+                }
+              ],
+              "createdAt": "2026-07-28T02:16:44.000Z",
+              "updatedAt": "2026-07-28T02:16:44.000Z",
+              "uid": "35240-03ba2b9d-c2ff-4d06-a75c-29927aa74749"
+            }
+          ],
+          "id": "928c7ba8-02d4-44b6-a27c-7d0620af5226",
+          "createdAt": "2026-07-28T02:16:44.000Z",
+          "updatedAt": "2026-07-28T02:16:44.000Z",
+          "uid": "35240-928c7ba8-02d4-44b6-a27c-7d0620af5226"
+        }
+      ],
+      "id": "1d50fc48-487d-4bd3-abee-0fd9d0579b74",
+      "createdAt": "2026-07-28T02:16:44.000Z",
+      "updatedAt": "2026-07-28T02:16:44.000Z",
+      "uid": "35240-1d50fc48-487d-4bd3-abee-0fd9d0579b74"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.neo4j.io/v1"
+    }
+  ]
+}
