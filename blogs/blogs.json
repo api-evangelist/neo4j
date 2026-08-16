@@ -5,7 +5,7 @@
       "source": "https://neo4j.com/blog/feed/",
       "feed_url": "https://neo4j.com/blog/feed/",
       "title": "",
-      "saved": 0,
+      "saved": 2,
       "method": "feed"
     },
     {
@@ -13,9 +13,10 @@
       "feed_url": "https://support.neo4j.com/",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "none",
+      "error": "parse_failed"
     }
   ],
-  "post_count": 104,
-  "fetched": "2026-08-06T14:08:46Z"
+  "post_count": 106,
+  "fetched": "2026-08-15T12:11:08Z"
 }
