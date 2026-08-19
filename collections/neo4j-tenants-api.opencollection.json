@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neo4j Aura Authentication Tenants API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tenants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all tenants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neo4j.io/v1/tenants"
+          },
+          "docs": "Returns a list of all tenants (projects) accessible to the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Get tenant details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neo4j.io/v1/tenants/:tenantId",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a tenant (project)"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific tenant including its configuration and associated instance count."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

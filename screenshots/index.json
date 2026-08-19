@@ -1,0 +1,11 @@
+[
+  {
+    "repo": "neo4j",
+    "captured_at": "2026-08-17T124223",
+    "source_url": "https://neo4j.com/developer/",
+    "source_type": "Portal",
+    "file": "neo4j-2026-08-17T124223.png",
+    "bytes": 183618,
+    "capture": "playwright-local"
+  }
+]

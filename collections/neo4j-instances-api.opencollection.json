@@ -1,0 +1,180 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neo4j Aura Authentication Instances API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neo4j.io/v1/instances",
+            "params": [
+              {
+                "name": "tenantId",
+                "value": "",
+                "type": "query",
+                "description": "Filter instances by tenant ID"
+              }
+            ]
+          },
+          "docs": "Returns a list of all AuraDB instances accessible to the authenticated user across all tenants."
+        },
+        {
+          "info": {
+            "name": "Create a new instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neo4j.io/v1/instances",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provisions a new AuraDB cloud database instance with the specified configuration including version, region, memory, cloud provider, and instance type."
+        },
+        {
+          "info": {
+            "name": "Get instance details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific AuraDB instance including its status, configuration, connection URI, and metrics integration URL."
+        },
+        {
+          "info": {
+            "name": "Update an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of an existing AuraDB instance. Supported updates include resizing memory and renaming the instance."
+        },
+        {
+          "info": {
+            "name": "Delete an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ]
+          },
+          "docs": "Permanently deletes an AuraDB instance and all associated data. This operation cannot be undone."
+        },
+        {
+          "info": {
+            "name": "Pause an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/pause",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ]
+          },
+          "docs": "Pauses a running AuraDB instance, stopping compute charges while retaining the data. A paused instance cannot serve queries."
+        },
+        {
+          "info": {
+            "name": "Resume a paused instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/resume",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ]
+          },
+          "docs": "Resumes a paused AuraDB instance, restoring it to a running state so it can serve queries again."
+        },
+        {
+          "info": {
+            "name": "Overwrite an instance from a snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/overwrite",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Overwrites the data in an existing instance with data from a specified snapshot, effectively restoring the instance to a previous point in time."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

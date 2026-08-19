@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Neo4j Aura Authentication Snapshots API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List snapshots for an instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/snapshots",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ]
+          },
+          "docs": "Returns a list of available snapshots for a specific AuraDB instance. Snapshots are point-in-time copies of the instance data created either automatically by Neo4j or on demand."
+        },
+        {
+          "info": {
+            "name": "Create a snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/snapshots",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              }
+            ]
+          },
+          "docs": "Creates an on-demand snapshot of the specified AuraDB instance, capturing the current state of all data in the database."
+        },
+        {
+          "info": {
+            "name": "Get snapshot details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/snapshots/:snapshotId",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              },
+              {
+                "name": "snapshotId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a snapshot"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific snapshot including its status, creation time, and size."
+        },
+        {
+          "info": {
+            "name": "Restore a snapshot to a new instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.neo4j.io/v1/instances/:instanceId/snapshots/:snapshotId/restore",
+            "params": [
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an AuraDB instance"
+              },
+              {
+                "name": "snapshotId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a snapshot"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restores a snapshot to a new AuraDB instance, creating a new database populated with the data from the snapshot."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
