@@ -25,6 +25,12 @@ tags:
 - Cloud
 - GraphQL
 - Drivers
+tags_raw:
+- Graph Database
+- Cypher
+- Cloud
+- GraphQL
+- Drivers
 - APIs
 url: https://raw.githubusercontent.com/api-evangelist/neo4j/refs/heads/main/apis.yml
 created: '2025-03-05'
@@ -229,6 +235,8 @@ apis:
     commit, and rollback operations.
   humanURL: https://neo4j.com/docs/http-api/current/
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
