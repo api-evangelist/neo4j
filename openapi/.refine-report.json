@@ -1,26 +1,33 @@
 {
   "provider": "neo4j",
   "sources": [
-    "neo4j-authentication-api-openapi.yml",
-    "neo4j-discovery-api-openapi.yml",
-    "neo4j-instances-api-openapi.yml",
-    "neo4j-query-api-openapi.yml",
-    "neo4j-snapshots-api-openapi.yml",
-    "neo4j-tenants-api-openapi.yml",
-    "neo4j-transactions-api-openapi.yml"
+    "_original/neo4j-aura-api-openapi.yml",
+    "_original/neo4j-http-api-openapi.yml"
   ],
   "outputs": [
     "neo4j-authentication-api-openapi.yml",
-    "neo4j-discovery-api-openapi.yml",
     "neo4j-instances-api-openapi.yml",
-    "neo4j-query-api-openapi.yml",
     "neo4j-snapshots-api-openapi.yml",
     "neo4j-tenants-api-openapi.yml",
+    "neo4j-discovery-api-openapi.yml",
+    "neo4j-query-api-openapi.yml",
     "neo4j-transactions-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "neo4j-aura-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "neo4j-http-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "neo4j-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "neo4j-discovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "neo4j-instances-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "neo4j-query-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "neo4j-snapshots-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "neo4j-tenants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "neo4j-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

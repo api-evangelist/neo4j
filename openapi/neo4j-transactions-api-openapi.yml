@@ -1,17 +1,19 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Neo4j Aura Authentication Transactions API
-  description: 'The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the api.neo4j.io platform and is available to Aura Enterprise customers.'
-  version: '1.0'
+  title: Neo4j HTTP Transactions API
+  description: The Neo4j HTTP API allows developers to execute Cypher queries against a Neo4j database through HTTP requests. It supports both implicit transactions, where the API handles transaction management automatically, and explicit transactions, where developers control the full transaction lifecycle including open, commit, and rollback operations. By default the API uses port 7474 for HTTP and port 7473 for HTTPS on self-managed instances.
+  version: '5.0'
   contact:
     name: Neo4j Support
     url: https://support.neo4j.com
   termsOfService: https://neo4j.com/terms/
 servers:
-- url: https://api.neo4j.io/v1
-  description: Neo4j Aura Production API
+- url: http://localhost:7474
+  description: Self-managed HTTP server
+- url: https://localhost:7473
+  description: Self-managed HTTPS server
 security:
-- bearerAuth: []
+- basicAuth: []
 tags:
 - name: Transactions
   description: Manage explicit transactions with full control over the transaction lifecycle including open, run, commit, and rollback operations.
@@ -141,66 +143,6 @@ paths:
           description: Transaction or database not found
 components:
   schemas:
-    QueryStatistics:
-      type: object
-      description: Statistics about query execution.
-      properties:
-        contains_updates:
-          type: boolean
-          description: Whether the query modified the database
-        nodes_created:
-          type: integer
-          description: Number of nodes created
-        nodes_deleted:
-          type: integer
-          description: Number of nodes deleted
-        properties_set:
-          type: integer
-          description: Number of properties set
-        relationships_created:
-          type: integer
-          description: Number of relationships created
-        relationships_deleted:
-          type: integer
-          description: Number of relationships deleted
-        labels_added:
-          type: integer
-          description: Number of labels added to nodes
-        labels_removed:
-          type: integer
-          description: Number of labels removed from nodes
-        indexes_added:
-          type: integer
-          description: Number of indexes created
-        indexes_removed:
-          type: integer
-          description: Number of indexes removed
-        constraints_added:
-          type: integer
-          description: Number of constraints created
-        constraints_removed:
-          type: integer
-          description: Number of constraints removed
-    GraphRelationship:
-      type: object
-      description: A relationship returned in graph result format.
-      properties:
-        id:
-          type: string
-          description: The internal relationship ID
-        type:
-          type: string
-          description: The relationship type
-        startNode:
-          type: string
-          description: The ID of the start node
-        endNode:
-          type: string
-          description: The ID of the end node
-        properties:
-          type: object
-          description: Key-value properties of the relationship
-          additionalProperties: true
     StatementResult:
       type: object
       description: Result of a single Cypher statement execution.
@@ -240,18 +182,68 @@ components:
                       $ref: '#/components/schemas/GraphRelationship'
         stats:
           $ref: '#/components/schemas/QueryStatistics'
-    Neo4jError:
+    GraphRelationship:
       type: object
-      description: An error returned by the Neo4j server.
+      description: A relationship returned in graph result format.
       properties:
-        code:
+        id:
           type: string
-          description: Neo4j error code in the format Neo.ErrorClassification.Category.Title
-          example: Neo.ClientError.Statement.SyntaxError
-        message:
+          description: The internal relationship ID
+        type:
           type: string
-          description: Human-readable error message
-          example: Invalid input 'X'
+          description: The relationship type
+        startNode:
+          type: string
+          description: The ID of the start node
+        endNode:
+          type: string
+          description: The ID of the end node
+        properties:
+          type: object
+          description: Key-value properties of the relationship
+          additionalProperties: true
+    TransactionResponse:
+      type: object
+      description: Response from a transaction operation.
+      properties:
+        results:
+          type: array
+          description: Array of result objects corresponding to each executed statement
+          items:
+            $ref: '#/components/schemas/StatementResult'
+        errors:
+          type: array
+          description: Array of errors that occurred during execution
+          items:
+            $ref: '#/components/schemas/Neo4jError'
+        commit:
+          type: string
+          description: URI to commit the transaction
+          example: http://localhost:7474/db/neo4j/tx/1/commit
+        transaction:
+          type: object
+          description: Transaction metadata
+          properties:
+            expires:
+              type: string
+              description: Timestamp when the transaction will expire if idle
+              example: Wed, 01 Jan 2025 12:00:30 +0000
+    GraphNode:
+      type: object
+      description: A node returned in graph result format.
+      properties:
+        id:
+          type: string
+          description: The internal node ID
+        labels:
+          type: array
+          description: Labels assigned to the node
+          items:
+            type: string
+        properties:
+          type: object
+          description: Key-value properties of the node
+          additionalProperties: true
     CypherStatement:
       type: object
       description: A single Cypher statement with optional parameters and result format.
@@ -303,49 +295,66 @@ components:
           description: Array of Cypher statements to execute within the transaction
           items:
             $ref: '#/components/schemas/CypherStatement'
-    TransactionResponse:
+    QueryStatistics:
       type: object
-      description: Response from a transaction operation.
+      description: Statistics about query execution.
       properties:
-        results:
-          type: array
-          description: Array of result objects corresponding to each executed statement
-          items:
-            $ref: '#/components/schemas/StatementResult'
-        errors:
-          type: array
-          description: Array of errors that occurred during execution
-          items:
-            $ref: '#/components/schemas/Neo4jError'
-        commit:
-          type: string
-          description: URI to commit the transaction
-          example: http://localhost:7474/db/neo4j/tx/1/commit
-        transaction:
-          type: object
-          description: Transaction metadata
-          properties:
-            expires:
-              type: string
-              description: Timestamp when the transaction will expire if idle
-              example: Wed, 01 Jan 2025 12:00:30 +0000
-    GraphNode:
+        contains_updates:
+          type: boolean
+          description: Whether the query modified the database
+        nodes_created:
+          type: integer
+          description: Number of nodes created
+        nodes_deleted:
+          type: integer
+          description: Number of nodes deleted
+        properties_set:
+          type: integer
+          description: Number of properties set
+        relationships_created:
+          type: integer
+          description: Number of relationships created
+        relationships_deleted:
+          type: integer
+          description: Number of relationships deleted
+        labels_added:
+          type: integer
+          description: Number of labels added to nodes
+        labels_removed:
+          type: integer
+          description: Number of labels removed from nodes
+        indexes_added:
+          type: integer
+          description: Number of indexes created
+        indexes_removed:
+          type: integer
+          description: Number of indexes removed
+        constraints_added:
+          type: integer
+          description: Number of constraints created
+        constraints_removed:
+          type: integer
+          description: Number of constraints removed
+    Neo4jError:
       type: object
-      description: A node returned in graph result format.
+      description: An error returned by the Neo4j server.
       properties:
-        id:
+        code:
           type: string
-          description: The internal node ID
-        labels:
-          type: array
-          description: Labels assigned to the node
-          items:
-            type: string
-        properties:
-          type: object
-          description: Key-value properties of the node
-          additionalProperties: true
+          description: Neo4j error code in the format Neo.ErrorClassification.Category.Title
+          example: Neo.ClientError.Statement.SyntaxError
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid input 'X'
   parameters:
+    transactionId:
+      name: transactionId
+      in: path
+      required: true
+      description: The unique identifier of an open transaction, returned in the Location header when a transaction is opened.
+      schema:
+        type: string
     databaseName:
       name: databaseName
       in: path
@@ -354,18 +363,11 @@ components:
       schema:
         type: string
         example: neo4j
-    transactionId:
-      name: transactionId
-      in: path
-      required: true
-      description: The unique identifier of an open transaction, returned in the Location header when a transaction is opened.
-      schema:
-        type: string
   securitySchemes:
-    bearerAuth:
+    basicAuth:
       type: http
-      scheme: bearer
-      description: OAuth2 bearer token obtained from the /oauth/token endpoint using client credentials. Tokens expire after one hour.
+      scheme: basic
+      description: HTTP Basic Authentication using the Neo4j database username and password encoded as a base64 hash.
 externalDocs:
-  description: Neo4j Aura API Specification
-  url: https://neo4j.com/docs/aura/platform/api/specification/
+  description: Neo4j HTTP API Documentation
+  url: https://neo4j.com/docs/http-api/current/
