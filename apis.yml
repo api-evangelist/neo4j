@@ -5,6 +5,18 @@ description: >-
   Their developer platform provides HTTP, Query, and Aura cloud APIs alongside official drivers for Python, Java, and
   JavaScript, as well as a GraphQL library for rapid API development backed by the Neo4j graph database.
 kind: contract
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
