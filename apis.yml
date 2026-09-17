@@ -38,6 +38,7 @@ tags:
 - Cloud
 - GraphQL
 - Drivers
+- Neo4j
 tags_raw:
 - Graph Database
 - Cypher
