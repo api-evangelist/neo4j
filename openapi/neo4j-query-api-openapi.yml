@@ -52,45 +52,6 @@ paths:
           description: Database not found
 components:
   schemas:
-    StatementResult:
-      type: object
-      description: Result of a single Cypher statement execution.
-      properties:
-        columns:
-          type: array
-          description: Column names in the result set
-          items:
-            type: string
-        data:
-          type: array
-          description: Array of result rows
-          items:
-            type: object
-            properties:
-              row:
-                type: array
-                description: Row data values
-                items: {}
-              meta:
-                type: array
-                description: Metadata for each value in the row
-                items: {}
-              graph:
-                type: object
-                description: Graph representation of the result when requested
-                properties:
-                  nodes:
-                    type: array
-                    description: Graph nodes in the result
-                    items:
-                      $ref: '#/components/schemas/GraphNode'
-                  relationships:
-                    type: array
-                    description: Graph relationships in the result
-                    items:
-                      $ref: '#/components/schemas/GraphRelationship'
-        stats:
-          $ref: '#/components/schemas/QueryStatistics'
     GraphRelationship:
       type: object
       description: A relationship returned in graph result format.
@@ -110,36 +71,6 @@ components:
         properties:
           type: object
           description: Key-value properties of the relationship
-          additionalProperties: true
-    QueryResponse:
-      type: object
-      description: Response containing query results from an implicit transaction.
-      properties:
-        results:
-          type: array
-          description: Array of result objects corresponding to each executed statement
-          items:
-            $ref: '#/components/schemas/StatementResult'
-        errors:
-          type: array
-          description: Array of errors that occurred during execution
-          items:
-            $ref: '#/components/schemas/Neo4jError'
-    GraphNode:
-      type: object
-      description: A node returned in graph result format.
-      properties:
-        id:
-          type: string
-          description: The internal node ID
-        labels:
-          type: array
-          description: Labels assigned to the node
-          items:
-            type: string
-        properties:
-          type: object
-          description: Key-value properties of the node
           additionalProperties: true
     CypherStatement:
       type: object
@@ -183,17 +114,22 @@ components:
           description: Array of errors that occurred
           items:
             $ref: '#/components/schemas/Neo4jError'
-    QueryRequest:
+    GraphNode:
       type: object
-      description: Request body for executing one or more Cypher statements using an implicit transaction.
-      required:
-      - statements
+      description: A node returned in graph result format.
       properties:
-        statements:
+        id:
+          type: string
+          description: The internal node ID
+        labels:
           type: array
-          description: Array of Cypher statements to execute
+          description: Labels assigned to the node
           items:
-            $ref: '#/components/schemas/CypherStatement'
+            type: string
+        properties:
+          type: object
+          description: Key-value properties of the node
+          additionalProperties: true
     QueryStatistics:
       type: object
       description: Statistics about query execution.
@@ -234,6 +170,17 @@ components:
         constraints_removed:
           type: integer
           description: Number of constraints removed
+    QueryRequest:
+      type: object
+      description: Request body for executing one or more Cypher statements using an implicit transaction.
+      required:
+      - statements
+      properties:
+        statements:
+          type: array
+          description: Array of Cypher statements to execute
+          items:
+            $ref: '#/components/schemas/CypherStatement'
     Neo4jError:
       type: object
       description: An error returned by the Neo4j server.
@@ -246,6 +193,59 @@ components:
           type: string
           description: Human-readable error message
           example: Invalid input 'X'
+    StatementResult:
+      type: object
+      description: Result of a single Cypher statement execution.
+      properties:
+        columns:
+          type: array
+          description: Column names in the result set
+          items:
+            type: string
+        data:
+          type: array
+          description: Array of result rows
+          items:
+            type: object
+            properties:
+              row:
+                type: array
+                description: Row data values
+                items: {}
+              meta:
+                type: array
+                description: Metadata for each value in the row
+                items: {}
+              graph:
+                type: object
+                description: Graph representation of the result when requested
+                properties:
+                  nodes:
+                    type: array
+                    description: Graph nodes in the result
+                    items:
+                      $ref: '#/components/schemas/GraphNode'
+                  relationships:
+                    type: array
+                    description: Graph relationships in the result
+                    items:
+                      $ref: '#/components/schemas/GraphRelationship'
+        stats:
+          $ref: '#/components/schemas/QueryStatistics'
+    QueryResponse:
+      type: object
+      description: Response containing query results from an implicit transaction.
+      properties:
+        results:
+          type: array
+          description: Array of result objects corresponding to each executed statement
+          items:
+            $ref: '#/components/schemas/StatementResult'
+        errors:
+          type: array
+          description: Array of errors that occurred during execution
+          items:
+            $ref: '#/components/schemas/Neo4jError'
   parameters:
     databaseName:
       name: databaseName

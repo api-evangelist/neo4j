@@ -62,14 +62,6 @@ paths:
         '404':
           description: Tenant not found
 components:
-  parameters:
-    tenantId:
-      name: tenantId
-      in: path
-      required: true
-      description: The unique identifier of a tenant (project)
-      schema:
-        type: string
   schemas:
     Tenant:
       type: object
@@ -99,6 +91,14 @@ components:
                     name:
                       type: string
                       description: Region identifier
+  parameters:
+    tenantId:
+      name: tenantId
+      in: path
+      required: true
+      description: The unique identifier of a tenant (project)
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

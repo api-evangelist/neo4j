@@ -234,6 +234,32 @@ paths:
           description: Instance or snapshot not found
 components:
   schemas:
+    InstanceCreated:
+      type: object
+      description: Response when an instance is created, including initial credentials.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the new instance
+        name:
+          type: string
+          description: Display name of the instance
+        status:
+          type: string
+          description: Current status of the instance
+        tenant_id:
+          type: string
+          description: ID of the tenant this instance belongs to
+        connection_url:
+          type: string
+          description: Bolt connection URI for the instance
+        username:
+          type: string
+          description: Initial database username
+          example: neo4j
+        password:
+          type: string
+          description: Initial database password. This value is only returned once at creation time and cannot be retrieved later.
     Instance:
       type: object
       description: An AuraDB cloud database instance.
@@ -299,18 +325,6 @@ components:
           type: string
           description: Neo4j database version running on the instance
           example: '5'
-    UpdateInstanceRequest:
-      type: object
-      description: Request body for updating an instance configuration.
-      properties:
-        name:
-          type: string
-          description: Updated display name for the instance
-          maxLength: 30
-        memory:
-          type: string
-          description: Updated memory allocation
-          example: 16GB
     AuraError:
       type: object
       description: Error response from the Aura API.
@@ -330,45 +344,6 @@ components:
               field:
                 type: string
                 description: Field that caused the error if applicable
-    InstanceCreated:
-      type: object
-      description: Response when an instance is created, including initial credentials.
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the new instance
-        name:
-          type: string
-          description: Display name of the instance
-        status:
-          type: string
-          description: Current status of the instance
-        tenant_id:
-          type: string
-          description: ID of the tenant this instance belongs to
-        connection_url:
-          type: string
-          description: Bolt connection URI for the instance
-        username:
-          type: string
-          description: Initial database username
-          example: neo4j
-        password:
-          type: string
-          description: Initial database password. This value is only returned once at creation time and cannot be retrieved later.
-    OverwriteInstanceRequest:
-      type: object
-      description: Request body for overwriting an instance from a snapshot.
-      required:
-      - source_snapshot_id
-      - source_instance_id
-      properties:
-        source_snapshot_id:
-          type: string
-          description: ID of the snapshot to use as the data source
-        source_instance_id:
-          type: string
-          description: ID of the instance the snapshot belongs to
     CreateInstanceRequest:
       type: object
       description: Request body for creating a new AuraDB instance.
@@ -414,6 +389,31 @@ components:
           - gcp
           - aws
           - azure
+    UpdateInstanceRequest:
+      type: object
+      description: Request body for updating an instance configuration.
+      properties:
+        name:
+          type: string
+          description: Updated display name for the instance
+          maxLength: 30
+        memory:
+          type: string
+          description: Updated memory allocation
+          example: 16GB
+    OverwriteInstanceRequest:
+      type: object
+      description: Request body for overwriting an instance from a snapshot.
+      required:
+      - source_snapshot_id
+      - source_instance_id
+      properties:
+        source_snapshot_id:
+          type: string
+          description: ID of the snapshot to use as the data source
+        source_instance_id:
+          type: string
+          description: ID of the instance the snapshot belongs to
   parameters:
     instanceId:
       name: instanceId
