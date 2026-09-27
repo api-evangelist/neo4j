@@ -143,6 +143,161 @@ paths:
           description: Transaction or database not found
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Response containing one or more errors.
+      properties:
+        results:
+          type: array
+          description: Empty or partial results
+          items: {}
+        errors:
+          type: array
+          description: Array of errors that occurred
+          items:
+            $ref: '#/components/schemas/Neo4jError'
+    StatementResult:
+      type: object
+      description: Result of a single Cypher statement execution.
+      properties:
+        columns:
+          type: array
+          description: Column names in the result set
+          items:
+            type: string
+        data:
+          type: array
+          description: Array of result rows
+          items:
+            type: object
+            properties:
+              row:
+                type: array
+                description: Row data values
+                items: {}
+              meta:
+                type: array
+                description: Metadata for each value in the row
+                items: {}
+              graph:
+                type: object
+                description: Graph representation of the result when requested
+                properties:
+                  nodes:
+                    type: array
+                    description: Graph nodes in the result
+                    items:
+                      $ref: '#/components/schemas/GraphNode'
+                  relationships:
+                    type: array
+                    description: Graph relationships in the result
+                    items:
+                      $ref: '#/components/schemas/GraphRelationship'
+        stats:
+          $ref: '#/components/schemas/QueryStatistics'
+    GraphNode:
+      type: object
+      description: A node returned in graph result format.
+      properties:
+        id:
+          type: string
+          description: The internal node ID
+        labels:
+          type: array
+          description: Labels assigned to the node
+          items:
+            type: string
+        properties:
+          type: object
+          description: Key-value properties of the node
+          additionalProperties: true
+    TransactionResponse:
+      type: object
+      description: Response from a transaction operation.
+      properties:
+        results:
+          type: array
+          description: Array of result objects corresponding to each executed statement
+          items:
+            $ref: '#/components/schemas/StatementResult'
+        errors:
+          type: array
+          description: Array of errors that occurred during execution
+          items:
+            $ref: '#/components/schemas/Neo4jError'
+        commit:
+          type: string
+          description: URI to commit the transaction
+          example: http://localhost:7474/db/neo4j/tx/1/commit
+        transaction:
+          type: object
+          description: Transaction metadata
+          properties:
+            expires:
+              type: string
+              description: Timestamp when the transaction will expire if idle
+              example: Wed, 01 Jan 2025 12:00:30 +0000
+    Neo4jError:
+      type: object
+      description: An error returned by the Neo4j server.
+      properties:
+        code:
+          type: string
+          description: Neo4j error code in the format Neo.ErrorClassification.Category.Title
+          example: Neo.ClientError.Statement.SyntaxError
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid input 'X'
+    QueryStatistics:
+      type: object
+      description: Statistics about query execution.
+      properties:
+        contains_updates:
+          type: boolean
+          description: Whether the query modified the database
+        nodes_created:
+          type: integer
+          description: Number of nodes created
+        nodes_deleted:
+          type: integer
+          description: Number of nodes deleted
+        properties_set:
+          type: integer
+          description: Number of properties set
+        relationships_created:
+          type: integer
+          description: Number of relationships created
+        relationships_deleted:
+          type: integer
+          description: Number of relationships deleted
+        labels_added:
+          type: integer
+          description: Number of labels added to nodes
+        labels_removed:
+          type: integer
+          description: Number of labels removed from nodes
+        indexes_added:
+          type: integer
+          description: Number of indexes created
+        indexes_removed:
+          type: integer
+          description: Number of indexes removed
+        constraints_added:
+          type: integer
+          description: Number of constraints created
+        constraints_removed:
+          type: integer
+          description: Number of constraints removed
+    TransactionRequest:
+      type: object
+      description: Request body for executing Cypher statements within a transaction.
+      properties:
+        statements:
+          type: array
+          description: Array of Cypher statements to execute within the transaction
+          items:
+            $ref: '#/components/schemas/CypherStatement'
     CypherStatement:
       type: object
       description: A single Cypher statement with optional parameters and result format.
@@ -192,161 +347,6 @@ components:
           type: object
           description: Key-value properties of the relationship
           additionalProperties: true
-    GraphNode:
-      type: object
-      description: A node returned in graph result format.
-      properties:
-        id:
-          type: string
-          description: The internal node ID
-        labels:
-          type: array
-          description: Labels assigned to the node
-          items:
-            type: string
-        properties:
-          type: object
-          description: Key-value properties of the node
-          additionalProperties: true
-    ErrorResponse:
-      type: object
-      description: Response containing one or more errors.
-      properties:
-        results:
-          type: array
-          description: Empty or partial results
-          items: {}
-        errors:
-          type: array
-          description: Array of errors that occurred
-          items:
-            $ref: '#/components/schemas/Neo4jError'
-    TransactionResponse:
-      type: object
-      description: Response from a transaction operation.
-      properties:
-        results:
-          type: array
-          description: Array of result objects corresponding to each executed statement
-          items:
-            $ref: '#/components/schemas/StatementResult'
-        errors:
-          type: array
-          description: Array of errors that occurred during execution
-          items:
-            $ref: '#/components/schemas/Neo4jError'
-        commit:
-          type: string
-          description: URI to commit the transaction
-          example: http://localhost:7474/db/neo4j/tx/1/commit
-        transaction:
-          type: object
-          description: Transaction metadata
-          properties:
-            expires:
-              type: string
-              description: Timestamp when the transaction will expire if idle
-              example: Wed, 01 Jan 2025 12:00:30 +0000
-    QueryStatistics:
-      type: object
-      description: Statistics about query execution.
-      properties:
-        contains_updates:
-          type: boolean
-          description: Whether the query modified the database
-        nodes_created:
-          type: integer
-          description: Number of nodes created
-        nodes_deleted:
-          type: integer
-          description: Number of nodes deleted
-        properties_set:
-          type: integer
-          description: Number of properties set
-        relationships_created:
-          type: integer
-          description: Number of relationships created
-        relationships_deleted:
-          type: integer
-          description: Number of relationships deleted
-        labels_added:
-          type: integer
-          description: Number of labels added to nodes
-        labels_removed:
-          type: integer
-          description: Number of labels removed from nodes
-        indexes_added:
-          type: integer
-          description: Number of indexes created
-        indexes_removed:
-          type: integer
-          description: Number of indexes removed
-        constraints_added:
-          type: integer
-          description: Number of constraints created
-        constraints_removed:
-          type: integer
-          description: Number of constraints removed
-    Neo4jError:
-      type: object
-      description: An error returned by the Neo4j server.
-      properties:
-        code:
-          type: string
-          description: Neo4j error code in the format Neo.ErrorClassification.Category.Title
-          example: Neo.ClientError.Statement.SyntaxError
-        message:
-          type: string
-          description: Human-readable error message
-          example: Invalid input 'X'
-    StatementResult:
-      type: object
-      description: Result of a single Cypher statement execution.
-      properties:
-        columns:
-          type: array
-          description: Column names in the result set
-          items:
-            type: string
-        data:
-          type: array
-          description: Array of result rows
-          items:
-            type: object
-            properties:
-              row:
-                type: array
-                description: Row data values
-                items: {}
-              meta:
-                type: array
-                description: Metadata for each value in the row
-                items: {}
-              graph:
-                type: object
-                description: Graph representation of the result when requested
-                properties:
-                  nodes:
-                    type: array
-                    description: Graph nodes in the result
-                    items:
-                      $ref: '#/components/schemas/GraphNode'
-                  relationships:
-                    type: array
-                    description: Graph relationships in the result
-                    items:
-                      $ref: '#/components/schemas/GraphRelationship'
-        stats:
-          $ref: '#/components/schemas/QueryStatistics'
-    TransactionRequest:
-      type: object
-      description: Request body for executing Cypher statements within a transaction.
-      properties:
-        statements:
-          type: array
-          description: Array of Cypher statements to execute within the transaction
-          items:
-            $ref: '#/components/schemas/CypherStatement'
   parameters:
     transactionId:
       name: transactionId

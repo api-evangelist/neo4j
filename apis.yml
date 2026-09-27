@@ -39,6 +39,7 @@ tags:
 - Cloud
 - GraphQL
 - Drivers
+- Database
 tags_raw:
 - Neo4j
 - Graph Database
@@ -47,6 +48,7 @@ tags_raw:
 - GraphQL
 - Drivers
 - APIs
+- Database
 url: https://raw.githubusercontent.com/api-evangelist/neo4j/refs/heads/main/apis.yml
 created: '2025-03-05'
 modified: '2026-05-19'

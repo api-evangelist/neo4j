@@ -233,6 +233,14 @@ paths:
         '404':
           description: Instance or snapshot not found
 components:
+  parameters:
+    instanceId:
+      name: instanceId
+      in: path
+      required: true
+      description: The unique identifier of an AuraDB instance
+      schema:
+        type: string
   schemas:
     InstanceCreated:
       type: object
@@ -260,90 +268,6 @@ components:
         password:
           type: string
           description: Initial database password. This value is only returned once at creation time and cannot be retrieved later.
-    Instance:
-      type: object
-      description: An AuraDB cloud database instance.
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the instance
-        name:
-          type: string
-          description: Display name of the instance
-        status:
-          type: string
-          description: Current status of the instance
-          enum:
-          - creating
-          - running
-          - pausing
-          - paused
-          - resuming
-          - updating
-          - destroying
-          - destroyed
-          - loading
-          - restoring
-        tenant_id:
-          type: string
-          description: ID of the tenant this instance belongs to
-        cloud_provider:
-          type: string
-          description: Cloud provider hosting the instance
-          enum:
-          - gcp
-          - aws
-          - azure
-        region:
-          type: string
-          description: Cloud region where the instance is deployed
-          example: us-east-1
-        type:
-          type: string
-          description: Instance type
-          enum:
-          - enterprise-db
-          - enterprise-ds
-          - professional-db
-          - free-db
-        memory:
-          type: string
-          description: Memory allocated to the instance
-          example: 8GB
-        storage:
-          type: string
-          description: Storage allocated to the instance
-          example: 16GB
-        connection_url:
-          type: string
-          description: Bolt connection URI for the instance
-          example: neo4j+s://xxxxxxxx.databases.neo4j.io
-        metrics_integration_url:
-          type: string
-          description: URL for metrics integration endpoint
-        neo4j_version:
-          type: string
-          description: Neo4j database version running on the instance
-          example: '5'
-    AuraError:
-      type: object
-      description: Error response from the Aura API.
-      properties:
-        errors:
-          type: array
-          description: Array of error objects
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Human-readable error message
-              reason:
-                type: string
-                description: Machine-readable error reason code
-              field:
-                type: string
-                description: Field that caused the error if applicable
     CreateInstanceRequest:
       type: object
       description: Request body for creating a new AuraDB instance.
@@ -414,14 +338,90 @@ components:
         source_instance_id:
           type: string
           description: ID of the instance the snapshot belongs to
-  parameters:
-    instanceId:
-      name: instanceId
-      in: path
-      required: true
-      description: The unique identifier of an AuraDB instance
-      schema:
-        type: string
+    AuraError:
+      type: object
+      description: Error response from the Aura API.
+      properties:
+        errors:
+          type: array
+          description: Array of error objects
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Human-readable error message
+              reason:
+                type: string
+                description: Machine-readable error reason code
+              field:
+                type: string
+                description: Field that caused the error if applicable
+    Instance:
+      type: object
+      description: An AuraDB cloud database instance.
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the instance
+        name:
+          type: string
+          description: Display name of the instance
+        status:
+          type: string
+          description: Current status of the instance
+          enum:
+          - creating
+          - running
+          - pausing
+          - paused
+          - resuming
+          - updating
+          - destroying
+          - destroyed
+          - loading
+          - restoring
+        tenant_id:
+          type: string
+          description: ID of the tenant this instance belongs to
+        cloud_provider:
+          type: string
+          description: Cloud provider hosting the instance
+          enum:
+          - gcp
+          - aws
+          - azure
+        region:
+          type: string
+          description: Cloud region where the instance is deployed
+          example: us-east-1
+        type:
+          type: string
+          description: Instance type
+          enum:
+          - enterprise-db
+          - enterprise-ds
+          - professional-db
+          - free-db
+        memory:
+          type: string
+          description: Memory allocated to the instance
+          example: 8GB
+        storage:
+          type: string
+          description: Storage allocated to the instance
+          example: 16GB
+        connection_url:
+          type: string
+          description: Bolt connection URI for the instance
+          example: neo4j+s://xxxxxxxx.databases.neo4j.io
+        metrics_integration_url:
+          type: string
+          description: URL for metrics integration endpoint
+        neo4j_version:
+          type: string
+          description: Neo4j database version running on the instance
+          example: '5'
   securitySchemes:
     bearerAuth:
       type: http

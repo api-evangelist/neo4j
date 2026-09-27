@@ -125,7 +125,46 @@ paths:
         '404':
           description: Instance or snapshot not found
 components:
+  parameters:
+    snapshotId:
+      name: snapshotId
+      in: path
+      required: true
+      description: The unique identifier of a snapshot
+      schema:
+        type: string
+    instanceId:
+      name: instanceId
+      in: path
+      required: true
+      description: The unique identifier of an AuraDB instance
+      schema:
+        type: string
   schemas:
+    Snapshot:
+      type: object
+      description: A point-in-time snapshot of an AuraDB instance.
+      properties:
+        snapshot_id:
+          type: string
+          description: Unique identifier for the snapshot
+        instance_id:
+          type: string
+          description: ID of the instance this snapshot belongs to
+        status:
+          type: string
+          description: Current status of the snapshot
+          enum:
+          - Completed
+          - InProgress
+          - Failed
+        timestamp:
+          type: string
+          format: date-time
+          description: When the snapshot was created
+        exportable:
+          type: boolean
+          description: Whether the snapshot can be exported
     InstanceCreated:
       type: object
       description: Response when an instance is created, including initial credentials.
@@ -152,49 +191,6 @@ components:
         password:
           type: string
           description: Initial database password. This value is only returned once at creation time and cannot be retrieved later.
-    AuraError:
-      type: object
-      description: Error response from the Aura API.
-      properties:
-        errors:
-          type: array
-          description: Array of error objects
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Human-readable error message
-              reason:
-                type: string
-                description: Machine-readable error reason code
-              field:
-                type: string
-                description: Field that caused the error if applicable
-    Snapshot:
-      type: object
-      description: A point-in-time snapshot of an AuraDB instance.
-      properties:
-        snapshot_id:
-          type: string
-          description: Unique identifier for the snapshot
-        instance_id:
-          type: string
-          description: ID of the instance this snapshot belongs to
-        status:
-          type: string
-          description: Current status of the snapshot
-          enum:
-          - Completed
-          - InProgress
-          - Failed
-        timestamp:
-          type: string
-          format: date-time
-          description: When the snapshot was created
-        exportable:
-          type: boolean
-          description: Whether the snapshot can be exported
     RestoreSnapshotRequest:
       type: object
       description: Request body for restoring a snapshot to a new instance.
@@ -232,21 +228,25 @@ components:
         tenant_id:
           type: string
           description: Tenant ID for the restored instance
-  parameters:
-    snapshotId:
-      name: snapshotId
-      in: path
-      required: true
-      description: The unique identifier of a snapshot
-      schema:
-        type: string
-    instanceId:
-      name: instanceId
-      in: path
-      required: true
-      description: The unique identifier of an AuraDB instance
-      schema:
-        type: string
+    AuraError:
+      type: object
+      description: Error response from the Aura API.
+      properties:
+        errors:
+          type: array
+          description: Array of error objects
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Human-readable error message
+              reason:
+                type: string
+                description: Machine-readable error reason code
+              field:
+                type: string
+                description: Field that caused the error if applicable
   securitySchemes:
     bearerAuth:
       type: http
