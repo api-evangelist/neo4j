@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/neo4j/main/json-schema/neo4j-restore-snapshot-request-schema.json",
+  "title": "RestoreSnapshotRequest",
+  "description": "Request body for restoring a snapshot to a new instance.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/neo4j-snapshots-api-openapi.yml#/components/schemas/RestoreSnapshotRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "memory",
+    "region",
+    "cloud_provider",
+    "type",
+    "tenant_id"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name for the new restored instance"
+    },
+    "memory": {
+      "type": "string",
+      "description": "Memory allocation for the restored instance"
+    },
+    "region": {
+      "type": "string",
+      "description": "Cloud region for the restored instance"
+    },
+    "cloud_provider": {
+      "type": "string",
+      "description": "Cloud provider for the restored instance",
+      "enum": [
+        "gcp",
+        "aws",
+        "azure"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "description": "Instance type for the restored instance",
+      "enum": [
+        "enterprise-db",
+        "enterprise-ds",
+        "professional-db"
+      ]
+    },
+    "tenant_id": {
+      "type": "string",
+      "description": "Tenant ID for the restored instance"
+    }
+  }
+}

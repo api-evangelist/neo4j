@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/neo4j/main/json-schema/neo4j-token-response-schema.json",
+  "title": "TokenResponse",
+  "description": "OAuth2 access token response.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/neo4j-authentication-api-openapi.yml#/components/schemas/TokenResponse",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "type": "string",
+      "description": "The bearer token for authenticating API requests"
+    },
+    "expires_in": {
+      "type": "integer",
+      "description": "Token expiration time in seconds"
+    },
+    "token_type": {
+      "type": "string",
+      "description": "The type of token issued"
+    }
+  }
+}

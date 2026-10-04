@@ -1,0 +1,125 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-mcp-candidate.py
+source:
+- openapi/neo4j-authentication-api-openapi.yml
+- openapi/neo4j-discovery-api-openapi.yml
+- openapi/neo4j-instances-api-openapi.yml
+- openapi/neo4j-query-api-openapi.yml
+- openapi/neo4j-snapshots-api-openapi.yml
+- openapi/neo4j-tenants-api-openapi.yml
+- openapi/neo4j-transactions-api-openapi.yml
+status: candidate
+deployment:
+  mode: none
+  auth: unknown
+  verified: probed
+note: 'No MCP server was found. The pre-flight posted tools/list to /mcp on api.neo4j.io, api.neo4j.com, neo4j.com, support.neo4j.com; verdict
+  opaque (https://api.neo4j.io/mcp answered 403: the edge authenticates before it routes, which proves nothing either way). Candidate tools below
+  are derived from the 21 operation(s) in the provider''s own OpenAPI (21 listed); they describe what a server WOULD expose, not one that exists.'
+tools:
+- name: get_access_token
+  operationId: getAccessToken
+  method: POST
+  path: /oauth/token
+  description: Obtain an OAuth2 access token
+- name: get_discovery
+  operationId: getDiscovery
+  method: GET
+  path: /
+  description: Discovery endpoint
+- name: list_instances
+  operationId: listInstances
+  method: GET
+  path: /instances
+  description: List all instances
+- name: execute_query
+  operationId: executeQuery
+  method: POST
+  path: /db/{databaseName}/query
+  description: Execute a Cypher query
+- name: list_snapshots
+  operationId: listSnapshots
+  method: GET
+  path: /instances/{instanceId}/snapshots
+  description: List snapshots for an instance
+- name: list_tenants
+  operationId: listTenants
+  method: GET
+  path: /tenants
+  description: List all tenants
+- name: open_transaction
+  operationId: openTransaction
+  method: POST
+  path: /db/{databaseName}/tx
+  description: Open a new explicit transaction
+- name: create_instance
+  operationId: createInstance
+  method: POST
+  path: /instances
+  description: Create a new instance
+- name: create_snapshot
+  operationId: createSnapshot
+  method: POST
+  path: /instances/{instanceId}/snapshots
+  description: Create a snapshot
+- name: get_tenant
+  operationId: getTenant
+  method: GET
+  path: /tenants/{tenantId}
+  description: Get tenant details
+- name: execute_in_transaction
+  operationId: executeInTransaction
+  method: POST
+  path: /db/{databaseName}/tx/{transactionId}
+  description: Execute statements in an open transaction
+- name: get_instance
+  operationId: getInstance
+  method: GET
+  path: /instances/{instanceId}
+  description: Get instance details
+- name: get_snapshot
+  operationId: getSnapshot
+  method: GET
+  path: /instances/{instanceId}/snapshots/{snapshotId}
+  description: Get snapshot details
+- name: rollback_transaction
+  operationId: rollbackTransaction
+  method: DELETE
+  path: /db/{databaseName}/tx/{transactionId}
+  description: Rollback a transaction
+- name: update_instance
+  operationId: updateInstance
+  method: PATCH
+  path: /instances/{instanceId}
+  description: Update an instance
+- name: restore_snapshot
+  operationId: restoreSnapshot
+  method: POST
+  path: /instances/{instanceId}/snapshots/{snapshotId}/restore
+  description: Restore a snapshot to a new instance
+- name: commit_transaction
+  operationId: commitTransaction
+  method: POST
+  path: /db/{databaseName}/tx/{transactionId}/commit
+  description: Commit a transaction
+- name: delete_instance
+  operationId: deleteInstance
+  method: DELETE
+  path: /instances/{instanceId}
+  description: Delete an instance
+- name: pause_instance
+  operationId: pauseInstance
+  method: POST
+  path: /instances/{instanceId}/pause
+  description: Pause an instance
+- name: resume_instance
+  operationId: resumeInstance
+  method: POST
+  path: /instances/{instanceId}/resume
+  description: Resume a paused instance
+- name: overwrite_instance
+  operationId: overwriteInstance
+  method: POST
+  path: /instances/{instanceId}/overwrite
+  description: Overwrite an instance from a snapshot

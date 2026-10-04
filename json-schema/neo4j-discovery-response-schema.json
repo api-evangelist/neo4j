@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/neo4j/main/json-schema/neo4j-discovery-response-schema.json",
+  "title": "DiscoveryResponse",
+  "description": "Server discovery information including available endpoints, version, and connection details.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/neo4j-discovery-api-openapi.yml#/components/schemas/DiscoveryResponse",
+  "type": "object",
+  "properties": {
+    "bolt_routing": {
+      "type": "string",
+      "description": "Neo4j Bolt routing connection URI for clustered deployments"
+    },
+    "bolt_direct": {
+      "type": "string",
+      "description": "Direct Bolt connection URI"
+    },
+    "transaction": {
+      "type": "string",
+      "description": "URI pattern for the transaction endpoint"
+    },
+    "neo4j_version": {
+      "type": "string",
+      "description": "The version of the Neo4j server"
+    },
+    "neo4j_edition": {
+      "type": "string",
+      "description": "The edition of the Neo4j server",
+      "enum": [
+        "community",
+        "enterprise"
+      ]
+    }
+  }
+}

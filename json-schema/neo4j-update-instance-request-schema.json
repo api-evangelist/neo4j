@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/neo4j/main/json-schema/neo4j-update-instance-request-schema.json",
+  "title": "UpdateInstanceRequest",
+  "description": "Request body for updating an instance configuration.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/neo4j-instances-api-openapi.yml#/components/schemas/UpdateInstanceRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Updated display name for the instance",
+      "maxLength": 30
+    },
+    "memory": {
+      "type": "string",
+      "description": "Updated memory allocation"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/neo4j/main/json-schema/neo4j-overwrite-instance-request-schema.json",
+  "title": "OverwriteInstanceRequest",
+  "description": "Request body for overwriting an instance from a snapshot.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/neo4j-instances-api-openapi.yml#/components/schemas/OverwriteInstanceRequest",
+  "type": "object",
+  "required": [
+    "source_snapshot_id",
+    "source_instance_id"
+  ],
+  "properties": {
+    "source_snapshot_id": {
+      "type": "string",
+      "description": "ID of the snapshot to use as the data source"
+    },
+    "source_instance_id": {
+      "type": "string",
+      "description": "ID of the instance the snapshot belongs to"
+    }
+  }
+}

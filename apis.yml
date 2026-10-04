@@ -1,10 +1,13 @@
 aid: neo4j
+
 name: Neo4j
-description: >-
-  Neo4j is the leading graph database platform, enabling developers to build applications powered by connected data.
-  Their developer platform provides HTTP, Query, and Aura cloud APIs alongside official drivers for Python, Java, and
-  JavaScript, as well as a GraphQL library for rapid API development backed by the Neo4j graph database.
+
+description: Neo4j is the leading graph database platform, enabling developers to build applications powered by connected data. Their developer
+  platform provides HTTP, Query, and Aura cloud APIs alongside official drivers for Python, Java, and JavaScript, as well as a GraphQL library
+  for rapid API development backed by the Neo4j graph database.
+
 kind: contract
+
 deliveryModel:
   model: saas
   open_source: false
@@ -17,6 +20,7 @@ deliveryModel:
   - pricing
   generated: '2026-08-28'
   method: derived
+
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -31,7 +35,9 @@ accessModel:
   - security
   generated: '2026-09-03'
   method: derived
+
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/neo4j.png
+
 tags:
 - Neo4j
 - Graph Database
@@ -40,6 +46,7 @@ tags:
 - GraphQL
 - Drivers
 - Database
+
 tags_raw:
 - Neo4j
 - Graph Database
@@ -49,220 +56,78 @@ tags_raw:
 - Drivers
 - APIs
 - Database
+
 url: https://raw.githubusercontent.com/api-evangelist/neo4j/refs/heads/main/apis.yml
+
 created: '2025-03-05'
+
 modified: '2026-05-19'
+
 specificationVersion: '0.23'
-apis:
-- aid: neo4j:query-api
-  name: Neo4j Query API
-  description: >-
-    The Neo4j Query API enables the execution of Cypher statements against a Neo4j server through HTTP
-    requests. It provides a streamlined interface for running graph database queries, supporting both
-    self-managed and cloud-hosted Neo4j instances. The Query API is designed for applications that need
-    to interact with Neo4j programmatically and is particularly useful for languages where a dedicated
-    Neo4j driver is not available.
-  humanURL: https://neo4j.com/docs/query-api/current/
-  tags:
-  - Graph Database
-  - Cypher
-  - Query
-  - HTTP
-  - Database
-  properties:
-  - type: Documentation
-    url: https://neo4j.com/docs/query-api/current/
-  - type: OpenAPI
-    url: openapi/neo4j-query-api-openapi.yml
-- aid: neo4j:graphql-library
-  name: Neo4j GraphQL Library
-  description: >-
-    The Neo4j GraphQL Library is an open source JavaScript library that enables rapid development of GraphQL
-    APIs backed by a Neo4j graph database. It automatically generates a single optimized Cypher query
-    for each GraphQL query or mutation, eliminating the N+1 problem common in GraphQL implementations.
-    The library supports schema-first development and integrates with Neo4j AuraDB for cloud-hosted deployments,
-    making it suitable for cross-platform and mobile applications.
-  humanURL: https://neo4j.com/docs/graphql/current/
-  tags:
-  - GraphQL
-  - Graph Database
-  - JavaScript
-  - Low-Code
-  - API Development
-  properties:
-  - type: Documentation
-    url: https://neo4j.com/docs/graphql/current/
-  - url: graphql/neo4j-graphql.md
-    type: GraphQL
-- aid: neo4j:bolt-protocol
-  name: Neo4j Bolt Protocol
-  description: >-
-    The Neo4j Bolt Protocol is a binary application protocol designed for efficient execution of database
-    queries using the Cypher query language. It operates over TCP or WebSocket connections on the default
-    port 7687 and serves as the foundation for all official Neo4j drivers including Java, Python, JavaScript,
-    .NET, and Go. The protocol supports both direct connections via the bolt:// scheme and routing connections
-    via bolt+routing:// for clustered deployments.
-  humanURL: https://neo4j.com/docs/bolt/current/bolt/
-  tags:
-  - Binary Protocol
-  - Graph Database
-  - Drivers
-  - Connectivity
-  - Networking
-  properties:
-  - type: Documentation
-    url: https://neo4j.com/docs/bolt/current/bolt/
-- aid: neo4j:python-driver
-  name: Neo4j Python Driver
-  description: >-
-    The Neo4j Python Driver is the official library for interacting with Neo4j graph databases from Python
-    applications. It communicates using the Bolt protocol and supports both single instance and clustered
-    database deployments. The driver is available on PyPI as the neo4j package and provides a comprehensive
-    API for session management, transaction handling, and result processing.
-  humanURL: https://neo4j.com/docs/python-manual/current/
-  tags:
-  - Python
-  - SDK
-  - Driver
-  - Graph Database
-  - Bolt
-  properties:
-  - type: Documentation
-    url: https://neo4j.com/docs/python-manual/current/
-  - type: Documentation
-    url: https://neo4j.com/docs/api/python-driver/current/
-- aid: neo4j:java-driver
-  name: Neo4j Java Driver
-  description: >-
-    The Neo4j Java Driver is the official library for connecting Java applications to Neo4j graph databases.
-    Distributed via Maven, it uses the Bolt protocol for network communication and supports both single
-    instance and clustered database configurations. The driver provides a full API for managing connections,
-    sessions, transactions, and query results within Java applications.
-  humanURL: https://neo4j.com/docs/java-manual/current/
-  tags:
-  - Java
-  - SDK
-  - Driver
-  - Graph Database
-  - Bolt
-  properties:
-  - type: Documentation
-    url: https://neo4j.com/docs/java-manual/current/
-  - type: Documentation
-    url: https://neo4j.com/docs/api/java-driver/current/
-- aid: neo4j:javascript-driver
-  name: Neo4j JavaScript Driver
-  description: >-
-    The Neo4j JavaScript Driver is the official library for interacting with Neo4j graph databases from
-    JavaScript and Node.js applications. It uses the Bolt protocol for efficient communication and can
-    be installed via npm. The driver supports both browser and server-side environments and provides APIs
-    for session management, transaction control, and processing of query results from Neo4j databases.
-  humanURL: https://neo4j.com/docs/javascript-manual/current/
-  tags:
-  - JavaScript
-  - SDK
-  - Driver
-  - Graph Database
-  - Bolt
-  - Node.js
-  properties:
-  - type: Documentation
-    url: https://neo4j.com/docs/javascript-manual/current/
-  - type: Documentation
-    url: https://neo4j.com/docs/api/javascript-driver/current/
-- aid: neo4j:neo4j-authentication-api
-  name: Neo4j Authentication API
-  description: >-
-    OAuth2 token management for authenticating API requests. Access tokens are temporary and expire after
-    one hour.
-  humanURL: https://neo4j.com/docs/http-api/current/
-  tags:
-  - Authentication
-  properties:
-  - type: OpenAPI
-    url: openapi/neo4j-authentication-api-openapi.yml
-  - type: Documentation
-    url: https://neo4j.com/docs/http-api/current/
-  - type: Documentation
-    url: https://neo4j.com/docs/aura/platform/api/specification/
-- aid: neo4j:neo4j-discovery-api
-  name: Neo4j Discovery API
-  description: >-
-    Server discovery endpoint that returns available endpoints, server version, edition, and authentication
-    configuration.
-  humanURL: https://neo4j.com/docs/http-api/current/
-  tags:
-  - Discovery
-  properties:
-  - type: OpenAPI
-    url: openapi/neo4j-discovery-api-openapi.yml
-  - type: Documentation
-    url: https://neo4j.com/docs/http-api/current/
-  - type: Documentation
-    url: https://neo4j.com/docs/aura/platform/api/specification/
-- aid: neo4j:neo4j-instances-api
-  name: Neo4j Instances API
-  description: >-
-    Manage AuraDB cloud database instances including provisioning, configuration, lifecycle operations
-    such as pause and resume, and deletion.
-  humanURL: https://neo4j.com/docs/http-api/current/
-  tags:
-  - Instances
-  properties:
-  - type: OpenAPI
-    url: openapi/neo4j-instances-api-openapi.yml
-  - type: Documentation
-    url: https://neo4j.com/docs/http-api/current/
-  - type: Documentation
-    url: https://neo4j.com/docs/aura/platform/api/specification/
-- aid: neo4j:neo4j-snapshots-api
-  name: Neo4j Snapshots API
-  description: >-
-    Manage database snapshots which are point-in-time copies of instance data used for backup and restore
-    operations.
-  humanURL: https://neo4j.com/docs/http-api/current/
-  tags:
-  - Snapshots
-  properties:
-  - type: OpenAPI
-    url: openapi/neo4j-snapshots-api-openapi.yml
-  - type: Documentation
-    url: https://neo4j.com/docs/http-api/current/
-  - type: Documentation
-    url: https://neo4j.com/docs/aura/platform/api/specification/
-- aid: neo4j:neo4j-tenants-api
-  name: Neo4j Tenants API
-  description: >-
-    Manage tenants (projects) which organize multiple database instances under a single administrative
-    unit for access control and configuration.
-  humanURL: https://neo4j.com/docs/http-api/current/
-  tags:
-  - Tenants
-  properties:
-  - type: OpenAPI
-    url: openapi/neo4j-tenants-api-openapi.yml
-  - type: Documentation
-    url: https://neo4j.com/docs/http-api/current/
-  - type: Documentation
-    url: https://neo4j.com/docs/aura/platform/api/specification/
-- aid: neo4j:neo4j-transactions-api
-  name: Neo4j Transactions API
-  description: >-
-    Manage explicit transactions with full control over the transaction lifecycle including open, run,
-    commit, and rollback operations.
-  humanURL: https://neo4j.com/docs/http-api/current/
-  tags:
-  - Transaction
-  tags_raw:
-  - Transactions
-  properties:
-  - type: OpenAPI
-    url: openapi/neo4j-transactions-api-openapi.yml
-  - type: Documentation
-    url: https://neo4j.com/docs/http-api/current/
-  - type: Documentation
-    url: https://neo4j.com/docs/aura/platform/api/specification/
+
+maintainers:
+- FN: API Evangelist
+  email: info@apievangelist.com
+
 common:
+- type: FinOps
+  url: finops/neo4j-finops.yml
+- type: RateLimits
+  url: rate-limits/neo4j-rate-limits.yml
+- type: Plans
+  url: plans/neo4j-plans-pricing.yml
+- type: Spectral
+  url: rules/neo4j-rules.yml
+- type: Spectral
+  url: rules/neo4j-jsonschema-spectral-rules.yml
+- type: JSONLD
+  url: json-ld/neo4j-context.jsonld
+- type: Vocabulary
+  url: vocabulary/neo4j-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/neo4j-data-model.yml
+- type: CLI
+  url: cli/neo4j-cli.yml
+- type: ChangeLog
+  url: changelog/neo4j-changelog.yml
+- type: Compliance
+  url: https://trust.neo4j.com/
+- type: ErrorCatalog
+  url: errors/neo4j-problem-types.yml
+- type: Conformance
+  url: conformance/neo4j-conformance.yml
+- type: LLMsTxt
+  url: llms/neo4j-llms.txt
+- type: SecurityTxt
+  url: well-known/neo4j-security.txt
+- type: SecurityTxt
+  url: well-known/neo4j-help-security.txt
+- type: WellKnown
+  url: well-known/neo4j-well-known.yml
+- type: Hosts
+  url: hosts/neo4j-hosts.yml
+- type: Vendors
+  url: vendors/neo4j-vendors.yml
+- type: SDKs
+  url: packages/neo4j-packages.yml
+- type: Packages
+  url: packages/neo4j-packages.yml
+- type: Security
+  url: https://neo4j.com/blog/security/graphs-for-cybersecurity/
+- type: Pricing
+  url: https://neo4j.com/pricing/
+- type: Newsroom
+  url: https://neo4j.com/news/
+- type: Leadership
+  url: https://neo4j.com/leadership/
+- type: ChangeLog
+  url: https://neo4j.com/release-notes/
+- type: APIReference
+  url: https://neo4j.com/docs/reference/
+- type: GettingStarted
+  url: https://neo4j.com/docs/getting-started/
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/neo4j/overview
 - type: AgenticAccess
@@ -302,8 +167,230 @@ common:
   type: AgentSkills
 - type: LlmsText
   url: https://neo4j.com/llms.txt
+
+apis:
+- aid: neo4j:query-api
+  name: Neo4j Query API
+  description: The Neo4j Query API enables the execution of Cypher statements against a Neo4j server through HTTP requests. It provides a streamlined
+    interface for running graph database queries, supporting both self-managed and cloud-hosted Neo4j instances. The Query API is designed for
+    applications that need to interact with Neo4j programmatically and is particularly useful for languages where a dedicated Neo4j driver is
+    not available.
+  humanURL: https://neo4j.com/docs/query-api/current/
+  tags:
+  - Graph Database
+  - Cypher
+  - Query
+  - HTTP
+  - Database
+  properties:
+  - type: Documentation
+    url: https://neo4j.com/docs/query-api/current/
+  - type: OpenAPI
+    url: openapi/neo4j-query-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/neo4j-query-response-schema.json
+  - type: JSONSchema
+    url: json-schema/neo4j-query-request-schema.json
+- aid: neo4j:graphql-library
+  name: Neo4j GraphQL Library
+  description: The Neo4j GraphQL Library is an open source JavaScript library that enables rapid development of GraphQL APIs backed by a Neo4j
+    graph database. It automatically generates a single optimized Cypher query for each GraphQL query or mutation, eliminating the N+1 problem
+    common in GraphQL implementations. The library supports schema-first development and integrates with Neo4j AuraDB for cloud-hosted deployments,
+    making it suitable for cross-platform and mobile applications.
+  humanURL: https://neo4j.com/docs/graphql/current/
+  tags:
+  - GraphQL
+  - Graph Database
+  - JavaScript
+  - Low-Code
+  - API Development
+  properties:
+  - type: Documentation
+    url: https://neo4j.com/docs/graphql/current/
+  - url: graphql/neo4j-graphql.md
+    type: GraphQL
+- aid: neo4j:bolt-protocol
+  name: Neo4j Bolt Protocol
+  description: The Neo4j Bolt Protocol is a binary application protocol designed for efficient execution of database queries using the Cypher
+    query language. It operates over TCP or WebSocket connections on the default port 7687 and serves as the foundation for all official Neo4j
+    drivers including Java, Python, JavaScript, .NET, and Go. The protocol supports both direct connections via the bolt:// scheme and routing
+    connections via bolt+routing:// for clustered deployments.
+  humanURL: https://neo4j.com/docs/bolt/current/bolt/
+  tags:
+  - Binary Protocol
+  - Graph Database
+  - Drivers
+  - Connectivity
+  - Networking
+  properties:
+  - type: Documentation
+    url: https://neo4j.com/docs/bolt/current/bolt/
+- aid: neo4j:python-driver
+  name: Neo4j Python Driver
+  description: The Neo4j Python Driver is the official library for interacting with Neo4j graph databases from Python applications. It communicates
+    using the Bolt protocol and supports both single instance and clustered database deployments. The driver is available on PyPI as the neo4j
+    package and provides a comprehensive API for session management, transaction handling, and result processing.
+  humanURL: https://neo4j.com/docs/python-manual/current/
+  tags:
+  - Python
+  - SDK
+  - Driver
+  - Graph Database
+  - Bolt
+  properties:
+  - type: Documentation
+    url: https://neo4j.com/docs/python-manual/current/
+  - type: Documentation
+    url: https://neo4j.com/docs/api/python-driver/current/
+- aid: neo4j:java-driver
+  name: Neo4j Java Driver
+  description: The Neo4j Java Driver is the official library for connecting Java applications to Neo4j graph databases. Distributed via Maven,
+    it uses the Bolt protocol for network communication and supports both single instance and clustered database configurations. The driver provides
+    a full API for managing connections, sessions, transactions, and query results within Java applications.
+  humanURL: https://neo4j.com/docs/java-manual/current/
+  tags:
+  - Java
+  - SDK
+  - Driver
+  - Graph Database
+  - Bolt
+  properties:
+  - type: Documentation
+    url: https://neo4j.com/docs/java-manual/current/
+  - type: Documentation
+    url: https://neo4j.com/docs/api/java-driver/current/
+- aid: neo4j:javascript-driver
+  name: Neo4j JavaScript Driver
+  description: The Neo4j JavaScript Driver is the official library for interacting with Neo4j graph databases from JavaScript and Node.js applications.
+    It uses the Bolt protocol for efficient communication and can be installed via npm. The driver supports both browser and server-side environments
+    and provides APIs for session management, transaction control, and processing of query results from Neo4j databases.
+  humanURL: https://neo4j.com/docs/javascript-manual/current/
+  tags:
+  - JavaScript
+  - SDK
+  - Driver
+  - Graph Database
+  - Bolt
+  - Node.js
+  properties:
+  - type: Documentation
+    url: https://neo4j.com/docs/javascript-manual/current/
+  - type: Documentation
+    url: https://neo4j.com/docs/api/javascript-driver/current/
+- aid: neo4j:neo4j-authentication-api
+  name: Neo4j Authentication API
+  description: OAuth2 token management for authenticating API requests. Access tokens are temporary and expire after one hour.
+  humanURL: https://neo4j.com/docs/http-api/current/
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/neo4j-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://neo4j.com/docs/http-api/current/
+  - type: Documentation
+    url: https://neo4j.com/docs/aura/platform/api/specification/
+  - type: JSONSchema
+    url: json-schema/neo4j-token-response-schema.json
+- aid: neo4j:neo4j-discovery-api
+  name: Neo4j Discovery API
+  description: Server discovery endpoint that returns available endpoints, server version, edition, and authentication configuration.
+  humanURL: https://neo4j.com/docs/http-api/current/
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/neo4j-discovery-api-openapi.yml
+  - type: Documentation
+    url: https://neo4j.com/docs/http-api/current/
+  - type: Documentation
+    url: https://neo4j.com/docs/aura/platform/api/specification/
+  - type: JSONSchema
+    url: json-schema/neo4j-discovery-response-schema.json
+- aid: neo4j:neo4j-instances-api
+  name: Neo4j Instances API
+  description: Manage AuraDB cloud database instances including provisioning, configuration, lifecycle operations such as pause and resume, and
+    deletion.
+  humanURL: https://neo4j.com/docs/http-api/current/
+  tags:
+  - Instances
+  properties:
+  - type: OpenAPI
+    url: openapi/neo4j-instances-api-openapi.yml
+  - type: Documentation
+    url: https://neo4j.com/docs/http-api/current/
+  - type: Documentation
+    url: https://neo4j.com/docs/aura/platform/api/specification/
+  - type: JSONSchema
+    url: json-schema/neo4j-instance-schema.json
+  - type: JSONSchema
+    url: json-schema/neo4j-create-instance-request-schema.json
+  - type: JSONSchema
+    url: json-schema/neo4j-instance-created-schema.json
+  - type: JSONSchema
+    url: json-schema/neo4j-overwrite-instance-request-schema.json
+  - type: JSONSchema
+    url: json-schema/neo4j-update-instance-request-schema.json
+- aid: neo4j:neo4j-snapshots-api
+  name: Neo4j Snapshots API
+  description: Manage database snapshots which are point-in-time copies of instance data used for backup and restore operations.
+  humanURL: https://neo4j.com/docs/http-api/current/
+  tags:
+  - Snapshots
+  properties:
+  - type: OpenAPI
+    url: openapi/neo4j-snapshots-api-openapi.yml
+  - type: Documentation
+    url: https://neo4j.com/docs/http-api/current/
+  - type: Documentation
+    url: https://neo4j.com/docs/aura/platform/api/specification/
+  - type: JSONSchema
+    url: json-schema/neo4j-restore-snapshot-request-schema.json
+  - type: JSONSchema
+    url: json-schema/neo4j-instance-created-schema.json
+  - type: JSONSchema
+    url: json-schema/neo4j-snapshot-schema.json
+- aid: neo4j:neo4j-tenants-api
+  name: Neo4j Tenants API
+  description: Manage tenants (projects) which organize multiple database instances under a single administrative unit for access control and
+    configuration.
+  humanURL: https://neo4j.com/docs/http-api/current/
+  tags:
+  - Tenants
+  properties:
+  - type: OpenAPI
+    url: openapi/neo4j-tenants-api-openapi.yml
+  - type: Documentation
+    url: https://neo4j.com/docs/http-api/current/
+  - type: Documentation
+    url: https://neo4j.com/docs/aura/platform/api/specification/
+  - type: JSONSchema
+    url: json-schema/neo4j-tenant-schema.json
+- aid: neo4j:neo4j-transactions-api
+  name: Neo4j Transactions API
+  description: Manage explicit transactions with full control over the transaction lifecycle including open, run, commit, and rollback operations.
+  humanURL: https://neo4j.com/docs/http-api/current/
+  tags:
+  - Transaction
+  tags_raw:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/neo4j-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://neo4j.com/docs/http-api/current/
+  - type: Documentation
+    url: https://neo4j.com/docs/aura/platform/api/specification/
+  - type: JSONSchema
+    url: json-schema/neo4j-transaction-response-schema.json
+  - type: JSONSchema
+    url: json-schema/neo4j-transaction-request-schema.json
+
 integrations:
 - name: Become a Partner
-maintainers:
-- FN: API Evangelist
-  email: info@apievangelist.com
+x-enrichment:
+  date: '2026-10-04'
+  status: enriched
+  artifacts_added: 36
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

@@ -1,0 +1,40 @@
+generated: '2026-10-04'
+method: probed
+generator: harvest-packages.py
+source: registry metadata endpoints (registry.npmjs.org, pypi.org, rubygems.org, api.nuget.org, packagist.org, crates.io)
+ownership_rule: 'official: true only when the registry metadata (homepage, repository, author, URLs) names the provider''s domain (agentic-access/neo4j-agentic-access.yml,
+  authentication/neo4j-authentication.yml, linkedin.com, neo4j.com, neo4j.io, postman.com, security/neo4j-domain-security.yml, security/neo4j-trust-center.yml,
+  security/neo4j-vulnerability-disclosure.yml) or its accepted GitHub org.'
+packages:
+- name: neo4j
+  registry: npm
+  url: https://www.npmjs.com/package/neo4j
+  language: JavaScript
+  official: true
+  version: 2.0.0-RC2
+  published: '2015-06-11'
+  evidence: metadata names neo4j.com
+- name: neo4j
+  registry: pypi
+  url: https://pypi.org/project/neo4j/
+  language: Python
+  official: true
+  version: 6.3.1
+  published: '2026-09-15'
+  evidence: metadata names neo4j.com
+- name: neo4j
+  registry: rubygems
+  url: https://rubygems.org/gems/neo4j
+  language: Ruby
+  official: false
+  version: 9.6.2
+  published: '2020-04-09'
+  evidence: 'name match only: the metadata names neither the provider''s domain nor its GitHub org'
+- name: neo4j
+  registry: crates
+  url: https://crates.io/crates/neo4j
+  language: Rust
+  official: false
+  version: 0.2.0
+  published: '2025-02-21'
+  evidence: 'name match only: the metadata names neither the provider''s domain nor its GitHub org'

@@ -1,0 +1,216 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+  "serverInfo": {
+    "name": "neo4j-mcp",
+    "title": "Official Neo4j MCP Server",
+    "version": "1.5.2"
+  },
+  "description": "Official Neo4j MCP server. Exposes get-schema, read-cypher, write-cypher, and list-gds-procedures against any Neo4j database (Aura, self-managed, Docker, Desktop). Supports stdio and HTTP transports.",
+  "websiteUrl": "https://neo4j.com/developer/genai-ecosystem/model-context-protocol-mcp/",
+  "documentationUrl": "https://neo4j.com/docs/mcp/",
+  "repository": {
+    "url": "https://github.com/neo4j/mcp",
+    "source": "github"
+  },
+  "transport": {
+    "endpoint": "stdio"
+  },
+  "transports": ["stdio", "http"],
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": false
+  },
+  "packages": [
+    {
+      "registry": "github-releases",
+      "name": "neo4j/mcp",
+      "url": "https://github.com/neo4j/mcp/releases"
+    },
+    {
+      "registry": "docker",
+      "name": "neo4j/mcp",
+      "url": "https://hub.docker.com/r/neo4j/mcp"
+    }
+  ],
+  "servers": [
+    {
+      "serverInfo": {
+        "name": "mcp-neo4j-cypher",
+        "title": "Neo4j Cypher MCP Server (Labs)",
+        "version": "0.6.0"
+      },
+      "description": "Extracts the graph schema and runs read or write Cypher statements. Tools: get-neo4j-schema, read-neo4j-cypher, write-neo4j-cypher.",
+      "repository": {
+        "url": "https://github.com/neo4j-contrib/mcp-neo4j",
+        "source": "github",
+        "subfolder": "servers/mcp-neo4j-cypher"
+      },
+      "transport": {
+        "endpoint": "stdio"
+      },
+      "transports": ["stdio"],
+      "capabilities": {
+        "tools": true,
+        "resources": false,
+        "prompts": false
+      },
+      "packages": [
+        {
+          "registry": "pypi",
+          "name": "mcp-neo4j-cypher",
+          "url": "https://pypi.org/project/mcp-neo4j-cypher/"
+        }
+      ]
+    },
+    {
+      "serverInfo": {
+        "name": "mcp-neo4j-memory",
+        "title": "Neo4j Memory MCP Server (Labs)",
+        "version": "0.4.5"
+      },
+      "description": "Stores entities, observations, and relationships in Neo4j to give agents long-term memory across conversations.",
+      "repository": {
+        "url": "https://github.com/neo4j-contrib/mcp-neo4j",
+        "source": "github",
+        "subfolder": "servers/mcp-neo4j-memory"
+      },
+      "transport": {
+        "endpoint": "stdio"
+      },
+      "transports": ["stdio"],
+      "capabilities": {
+        "tools": true,
+        "resources": false,
+        "prompts": false
+      },
+      "packages": [
+        {
+          "registry": "pypi",
+          "name": "mcp-neo4j-memory",
+          "url": "https://pypi.org/project/mcp-neo4j-memory/"
+        }
+      ]
+    },
+    {
+      "serverInfo": {
+        "name": "mcp-neo4j-aura-manager",
+        "title": "Neo4j Aura Manager MCP Server (Labs)",
+        "version": "0.4.8"
+      },
+      "description": "Manages Neo4j Aura databases, tenants, and projects via the Aura API. Requires Aura API client-id and client-secret.",
+      "repository": {
+        "url": "https://github.com/neo4j-contrib/mcp-neo4j",
+        "source": "github",
+        "subfolder": "servers/mcp-neo4j-cloud-aura-api"
+      },
+      "transport": {
+        "endpoint": "stdio"
+      },
+      "transports": ["stdio"],
+      "capabilities": {
+        "tools": true,
+        "resources": false,
+        "prompts": false
+      },
+      "packages": [
+        {
+          "registry": "pypi",
+          "name": "mcp-neo4j-aura-manager",
+          "url": "https://pypi.org/project/mcp-neo4j-aura-manager/"
+        }
+      ]
+    },
+    {
+      "serverInfo": {
+        "name": "mcp-neo4j-data-modeling",
+        "title": "Neo4j Data Modeling MCP Server (Labs)",
+        "version": "0.8.2"
+      },
+      "description": "Tools for creating, validating, visualizing, importing, and exporting Neo4j graph data models.",
+      "repository": {
+        "url": "https://github.com/neo4j-contrib/mcp-neo4j",
+        "source": "github",
+        "subfolder": "servers/mcp-neo4j-data-modeling"
+      },
+      "transport": {
+        "endpoint": "stdio"
+      },
+      "transports": ["stdio"],
+      "capabilities": {
+        "tools": true,
+        "resources": false,
+        "prompts": false
+      },
+      "packages": [
+        {
+          "registry": "pypi",
+          "name": "mcp-neo4j-data-modeling",
+          "url": "https://pypi.org/project/mcp-neo4j-data-modeling/"
+        }
+      ]
+    },
+    {
+      "serverInfo": {
+        "name": "gds-agent",
+        "title": "Neo4j GDS Agent MCP Server (Labs)",
+        "version": "0.5.1"
+      },
+      "description": "Exposes Neo4j Graph Data Science algorithms (centrality, path-finding, community detection, similarity, embeddings) as MCP tools so an LLM can run them on a graph.",
+      "repository": {
+        "url": "https://github.com/neo4j-contrib/gds-agent",
+        "source": "github"
+      },
+      "transport": {
+        "endpoint": "stdio"
+      },
+      "transports": ["stdio"],
+      "capabilities": {
+        "tools": true,
+        "resources": false,
+        "prompts": false
+      },
+      "packages": [
+        {
+          "registry": "pypi",
+          "name": "gds-agent",
+          "url": "https://pypi.org/project/gds-agent/"
+        }
+      ]
+    },
+    {
+      "serverInfo": {
+        "name": "sandbox-mcp-server",
+        "title": "Neo4j Sandbox MCP Server (Labs)",
+        "version": "1.0.0"
+      },
+      "description": "Manages Neo4j Sandbox instance lifecycle (create, list, terminate), retrieves schema, and runs Cypher against sandbox databases. Hosted SSE endpoint, no local install.",
+      "repository": {
+        "url": "https://github.com/neo4j-contrib/sandbox-mcp-server",
+        "source": "github"
+      },
+      "transport": {
+        "endpoint": "https://mcp.sandbox.neo4j.com/sse"
+      },
+      "transports": ["sse"],
+      "capabilities": {
+        "tools": true,
+        "resources": false,
+        "prompts": false
+      },
+      "remotes": [
+        {
+          "transport": "sse",
+          "url": "https://mcp.sandbox.neo4j.com/sse"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "discovery": {
+      "skillsIndex": "https://neo4j.com/.well-known/agent-skills/index.json",
+      "linkset": "https://neo4j.com/.well-known/api-catalog",
+      "llmsTxt": "https://neo4j.com/llms.txt"
+    }
+  }
+}

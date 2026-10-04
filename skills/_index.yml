@@ -1,0 +1,18 @@
+generated: '2026-10-04'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/neo4j-instances-api-openapi.yml
+skills:
+- file: skills/neo4j-create-and-restore-snapshot.md
+  name: neo4j-create-and-restore-snapshot
+  api: openapi/neo4j-snapshots-api-openapi.yml
+  operations:
+  - createSnapshot
+  - restoreSnapshot
+- file: skills/neo4j-transaction-execute-commit.md
+  name: neo4j-transaction-execute-commit
+  api: openapi/neo4j-transactions-api-openapi.yml
+  operations:
+  - openTransaction
+  - executeInTransaction
+  - commitTransaction

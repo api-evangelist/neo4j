@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/neo4j/main/json-schema/neo4j-snapshot-schema.json",
+  "title": "Snapshot",
+  "description": "A point-in-time snapshot of an AuraDB instance.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/neo4j-snapshots-api-openapi.yml#/components/schemas/Snapshot",
+  "type": "object",
+  "properties": {
+    "snapshot_id": {
+      "type": "string",
+      "description": "Unique identifier for the snapshot"
+    },
+    "instance_id": {
+      "type": "string",
+      "description": "ID of the instance this snapshot belongs to"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the snapshot",
+      "enum": [
+        "Completed",
+        "InProgress",
+        "Failed"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the snapshot was created"
+    },
+    "exportable": {
+      "type": "boolean",
+      "description": "Whether the snapshot can be exported"
+    }
+  }
+}

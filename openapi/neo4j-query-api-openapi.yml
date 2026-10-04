@@ -51,16 +51,19 @@ paths:
         '404':
           description: Database not found
 components:
-  parameters:
-    databaseName:
-      name: databaseName
-      in: path
-      required: true
-      description: The name of the database to execute queries against. Use neo4j for the default database.
-      schema:
-        type: string
-        example: neo4j
   schemas:
+    Neo4jError:
+      type: object
+      description: An error returned by the Neo4j server.
+      properties:
+        code:
+          type: string
+          description: Neo4j error code in the format Neo.ErrorClassification.Category.Title
+          example: Neo.ClientError.Statement.SyntaxError
+        message:
+          type: string
+          description: Human-readable error message
+          example: Invalid input 'X'
     QueryRequest:
       type: object
       description: Request body for executing one or more Cypher statements using an implicit transaction.
@@ -72,6 +75,78 @@ components:
           description: Array of Cypher statements to execute
           items:
             $ref: '#/components/schemas/CypherStatement'
+    QueryResponse:
+      type: object
+      description: Response containing query results from an implicit transaction.
+      properties:
+        results:
+          type: array
+          description: Array of result objects corresponding to each executed statement
+          items:
+            $ref: '#/components/schemas/StatementResult'
+        errors:
+          type: array
+          description: Array of errors that occurred during execution
+          items:
+            $ref: '#/components/schemas/Neo4jError'
+    ErrorResponse:
+      type: object
+      description: Response containing one or more errors.
+      properties:
+        results:
+          type: array
+          description: Empty or partial results
+          items: {}
+        errors:
+          type: array
+          description: Array of errors that occurred
+          items:
+            $ref: '#/components/schemas/Neo4jError'
+    GraphNode:
+      type: object
+      description: A node returned in graph result format.
+      properties:
+        id:
+          type: string
+          description: The internal node ID
+        labels:
+          type: array
+          description: Labels assigned to the node
+          items:
+            type: string
+        properties:
+          type: object
+          description: Key-value properties of the node
+          additionalProperties: true
+    CypherStatement:
+      type: object
+      description: A single Cypher statement with optional parameters and result format.
+      required:
+      - statement
+      properties:
+        statement:
+          type: string
+          description: The Cypher query string to execute
+          example: MATCH (n) RETURN n LIMIT 10
+        parameters:
+          type: object
+          description: Named parameters for the Cypher query. Always use parameters instead of string concatenation to prevent Cypher injection.
+          additionalProperties: true
+          example:
+            name: Alice
+            age: 30
+        resultDataContents:
+          type: array
+          description: Requested result formats. Possible values include row and graph.
+          items:
+            type: string
+            enum:
+            - row
+            - graph
+        includeStats:
+          type: boolean
+          description: Whether to include query execution statistics in the response
+          default: false
     QueryStatistics:
       type: object
       description: Statistics about query execution.
@@ -112,61 +187,6 @@ components:
         constraints_removed:
           type: integer
           description: Number of constraints removed
-    QueryResponse:
-      type: object
-      description: Response containing query results from an implicit transaction.
-      properties:
-        results:
-          type: array
-          description: Array of result objects corresponding to each executed statement
-          items:
-            $ref: '#/components/schemas/StatementResult'
-        errors:
-          type: array
-          description: Array of errors that occurred during execution
-          items:
-            $ref: '#/components/schemas/Neo4jError'
-    CypherStatement:
-      type: object
-      description: A single Cypher statement with optional parameters and result format.
-      required:
-      - statement
-      properties:
-        statement:
-          type: string
-          description: The Cypher query string to execute
-          example: MATCH (n) RETURN n LIMIT 10
-        parameters:
-          type: object
-          description: Named parameters for the Cypher query. Always use parameters instead of string concatenation to prevent Cypher injection.
-          additionalProperties: true
-          example:
-            name: Alice
-            age: 30
-        resultDataContents:
-          type: array
-          description: Requested result formats. Possible values include row and graph.
-          items:
-            type: string
-            enum:
-            - row
-            - graph
-        includeStats:
-          type: boolean
-          description: Whether to include query execution statistics in the response
-          default: false
-    Neo4jError:
-      type: object
-      description: An error returned by the Neo4j server.
-      properties:
-        code:
-          type: string
-          description: Neo4j error code in the format Neo.ErrorClassification.Category.Title
-          example: Neo.ClientError.Statement.SyntaxError
-        message:
-          type: string
-          description: Human-readable error message
-          example: Invalid input 'X'
     GraphRelationship:
       type: object
       description: A relationship returned in graph result format.
@@ -226,35 +246,15 @@ components:
                       $ref: '#/components/schemas/GraphRelationship'
         stats:
           $ref: '#/components/schemas/QueryStatistics'
-    ErrorResponse:
-      type: object
-      description: Response containing one or more errors.
-      properties:
-        results:
-          type: array
-          description: Empty or partial results
-          items: {}
-        errors:
-          type: array
-          description: Array of errors that occurred
-          items:
-            $ref: '#/components/schemas/Neo4jError'
-    GraphNode:
-      type: object
-      description: A node returned in graph result format.
-      properties:
-        id:
-          type: string
-          description: The internal node ID
-        labels:
-          type: array
-          description: Labels assigned to the node
-          items:
-            type: string
-        properties:
-          type: object
-          description: Key-value properties of the node
-          additionalProperties: true
+  parameters:
+    databaseName:
+      name: databaseName
+      in: path
+      required: true
+      description: The name of the database to execute queries against. Use neo4j for the default database.
+      schema:
+        type: string
+        example: neo4j
   securitySchemes:
     basicAuth:
       type: http

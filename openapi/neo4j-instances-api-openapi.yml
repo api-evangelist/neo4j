@@ -233,60 +233,7 @@ paths:
         '404':
           description: Instance or snapshot not found
 components:
-  parameters:
-    instanceId:
-      name: instanceId
-      in: path
-      required: true
-      description: The unique identifier of an AuraDB instance
-      schema:
-        type: string
   schemas:
-    CreateInstanceRequest:
-      type: object
-      description: Request body for creating a new AuraDB instance.
-      required:
-      - name
-      - memory
-      - region
-      - cloud_provider
-      - type
-      - tenant_id
-      properties:
-        name:
-          type: string
-          description: Display name for the instance
-          maxLength: 30
-        version:
-          type: string
-          description: Neo4j version for the instance
-          example: '5'
-        region:
-          type: string
-          description: Cloud region where the instance should be deployed
-          example: us-east-1
-        memory:
-          type: string
-          description: Memory to allocate to the instance
-          example: 8GB
-        type:
-          type: string
-          description: Instance type
-          enum:
-          - enterprise-db
-          - enterprise-ds
-          - professional-db
-          - free-db
-        tenant_id:
-          type: string
-          description: ID of the tenant to create the instance in
-        cloud_provider:
-          type: string
-          description: Cloud provider for hosting
-          enum:
-          - gcp
-          - aws
-          - azure
     Instance:
       type: object
       description: An AuraDB cloud database instance.
@@ -352,37 +299,19 @@ components:
           type: string
           description: Neo4j database version running on the instance
           example: '5'
-    UpdateInstanceRequest:
+    OverwriteInstanceRequest:
       type: object
-      description: Request body for updating an instance configuration.
+      description: Request body for overwriting an instance from a snapshot.
+      required:
+      - source_snapshot_id
+      - source_instance_id
       properties:
-        name:
+        source_snapshot_id:
           type: string
-          description: Updated display name for the instance
-          maxLength: 30
-        memory:
+          description: ID of the snapshot to use as the data source
+        source_instance_id:
           type: string
-          description: Updated memory allocation
-          example: 16GB
-    AuraError:
-      type: object
-      description: Error response from the Aura API.
-      properties:
-        errors:
-          type: array
-          description: Array of error objects
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-                description: Human-readable error message
-              reason:
-                type: string
-                description: Machine-readable error reason code
-              field:
-                type: string
-                description: Field that caused the error if applicable
+          description: ID of the instance the snapshot belongs to
     InstanceCreated:
       type: object
       description: Response when an instance is created, including initial credentials.
@@ -409,19 +338,90 @@ components:
         password:
           type: string
           description: Initial database password. This value is only returned once at creation time and cannot be retrieved later.
-    OverwriteInstanceRequest:
+    UpdateInstanceRequest:
       type: object
-      description: Request body for overwriting an instance from a snapshot.
-      required:
-      - source_snapshot_id
-      - source_instance_id
+      description: Request body for updating an instance configuration.
       properties:
-        source_snapshot_id:
+        name:
           type: string
-          description: ID of the snapshot to use as the data source
-        source_instance_id:
+          description: Updated display name for the instance
+          maxLength: 30
+        memory:
           type: string
-          description: ID of the instance the snapshot belongs to
+          description: Updated memory allocation
+          example: 16GB
+    CreateInstanceRequest:
+      type: object
+      description: Request body for creating a new AuraDB instance.
+      required:
+      - name
+      - memory
+      - region
+      - cloud_provider
+      - type
+      - tenant_id
+      properties:
+        name:
+          type: string
+          description: Display name for the instance
+          maxLength: 30
+        version:
+          type: string
+          description: Neo4j version for the instance
+          example: '5'
+        region:
+          type: string
+          description: Cloud region where the instance should be deployed
+          example: us-east-1
+        memory:
+          type: string
+          description: Memory to allocate to the instance
+          example: 8GB
+        type:
+          type: string
+          description: Instance type
+          enum:
+          - enterprise-db
+          - enterprise-ds
+          - professional-db
+          - free-db
+        tenant_id:
+          type: string
+          description: ID of the tenant to create the instance in
+        cloud_provider:
+          type: string
+          description: Cloud provider for hosting
+          enum:
+          - gcp
+          - aws
+          - azure
+    AuraError:
+      type: object
+      description: Error response from the Aura API.
+      properties:
+        errors:
+          type: array
+          description: Array of error objects
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+                description: Human-readable error message
+              reason:
+                type: string
+                description: Machine-readable error reason code
+              field:
+                type: string
+                description: Field that caused the error if applicable
+  parameters:
+    instanceId:
+      name: instanceId
+      in: path
+      required: true
+      description: The unique identifier of an AuraDB instance
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

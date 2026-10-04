@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/neo4j/main/json-schema/neo4j-tenant-schema.json",
+  "title": "Tenant",
+  "description": "A tenant (project) that organizes AuraDB instances.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/neo4j-tenants-api-openapi.yml#/components/schemas/Tenant",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the tenant"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the tenant"
+    },
+    "instance_configurations": {
+      "type": "array",
+      "description": "Available instance configurations for this tenant",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Instance type"
+          },
+          "regions": {
+            "type": "array",
+            "description": "Available regions for this instance type",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Region identifier"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

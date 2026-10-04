@@ -1,4 +1,4 @@
-# Neo4j Graph Database & Analytics
+# Neo4j Graph Intelligence Platform
 
 > Neo4j is a native graph database. Nodes, relationships, and properties are stored directly connected -- traversals are O(1) per hop. Use it when relationships between entities are as important as the entities themselves.
 

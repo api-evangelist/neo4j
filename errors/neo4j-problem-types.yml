@@ -1,0 +1,44 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/neo4j-authentication-api-openapi.yml
+- openapi/neo4j-discovery-api-openapi.yml
+- openapi/neo4j-instances-api-openapi.yml
+- openapi/neo4j-query-api-openapi.yml
+- openapi/neo4j-snapshots-api-openapi.yml
+- openapi/neo4j-tenants-api-openapi.yml
+- openapi/neo4j-transactions-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: AuraError
+coverage:
+  operations: 21
+  statuses_declared: 4
+problems:
+- status: 400
+  title: Bad Request
+  description: Invalid request
+  operations: 8
+  media_types:
+  - application/json
+  schema: AuraError
+- status: 401
+  title: Unauthorized
+  description: Authentication required or token expired
+  operations: 20
+  media_types: []
+  schema: null
+- status: 403
+  title: Forbidden
+  description: Insufficient permissions
+  operations: 2
+  media_types: []
+  schema: null
+- status: 404
+  title: Not Found
+  description: Instance not found
+  operations: 16
+  media_types: []
+  schema: null

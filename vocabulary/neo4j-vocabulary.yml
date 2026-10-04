@@ -1,0 +1,162 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/neo4j-authentication-api-openapi.yml
+- openapi/neo4j-discovery-api-openapi.yml
+- openapi/neo4j-instances-api-openapi.yml
+- openapi/neo4j-query-api-openapi.yml
+- openapi/neo4j-snapshots-api-openapi.yml
+vocabulary:
+  name: Neo4j Domain Vocabulary
+  description: 'Terms declared by Neo4j''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-04'
+  terms:
+  - term: Authentication
+    definition: OAuth2 token management for authenticating API requests. Access tokens are temporary and expire after one hour.
+    tags:
+    - Resource Group
+    source: openapi/neo4j-authentication-api-openapi.yml
+  - term: Discovery
+    definition: Server discovery endpoint that returns available endpoints, server version, edition, and authentication configuration.
+    tags:
+    - Resource Group
+    source: openapi/neo4j-discovery-api-openapi.yml
+  - term: Instances
+    definition: Manage AuraDB cloud database instances including provisioning, configuration, lifecycle operations such as pause and resume, and
+      deletion.
+    tags:
+    - Resource Group
+    source: openapi/neo4j-instances-api-openapi.yml
+  - term: Query
+    definition: Execute Cypher queries using implicit transactions where the server manages transaction lifecycle automatically.
+    tags:
+    - Resource Group
+    source: openapi/neo4j-query-api-openapi.yml
+  - term: Snapshots
+    definition: Manage database snapshots which are point-in-time copies of instance data used for backup and restore operations.
+    tags:
+    - Resource Group
+    source: openapi/neo4j-snapshots-api-openapi.yml
+  - term: Tenants
+    definition: Manage tenants (projects) which organize multiple database instances under a single administrative unit for access control and
+      configuration.
+    tags:
+    - Resource Group
+    source: openapi/neo4j-tenants-api-openapi.yml
+  - term: Transactions
+    definition: Manage explicit transactions with full control over the transaction lifecycle including open, run, commit, and rollback operations.
+    tags:
+    - Resource Group
+    source: openapi/neo4j-transactions-api-openapi.yml
+  - term: TokenResponse
+    definition: OAuth2 access token response.
+    tags:
+    - Object
+    source: openapi/neo4j-authentication-api-openapi.yml#/components/schemas/TokenResponse
+  - term: DiscoveryResponse
+    definition: Server discovery information including available endpoints, version, and connection details.
+    tags:
+    - Object
+    source: openapi/neo4j-discovery-api-openapi.yml#/components/schemas/DiscoveryResponse
+  - term: CreateInstanceRequest
+    definition: Request body for creating a new AuraDB instance.
+    tags:
+    - Object
+    source: openapi/neo4j-instances-api-openapi.yml#/components/schemas/CreateInstanceRequest
+  - term: Instance
+    definition: An AuraDB cloud database instance.
+    tags:
+    - Object
+    source: openapi/neo4j-instances-api-openapi.yml#/components/schemas/Instance
+  - term: UpdateInstanceRequest
+    definition: Request body for updating an instance configuration.
+    tags:
+    - Object
+    source: openapi/neo4j-instances-api-openapi.yml#/components/schemas/UpdateInstanceRequest
+  - term: AuraError
+    definition: Error response from the Aura API.
+    tags:
+    - Object
+    source: openapi/neo4j-instances-api-openapi.yml#/components/schemas/AuraError
+  - term: InstanceCreated
+    definition: Response when an instance is created, including initial credentials.
+    tags:
+    - Object
+    source: openapi/neo4j-instances-api-openapi.yml#/components/schemas/InstanceCreated
+  - term: OverwriteInstanceRequest
+    definition: Request body for overwriting an instance from a snapshot.
+    tags:
+    - Object
+    source: openapi/neo4j-instances-api-openapi.yml#/components/schemas/OverwriteInstanceRequest
+  - term: QueryRequest
+    definition: Request body for executing one or more Cypher statements using an implicit transaction.
+    tags:
+    - Object
+    source: openapi/neo4j-query-api-openapi.yml#/components/schemas/QueryRequest
+  - term: QueryStatistics
+    definition: Statistics about query execution.
+    tags:
+    - Object
+    source: openapi/neo4j-query-api-openapi.yml#/components/schemas/QueryStatistics
+  - term: QueryResponse
+    definition: Response containing query results from an implicit transaction.
+    tags:
+    - Object
+    source: openapi/neo4j-query-api-openapi.yml#/components/schemas/QueryResponse
+  - term: CypherStatement
+    definition: A single Cypher statement with optional parameters and result format.
+    tags:
+    - Object
+    source: openapi/neo4j-query-api-openapi.yml#/components/schemas/CypherStatement
+  - term: Neo4jError
+    definition: An error returned by the Neo4j server.
+    tags:
+    - Object
+    source: openapi/neo4j-query-api-openapi.yml#/components/schemas/Neo4jError
+  - term: GraphRelationship
+    definition: A relationship returned in graph result format.
+    tags:
+    - Object
+    source: openapi/neo4j-query-api-openapi.yml#/components/schemas/GraphRelationship
+  - term: StatementResult
+    definition: Result of a single Cypher statement execution.
+    tags:
+    - Object
+    source: openapi/neo4j-query-api-openapi.yml#/components/schemas/StatementResult
+  - term: ErrorResponse
+    definition: Response containing one or more errors.
+    tags:
+    - Object
+    source: openapi/neo4j-query-api-openapi.yml#/components/schemas/ErrorResponse
+  - term: GraphNode
+    definition: A node returned in graph result format.
+    tags:
+    - Object
+    source: openapi/neo4j-query-api-openapi.yml#/components/schemas/GraphNode
+  - term: RestoreSnapshotRequest
+    definition: Request body for restoring a snapshot to a new instance.
+    tags:
+    - Object
+    source: openapi/neo4j-snapshots-api-openapi.yml#/components/schemas/RestoreSnapshotRequest
+  - term: Snapshot
+    definition: A point-in-time snapshot of an AuraDB instance.
+    tags:
+    - Object
+    source: openapi/neo4j-snapshots-api-openapi.yml#/components/schemas/Snapshot
+  - term: Tenant
+    definition: A tenant (project) that organizes AuraDB instances.
+    tags:
+    - Object
+    source: openapi/neo4j-tenants-api-openapi.yml#/components/schemas/Tenant
+  - term: TransactionResponse
+    definition: Response from a transaction operation.
+    tags:
+    - Object
+    source: openapi/neo4j-transactions-api-openapi.yml#/components/schemas/TransactionResponse
+  - term: TransactionRequest
+    definition: Request body for executing Cypher statements within a transaction.
+    tags:
+    - Object
+    source: openapi/neo4j-transactions-api-openapi.yml#/components/schemas/TransactionRequest

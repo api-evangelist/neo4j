@@ -1,0 +1,24 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://neo4j.com/",
+      "service-doc": [
+        { "href": "https://neo4j.com/docs/", "type": "text/html" }
+      ],
+      "describedby": [
+        { "href": "https://neo4j.com/llms.txt", "type": "text/plain" },
+        { "href": "https://neo4j.com/llms-full.txt", "type": "text/plain" }
+      ],
+      "item": [
+        {
+          "href": "https://neo4j.com/docs/mcp/",
+          "title": "Neo4j MCP servers"
+        },
+        {
+          "href": "https://neo4j.com/developer/genai-ecosystem/model-context-protocol-mcp/",
+          "title": "Neo4j MCP ecosystem"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/neo4j/main/json-schema/neo4j-instance-created-schema.json",
+  "title": "InstanceCreated",
+  "description": "Response when an instance is created, including initial credentials.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/neo4j-instances-api-openapi.yml#/components/schemas/InstanceCreated",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the new instance"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the instance"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the instance"
+    },
+    "tenant_id": {
+      "type": "string",
+      "description": "ID of the tenant this instance belongs to"
+    },
+    "connection_url": {
+      "type": "string",
+      "description": "Bolt connection URI for the instance"
+    },
+    "username": {
+      "type": "string",
+      "description": "Initial database username"
+    },
+    "password": {
+      "type": "string",
+      "description": "Initial database password. This value is only returned once at creation time and cannot be retrieved later."
+    }
+  }
+}

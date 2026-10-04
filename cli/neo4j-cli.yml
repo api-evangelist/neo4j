@@ -1,0 +1,54 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://github.com/neo4j-labs/neo4j-cli
+sources:
+- https://github.com/neo4j-labs/neo4j-cli
+- https://neo4j.com/docs/aura/aura-cli/
+install:
+- method: curl script
+  command: curl -sSfL https://neo4j.sh/install.sh | bash
+- method: Homebrew
+  command: NEO4J_CLI_AUTO_INSTALL_SKILL=1 brew install neo4j-labs/tap/neo4j-cli
+- method: npm
+  command: NEO4J_CLI_AUTO_INSTALL_SKILL=1 npm i -g @neo4j-labs/cli
+- method: PyPI (pip)
+  command: pip install neo4j-cli
+- method: pipx
+  command: pipx install neo4j-cli
+- method: uv tool
+  command: uv tool install neo4j-cli
+- method: uv one‑shot
+  command: uvx -i neo4j-cli <commands>
+commands:
+- group: credential
+  commands:
+  - credential aura-client add
+  - credential aura-client list
+  - credential aura-client use
+  - credential aura-client remove
+  - credential dbms add
+  - credential dbms list
+  - credential dbms use
+  - credential dbms set-embed
+  - credential dbms remove
+  - credential embed add
+  - credential embed list
+  - credential embed use
+  - credential embed remove
+- group: skill
+  commands:
+  - skill install
+  - skill list
+  - skill check
+  - skill remove
+  - skill refresh
+- group: update
+  commands:
+  - update
+  - update check
+  - update --pre-releases
+  - update --version
+binary: neo4j-cli
+docs: https://github.com/neo4j-labs/neo4j-cli
+note: 3 extracted row(s) were dropped because their quote was not on the page.

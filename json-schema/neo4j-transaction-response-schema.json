@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/neo4j/main/json-schema/neo4j-transaction-response-schema.json",
+  "title": "TransactionResponse",
+  "description": "Response from a transaction operation.",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/neo4j-transactions-api-openapi.yml#/components/schemas/TransactionResponse",
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "description": "Array of result objects corresponding to each executed statement",
+      "items": {
+        "$ref": "#/$defs/StatementResult"
+      }
+    },
+    "errors": {
+      "type": "array",
+      "description": "Array of errors that occurred during execution",
+      "items": {
+        "$ref": "#/$defs/Neo4jError"
+      }
+    },
+    "commit": {
+      "type": "string",
+      "description": "URI to commit the transaction"
+    },
+    "transaction": {
+      "type": "object",
+      "description": "Transaction metadata",
+      "properties": {
+        "expires": {
+          "type": "string",
+          "description": "Timestamp when the transaction will expire if idle"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "GraphNode": {
+      "type": "object",
+      "description": "A node returned in graph result format.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The internal node ID"
+        },
+        "labels": {
+          "type": "array",
+          "description": "Labels assigned to the node",
+          "items": {
+            "type": "string"
+          }
+        },
+        "properties": {
+          "type": "object",
+          "description": "Key-value properties of the node",
+          "additionalProperties": true
+        }
+      }
+    },
+    "GraphRelationship": {
+      "type": "object",
+      "description": "A relationship returned in graph result format.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The internal relationship ID"
+        },
+        "type": {
+          "type": "string",
+          "description": "The relationship type"
+        },
+        "startNode": {
+          "type": "string",
+          "description": "The ID of the start node"
+        },
+        "endNode": {
+          "type": "string",
+          "description": "The ID of the end node"
+        },
+        "properties": {
+          "type": "object",
+          "description": "Key-value properties of the relationship",
+          "additionalProperties": true
+        }
+      }
+    },
+    "Neo4jError": {
+      "type": "object",
+      "description": "An error returned by the Neo4j server.",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Neo4j error code in the format Neo.ErrorClassification.Category.Title"
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable error message"
+        }
+      }
+    },
+    "QueryStatistics": {
+      "type": "object",
+      "description": "Statistics about query execution.",
+      "properties": {
+        "contains_updates": {
+          "type": "boolean",
+          "description": "Whether the query modified the database"
+        },
+        "nodes_created": {
+          "type": "integer",
+          "description": "Number of nodes created"
+        },
+        "nodes_deleted": {
+          "type": "integer",
+          "description": "Number of nodes deleted"
+        },
+        "properties_set": {
+          "type": "integer",
+          "description": "Number of properties set"
+        },
+        "relationships_created": {
+          "type": "integer",
+          "description": "Number of relationships created"
+        },
+        "relationships_deleted": {
+          "type": "integer",
+          "description": "Number of relationships deleted"
+        },
+        "labels_added": {
+          "type": "integer",
+          "description": "Number of labels added to nodes"
+        },
+        "labels_removed": {
+          "type": "integer",
+          "description": "Number of labels removed from nodes"
+        },
+        "indexes_added": {
+          "type": "integer",
+          "description": "Number of indexes created"
+        },
+        "indexes_removed": {
+          "type": "integer",
+          "description": "Number of indexes removed"
+        },
+        "constraints_added": {
+          "type": "integer",
+          "description": "Number of constraints created"
+        },
+        "constraints_removed": {
+          "type": "integer",
+          "description": "Number of constraints removed"
+        }
+      }
+    },
+    "StatementResult": {
+      "type": "object",
+      "description": "Result of a single Cypher statement execution.",
+      "properties": {
+        "columns": {
+          "type": "array",
+          "description": "Column names in the result set",
+          "items": {
+            "type": "string"
+          }
+        },
+        "data": {
+          "type": "array",
+          "description": "Array of result rows",
+          "items": {
+            "type": "object",
+            "properties": {
+              "row": {
+                "type": "array",
+                "description": "Row data values",
+                "items": {}
+              },
+              "meta": {
+                "type": "array",
+                "description": "Metadata for each value in the row",
+                "items": {}
+              },
+              "graph": {
+                "type": "object",
+                "description": "Graph representation of the result when requested",
+                "properties": {
+                  "nodes": {
+                    "type": "array",
+                    "description": "Graph nodes in the result",
+                    "items": {
+                      "$ref": "#/$defs/GraphNode"
+                    }
+                  },
+                  "relationships": {
+                    "type": "array",
+                    "description": "Graph relationships in the result",
+                    "items": {
+                      "$ref": "#/$defs/GraphRelationship"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "stats": {
+          "$ref": "#/$defs/QueryStatistics"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://neo4j.com/docs/cypher-manual/current/deprecations-additions-removals-compatibility/
+sources:
+- https://neo4j.com/docs/cypher-manual/current/deprecations-additions-removals-compatibility/
+- https://neo4j.com/docs/upgrade-migration-guide/current/
+- https://neo4j.com/docs/upgrade-migration-guide/current/
+- https://neo4j.com/docs/getting-started/data-modeling/versioning/
+entries:
+- breaking: false
+  highlights:
+  - The functions toString(), toStringList(), toStringOrNull() have been updated to accept LIST, MAP, NODE, RELATIONSHIP, and PATH types.
+  date: '2026-09-01'
+- breaking: false
+  highlights:
+  - SHOW USERS AS COMMANDS; SHOW USERS WITH AUTH AS COMMANDS; Show users can now return the command needed to recreate each user in the DBMS,
+    including their authentication configuration and credentials.
+  date: '2026-09-01'
+- breaking: false
+  highlights:
+  - SHOW ROLES AS COMMANDS; SHOW ROLES WITH USERS AS COMMANDS; SHOW ROLES WITH AUTH RULES AS COMMANDS; Show roles can now return the commands
+    needed to recreate each role in the DBMS, optionally including its assigned users and associated auth rules.
+  date: '2026-09-01'
+- breaking: false
+  highlights:
+  - SHOW AUTH RULE ruleName PRIVILEGES [AS [REVOKE] COMMANDS]; The SHOW PRIVILEGES and SHOW PRIVILEGES AS [REVOKE] COMMANDS commands now allow
+    filtering the privileges based on auth rules, similar to the existing role and user filters.
+  date: '2026-09-01'
+- breaking: false
+  highlights:
+  - SHOW [ROLE roleName] PRIVILEGES AS [REVOKE] COMMANDS YIELD access, action, roles; SHOW USER [username] PRIVILEGES AS [REVOKE] COMMANDS YIELD
+    access, action, roles, users; SHOW AUTH RULE ruleName PRIVILEGES AS [REVOKE] COMMANDS YIELD access, action, roles, authRules; Several new
+    columns for filtering have been added to the SHOW PRIVILEGES AS [REVOKE] COMMANDS commands output.
+  date: '2026-09-01'
+- breaking: false
+  highlights:
+  - 'WITH {a: 1, b: 2, c: 3} AS map RETURN {k: v IN map | k: v * 10} AS result; Introduced map comprehension, which allows the creation of a MAP
+    value by iterating over an existing MAP or LIST.'
+  date: '2026-09-01'
+- breaking: false
+  highlights:
+  - SHOW USER CREDENTIALS; New privilege that, together with the SHOW USER privilege, allows a user to show users as commands. This is a sub-privilege
+    of the USER MANAGEMENT privilege.
+  date: '2026-09-01'
+current_version: '2026.09'
+note: 'Versioning scheme: Calendar versioning (CalVer) format YYYY.MM.PATCH, optional LTS.'
+docs: https://neo4j.com/docs/cypher-manual/current/deprecations-additions-removals-compatibility/

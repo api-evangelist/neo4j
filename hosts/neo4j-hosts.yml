@@ -1,0 +1,217 @@
+generated: '2026-10-04'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 17
+  own: 11
+  other_domain: 3
+  platform: 3
+  roles:
+  - api
+  - community
+  - docs
+  - identity
+  - other
+  - sandbox
+  - source
+  - support
+  - website
+hosts:
+- host: api.neo4j.com
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: neo4j.com
+  role: api
+  relation: own
+- host: api.neo4j.io
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: neo4j.io
+  role: api
+  relation: other-domain
+- host: assets.neo4j.com
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: neo4j.com
+  role: other
+  relation: own
+- host: community.neo4j.com
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: neo4j.com
+  role: community
+  relation: own
+- host: console.neo4j.io
+  found_by:
+  - pointer
+  - probed
+  - contract-discovery
+  - well-known
+  types:
+  - Login
+  serves: []
+  registrable_domain: neo4j.io
+  role: identity
+  relation: other-domain
+- host: dev.neo4j.com
+  found_by:
+  - probed
+  - site-links
+  - namespace-probe
+  - well-known
+  types: []
+  serves: []
+  title: Developer center
+  status: 200
+  registrable_domain: neo4j.com
+  role: other
+  relation: own
+- host: docs.spring.io
+  found_by:
+  - docs-index
+  types: []
+  serves:
+  - docs
+  registrable_domain: spring.io
+  role: docs
+  relation: other-domain
+- host: github.com
+  found_by:
+  - pointer
+  - docs-index
+  types:
+  - GitHubOrganization
+  serves:
+  - docs
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: graphacademy.neo4j.com
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: neo4j.com
+  role: other
+  relation: own
+- host: help.internal.neo4j.com
+  found_by:
+  - probed
+  - site-links
+  - docs-index
+  - well-known
+  types: []
+  serves:
+  - docs
+  registrable_domain: neo4j.com
+  role: support
+  relation: own
+- host: mcp.sandbox.neo4j.com
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: neo4j.com
+  role: sandbox
+  relation: own
+- host: neo4j.com
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - docs-index
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - Security
+  - Pricing
+  - Newsroom
+  - Leadership
+  - ChangeLog
+  - APIReference
+  - GettingStarted
+  - Portal
+  - Documentation
+  - Website
+  - PrivacyPolicy
+  - TermsOfService
+  - Blog
+  - Integrations
+  - AgentSkills
+  - LlmsText
+  serves:
+  - docs
+  - cdn
+  platform: github.com
+  vendor: cloudflare
+  registrable_domain: neo4j.com
+  role: website
+  relation: own
+- host: sandbox.neo4j.com
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: neo4j.com
+  role: sandbox
+  relation: own
+- host: support.neo4j.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types:
+  - Support
+  serves: []
+  registrable_domain: neo4j.com
+  role: support
+  relation: own
+- host: trust.neo4j.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  types:
+  - Compliance
+  serves: []
+  registrable_domain: neo4j.com
+  role: other
+  relation: own
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.postman.com
+  found_by:
+  - pointer
+  types:
+  - PostmanWorkspace
+  serves: []
+  registrable_domain: postman.com
+  role: other
+  relation: platform
