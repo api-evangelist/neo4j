@@ -1,0 +1,25 @@
+slug: neo4j
+provider: Neo4j
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Instances
+  spec_file: neo4j-instances-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /instances  createInstance  Create a new instance ... POST /instances/{instanceId}/pause  pauseInstance
+  reason: Operations provision, resize, pause, resume and delete cloud-hosted database instances, which
+    is cloud infrastructure resource management. Lower confidence because an alternative reading as SaaS
+    tenant provisioning is defensible, but 'instance' here is a compute/storage resource, not a tenant.
