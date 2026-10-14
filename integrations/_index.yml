@@ -27,3 +27,15 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: neo4j-visual-studio-code-marketplace
+  label: Visual Studio Code Marketplace
+  partner: vs-code-marketplace
+  partner_name: Visual Studio Code Marketplace
+  type: marketplace
+  marketplace: vscode
+  channel: partner-built
+  evidence: https://marketplace.visualstudio.com/publishers/neo4j-extensions
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
