@@ -3,6 +3,8 @@ method: searched
 checked:
 - https://aws.amazon.com/marketplace/
 - https://azuremarketplace.microsoft.com/
+- https://github.com/langchain-ai/langchain/tree/master/libs/partners
+- https://github.com/run-llama/llama_index/tree/main/llama-index-integrations
 - https://marketplace.visualstudio.com/vscode
 marketplace_apps: []
 edges:
@@ -57,5 +59,46 @@ edges:
   - Verified domain
   detected_by: sweep-devtools.py
   detected: '2026-10-14'
+- partner_name: LlamaIndex
+  partner: llamaindex
+  partner_match: framework
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-neo4jvector
+  coverage_role:
+  - retrieval-reader
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-readers-graphdb-cypher
+    - llama-index-vector-stores-neo4jvector
+    roles:
+    - retrieval-reader
+    - vector-store
+    vendor_domain: neo4j.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
+- partner_name: LangChain
+  partner: langchain
+  partner_match: framework
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/langchain-ai/langchain-neo4j
+  coverage_role:
+  - vector-store
+  framework_signals:
+    packages:
+    - langchain-neo4j
+    roles:
+    - vector-store
+    vendor_domain: neo4j.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
 source:
 - https://marketplace.visualstudio.com/vscode
