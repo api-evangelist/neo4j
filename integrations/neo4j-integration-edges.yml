@@ -33,6 +33,7 @@ checked:
 - https://raw.githubusercontent.com/<repo>/HEAD/manifest.json
 - https://raw.githubusercontent.com/obsidianmd/obsidian-releases/793b52114f54b055b760ef47761ec5c93d689804/community-plugin-stats.json
 - https://raw.githubusercontent.com/obsidianmd/obsidian-releases/793b52114f54b055b760ef47761ec5c93d689804/community-plugins.json
+- artifact-hub/integrations/artifact-hub-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -277,63 +278,6 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
   first_seen: '2026-10-20'
-- partner_name: Eclipse Foundation (open-vsx)
-  partner: eclipse
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: open-vsx
-  evidence: https://open-vsx.org/namespace/neo4j-extensions
-  mirror_of: eclipse/integrations/eclipse-integration-edges.yml
-  apps:
-  - Neo4j for VS Code
-  listing_count: 1
-  detected: '2026-10-20'
-  detected_by: mirror-platform-listings.py
-  category: IDE / developer extension marketplace listing
-  badges:
-  - Verified namespace
-- partner_name: OpenTofu (opentofu-registry)
-  partner: opentofu
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: opentofu-registry
-  evidence: https://search.opentofu.org/provider/neo4j-labs/neo4jaura
-  mirror_of: opentofu/integrations/opentofu-integration-edges.yml
-  apps:
-  - neo4j-labs/neo4jaura
-  listing_count: 1
-  detected: '2026-10-21'
-  detected_by: mirror-platform-listings.py
-  category: infrastructure-as-code provider registry listing
-  badges:
-  - Verified publisher (GitHub domain-verified organization)
-- partner_name: Terraform (terraform-registry)
-  partner: terraform
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: terraform-registry
-  evidence: https://registry.terraform.io/providers/neo4j-labs/neo4jaura
-  mirror_of: terraform/integrations/terraform-integration-edges.yml
-  apps:
-  - neo4j-labs/neo4jaura
-  listing_count: 1
-  detected: '2026-10-21'
-  detected_by: mirror-platform-listings.py
-  category: infrastructure-as-code provider registry listing
-  badges:
-  - Verified publisher (GitHub domain-verified organization)
 - partner_name: CVE Program (CVE Numbering Authorities)
   partner: null
   partner_match: register
@@ -407,5 +351,91 @@ edges:
     detected: '2026-10-22'
   detected_by: sweep-obsidian-community-plugins.py
   first_seen: '2026-10-22'
+- partner_name: Eclipse Foundation (open-vsx)
+  partner: eclipse
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: open-vsx
+  evidence: https://open-vsx.org/namespace/neo4j-extensions
+  mirror_of: eclipse/integrations/eclipse-integration-edges.yml
+  apps:
+  - Neo4j for VS Code
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: IDE / developer extension marketplace listing
+  badges:
+  - Verified namespace
+- partner_name: OpenTofu (opentofu-registry)
+  partner: opentofu
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: opentofu-registry
+  evidence: https://search.opentofu.org/provider/neo4j-labs/neo4jaura
+  mirror_of: opentofu/integrations/opentofu-integration-edges.yml
+  apps:
+  - neo4j-labs/neo4jaura
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: infrastructure-as-code provider registry listing
+  badges:
+  - Verified publisher (GitHub domain-verified organization)
+- partner_name: Terraform (terraform-registry)
+  partner: terraform
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: terraform-registry
+  evidence: https://registry.terraform.io/providers/neo4j-labs/neo4jaura
+  mirror_of: terraform/integrations/terraform-integration-edges.yml
+  apps:
+  - neo4j-labs/neo4jaura
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: infrastructure-as-code provider registry listing
+  badges:
+  - Verified publisher (GitHub domain-verified organization)
+- partner_name: Artifact Hub (artifact-hub)
+  partner: artifact-hub
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: artifact-hub
+  evidence: https://artifacthub.io/packages/search?repo=neo4j-helm-charts
+  mirror_of: artifact-hub/integrations/artifact-hub-integration-edges.yml
+  apps:
+  - neo4j
+  - neo4j-admin
+  - neo4j-headless-service
+  - neo4j-standalone
+  - neo4j-cluster-core
+  - neo4j-cluster-headless-service
+  - neo4j-cluster-loadbalancer
+  - neo4j-cluster-read-replica
+  - neo4j-loadbalancer
+  - neo4j-persistent-volume
+  - neo4j-reverse-proxy
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Artifact Hub listing (Helm chart)
+  badges:
+  - 'Verified publisher (Artifact Hub verified publisher: repository ownership proven)'
 source:
 - https://marketplace.visualstudio.com/vscode
