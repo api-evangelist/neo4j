@@ -1,4 +1,4 @@
-# Neo4j (neo4j)
+# Neo4j
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,216 +66,201 @@
 
 Neo4j is the leading graph database platform, enabling developers to build applications powered by connected data. Their developer platform provides HTTP, Query, and Aura cloud APIs alongside official drivers for Python, Java, and JavaScript, as well as a GraphQL library for rapid API development backed by the Neo4j graph database.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/neo4j/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/neo4j/refs/heads/main/apis.yml)
+**Areas:** Neo4j · Graph Database · Cypher · Cloud · GraphQL · Drivers · Database
 
-## Tags
+## Neo4j on APIs.io
 
-- Graph Database
-- Cypher
-- Cloud
-- GraphQL
-- Drivers
-- APIs
+Everything profiled for Neo4j is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/neo4j/](https://apis.io/providers/neo4j/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (12)
 
-- **Created:** 2025-03-05
-- **Modified:** 2026-05-19
+- [Neo4j Query API](https://apis.io/apis/neo4j/query-api/) — The Neo4j Query API enables the execution of Cypher statements against a Neo4j server through HTTP requests. It provides a streamlined interface for running…
+- [Neo4j GraphQL Library](https://apis.io/apis/neo4j/graphql-library/) — The Neo4j GraphQL Library is an open source JavaScript library that enables rapid development of GraphQL APIs backed by a Neo4j graph database. It…
+- [Neo4j Bolt Protocol](https://apis.io/apis/neo4j/bolt-protocol/) — The Neo4j Bolt Protocol is a binary application protocol designed for efficient execution of database queries using the Cypher query language. It operates…
+- [Neo4j Python Driver](https://apis.io/apis/neo4j/python-driver/) — The Neo4j Python Driver is the official library for interacting with Neo4j graph databases from Python applications. It communicates using the Bolt protocol…
+- [Neo4j Java Driver](https://apis.io/apis/neo4j/java-driver/) — The Neo4j Java Driver is the official library for connecting Java applications to Neo4j graph databases. Distributed via Maven, it uses the Bolt protocol…
+- [Neo4j JavaScript Driver](https://apis.io/apis/neo4j/javascript-driver/) — The Neo4j JavaScript Driver is the official library for interacting with Neo4j graph databases from JavaScript and Node.js applications. It uses the Bolt…
+- [Neo4j Authentication API](https://apis.io/apis/neo4j/neo4j-authentication-api/) — OAuth2 token management for authenticating API requests. Access tokens are temporary and expire after one hour.
+- [Neo4j Discovery API](https://apis.io/apis/neo4j/neo4j-discovery-api/) — Server discovery endpoint that returns available endpoints, server version, edition, and authentication configuration.
+- [Neo4j Instances API](https://apis.io/apis/neo4j/neo4j-instances-api/) — Manage AuraDB cloud database instances including provisioning, configuration, lifecycle operations such as pause and resume, and deletion.
+- [Neo4j Snapshots API](https://apis.io/apis/neo4j/neo4j-snapshots-api/) — Manage database snapshots which are point-in-time copies of instance data used for backup and restore operations.
+- [Neo4j Tenants API](https://apis.io/apis/neo4j/neo4j-tenants-api/) — Manage tenants (projects) which organize multiple database instances under a single administrative unit for access control and configuration.
+- [Neo4j Transactions API](https://apis.io/apis/neo4j/neo4j-transactions-api/) — Manage explicit transactions with full control over the transaction lifecycle including open, run, commit, and rollback operations.
 
-## APIs
+### Published properties
 
-### Neo4j HTTP API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-The Neo4j HTTP API allows developers to execute Cypher queries against a Neo4j database through HTTP requests. It supports both implicit transactions, where the API handles transaction management automatically, and explicit transactions, where developers control the full transaction lifecycle including open, commit, and rollback operations. By default the API uses port 7474 for HTTP and port 7473 for HTTPS on self-managed instances.
+#### GraphQL (1)
 
-- **Human URL:** [https://neo4j.com/docs/http-api/current/](https://neo4j.com/docs/http-api/current/)
+GraphQL schemas.
 
-#### Tags
+- [Neo4j GraphQL API](https://apis.io/graphqls/neo4j/neo4j-graphql/)
 
-- Graph Database
-- Cypher
-- HTTP
-- Transactions
-- Database
+#### MCP servers (1)
 
-#### Properties
+Model Context Protocol servers that expose the API to agents.
 
-- [Documentation](https://neo4j.com/docs/http-api/current/)
-- [OpenAPI](openapi/neo4j-http-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/neo4j-http-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/neo4j-http-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [neo4j-mcp.yml](https://apis.io/servers/neo4j/neo4j-mcp-yml/)
 
-### Neo4j Query API
+#### Agentic access (1)
 
-The Neo4j Query API enables the execution of Cypher statements against a Neo4j server through HTTP requests. It provides a streamlined interface for running graph database queries, supporting both self-managed and cloud-hosted Neo4j instances. The Query API is designed for applications that need to interact with Neo4j programmatically and is particularly useful for languages where a dedicated Neo4j driver is not available.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://neo4j.com/docs/query-api/current/](https://neo4j.com/docs/query-api/current/)
+- [Neo4J Agentic Access](https://apis.io/agentic-access/neo4j/neo4j-agentic-access/)
 
-#### Tags
+#### JSON Schema (17)
 
-- Graph Database
-- Cypher
-- Query
-- HTTP
-- Database
+The data models the API reads and writes.
 
-#### Properties
+- [Neo4j Aura Instance](https://apis.io/schemas/neo4j/neo4j-aura-instance/)
+- [CreateInstanceRequest](https://apis.io/schemas/neo4j/neo4j-create-instance-request/)
+- [Neo4j Cypher Statement](https://apis.io/schemas/neo4j/neo4j-cypher-statement/)
+- [DiscoveryResponse](https://apis.io/schemas/neo4j/neo4j-discovery-response/)
+- [Neo4j Graph Elements](https://apis.io/schemas/neo4j/neo4j-graph-elements/)
+- [Instance](https://apis.io/schemas/neo4j/neo4j-instance/)
+- [InstanceCreated](https://apis.io/schemas/neo4j/neo4j-instance-created/)
+- [OverwriteInstanceRequest](https://apis.io/schemas/neo4j/neo4j-overwrite-instance-request/)
+- [QueryRequest](https://apis.io/schemas/neo4j/neo4j-query-request/)
+- [QueryResponse](https://apis.io/schemas/neo4j/neo4j-query-response/)
+- [RestoreSnapshotRequest](https://apis.io/schemas/neo4j/neo4j-restore-snapshot-request/)
+- [Snapshot](https://apis.io/schemas/neo4j/neo4j-snapshot/)
+- [Tenant](https://apis.io/schemas/neo4j/neo4j-tenant/)
+- [TokenResponse](https://apis.io/schemas/neo4j/neo4j-token-response/)
+- [TransactionRequest](https://apis.io/schemas/neo4j/neo4j-transaction-request/)
+- [TransactionResponse](https://apis.io/schemas/neo4j/neo4j-transaction-response/)
+- [UpdateInstanceRequest](https://apis.io/schemas/neo4j/neo4j-update-instance-request/)
 
-- [Documentation](https://neo4j.com/docs/query-api/current/)
-- [OpenAPI](openapi/neo4j-query-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+#### JSON-LD (1)
 
-### Neo4j Aura API
+Linked-data contexts for the provider's vocabulary.
 
-The Neo4j Aura API provides programmatic access to manage Neo4j AuraDB cloud database instances. It supports operations across three primary resources: instances, tenants, and snapshots. Developers authenticate using OAuth2 bearer tokens obtained through client credentials, and can automate the provisioning, configuration, and management of their cloud-hosted Neo4j graph databases. The API is accessible through the console.neo4j.io platform.
+- [Neo4J Context](https://apis.io/jsonld/neo4j/neo4j-context/)
 
-- **Human URL:** [https://neo4j.com/docs/aura/platform/api/specification/](https://neo4j.com/docs/aura/platform/api/specification/)
+#### Collections (16)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Cloud
-- Graph Database
-- Database Management
-- Instances
-- Snapshots
+- [Neo4j Aura API](https://apis.io/collections/neo4j/open-neo4j-aura-api/)
+- [Neo4j Aura Authentication API](https://apis.io/collections/neo4j/open-neo4j-authentication-api/)
+- [Neo4j Aura Authentication Discovery API](https://apis.io/collections/neo4j/open-neo4j-discovery-api/)
+- [Neo4j HTTP API](https://apis.io/collections/neo4j/open-neo4j-http-api/)
+- [Neo4j Aura Authentication Instances API](https://apis.io/collections/neo4j/open-neo4j-instances-api/)
+- [Neo4j Aura Authentication Query API](https://apis.io/collections/neo4j/open-neo4j-query-api/)
+- [Neo4j Aura Authentication Snapshots API](https://apis.io/collections/neo4j/open-neo4j-snapshots-api/)
+- [Neo4j Aura Authentication Tenants API](https://apis.io/collections/neo4j/open-neo4j-tenants-api/)
+- [Neo4j Aura Authentication Transactions API](https://apis.io/collections/neo4j/open-neo4j-transactions-api/)
+- [Neo4j Aura Authentication API](https://apis.io/collections/neo4j/postman-neo4j-authentication-api/)
+- [Neo4j Aura Authentication Discovery API](https://apis.io/collections/neo4j/postman-neo4j-discovery-api/)
+- [Neo4j Aura Authentication Instances API](https://apis.io/collections/neo4j/postman-neo4j-instances-api/)
+- [Neo4j Aura Authentication Query API](https://apis.io/collections/neo4j/postman-neo4j-query-api/)
+- [Neo4j Aura Authentication Snapshots API](https://apis.io/collections/neo4j/postman-neo4j-snapshots-api/)
+- [Neo4j Aura Authentication Tenants API](https://apis.io/collections/neo4j/postman-neo4j-tenants-api/)
+- [Neo4j Aura Authentication Transactions API](https://apis.io/collections/neo4j/postman-neo4j-transactions-api/)
 
-#### Properties
+#### Governance rules (2)
 
-- [Documentation](https://neo4j.com/docs/aura/platform/api/specification/)
-- [OpenAPI](openapi/neo4j-aura-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/neo4j-aura-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/neo4j-aura-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Spectral rulesets for the provider's contracts.
 
-### Neo4j GraphQL Library
+- [Neo4j — jsonschema rules](https://apis.io/rules/neo4j/neo4j-jsonschema-spectral-rules/)
+- [Neo4j API Rules](https://apis.io/rules/neo4j/neo4j-rules/)
 
-The Neo4j GraphQL Library is an open source JavaScript library that enables rapid development of GraphQL APIs backed by a Neo4j graph database. It automatically generates a single optimized Cypher query for each GraphQL query or mutation, eliminating the N+1 problem common in GraphQL implementations. The library supports schema-first development and integrates with Neo4j AuraDB for cloud-hosted deployments, making it suitable for cross-platform and mobile applications.
+#### Security (4)
 
-- **Human URL:** [https://neo4j.com/docs/graphql/current/](https://neo4j.com/docs/graphql/current/)
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Tags
+- [Neo4J Authentication](https://apis.io/security/neo4j/neo4j-authentication/)
+- [Neo4J Domain Security](https://apis.io/security/neo4j/neo4j-domain-security/)
+- [Neo4J Trust Center](https://apis.io/security/neo4j/neo4j-trust-center/)
+- [Neo4J Vulnerability Disclosure](https://apis.io/security/neo4j/neo4j-vulnerability-disclosure/)
 
-- GraphQL
-- Graph Database
-- JavaScript
-- Low-Code
-- API Development
+#### Plans and pricing (1)
 
-#### Properties
+Published plans, tiers and prices.
 
-- [Documentation](https://neo4j.com/docs/graphql/current/)
-- [Postman Collection](collections/neo4j-aura-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/neo4j-aura-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/neo4j-http-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/neo4j-http-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Neo4J Plans Pricing](https://apis.io/plans/neo4j/neo4j-plans-pricing/)
 
-### Neo4j Bolt Protocol
+#### Rate limits (1)
 
-The Neo4j Bolt Protocol is a binary application protocol designed for efficient execution of database queries using the Cypher query language. It operates over TCP or WebSocket connections on the default port 7687 and serves as the foundation for all official Neo4j drivers including Java, Python, JavaScript, .NET, and Go. The protocol supports both direct connections via the bolt:// scheme and routing connections via bolt+routing:// for clustered deployments.
+Published request limits.
 
-- **Human URL:** [https://neo4j.com/docs/bolt/current/bolt/](https://neo4j.com/docs/bolt/current/bolt/)
+- [Neo4J Rate Limits](https://apis.io/rate-limits/neo4j/neo4j-rate-limits/)
 
-#### Tags
+#### FinOps (1)
 
-- Binary Protocol
-- Graph Database
-- Drivers
-- Connectivity
-- Networking
+What the API costs to run, by operation.
 
-#### Properties
+- [Neo4J Finops](https://apis.io/finops/neo4j/neo4j-finops/)
 
-- [Documentation](https://neo4j.com/docs/bolt/current/bolt/)
-- [Postman Collection](collections/neo4j-aura-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/neo4j-aura-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/neo4j-http-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/neo4j-http-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+## Where to find this API
 
-### Neo4j Python Driver
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-The Neo4j Python Driver is the official library for interacting with Neo4j graph databases from Python applications. It communicates using the Bolt protocol and supports both single instance and clustered database deployments. The driver is available on PyPI as the neo4j package and provides a comprehensive API for session management, transaction handling, and result processing.
-
-- **Human URL:** [https://neo4j.com/docs/python-manual/current/](https://neo4j.com/docs/python-manual/current/)
-
-#### Tags
-
-- Python
-- SDK
-- Driver
-- Graph Database
-- Bolt
-
-#### Properties
-
-- [Documentation](https://neo4j.com/docs/python-manual/current/)
-- [Documentation](https://neo4j.com/docs/api/python-driver/current/)
-- [Postman Collection](collections/neo4j-aura-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/neo4j-aura-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/neo4j-http-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/neo4j-http-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Neo4j Java Driver
-
-The Neo4j Java Driver is the official library for connecting Java applications to Neo4j graph databases. Distributed via Maven, it uses the Bolt protocol for network communication and supports both single instance and clustered database configurations. The driver provides a full API for managing connections, sessions, transactions, and query results within Java applications.
-
-- **Human URL:** [https://neo4j.com/docs/java-manual/current/](https://neo4j.com/docs/java-manual/current/)
-
-#### Tags
-
-- Java
-- SDK
-- Driver
-- Graph Database
-- Bolt
-
-#### Properties
-
-- [Documentation](https://neo4j.com/docs/java-manual/current/)
-- [Documentation](https://neo4j.com/docs/api/java-driver/current/)
-- [Postman Collection](collections/neo4j-aura-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/neo4j-aura-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/neo4j-http-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/neo4j-http-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Neo4j JavaScript Driver
-
-The Neo4j JavaScript Driver is the official library for interacting with Neo4j graph databases from JavaScript and Node.js applications. It uses the Bolt protocol for efficient communication and can be installed via npm. The driver supports both browser and server-side environments and provides APIs for session management, transaction control, and processing of query results from Neo4j databases.
-
-- **Human URL:** [https://neo4j.com/docs/javascript-manual/current/](https://neo4j.com/docs/javascript-manual/current/)
-
-#### Tags
-
-- JavaScript
-- SDK
-- Driver
-- Graph Database
-- Bolt
-- Node.js
-
-#### Properties
-
-- [Documentation](https://neo4j.com/docs/javascript-manual/current/)
-- [Documentation](https://neo4j.com/docs/api/javascript-driver/current/)
-- [Postman Collection](collections/neo4j-aura-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/neo4j-aura-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/neo4j-http-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/neo4j-http-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/neo4j)
-- [LinkedIn](https://www.linkedin.com/company/neo4j)
-- [Portal](https://neo4j.com/developer/)
-- [Documentation](https://neo4j.com/docs/)
 - [Website](https://neo4j.com)
-- [Privacy Policy](https://neo4j.com/privacy-policy/)
-- [Terms of Service](https://neo4j.com/terms/)
+- [Documentation](https://neo4j.com/docs/)
+- [Getting started](https://neo4j.com/docs/getting-started/)
+- [API reference](https://neo4j.com/docs/reference/)
+- [Pricing](https://neo4j.com/pricing/)
 - [Support](https://support.neo4j.com/)
+- [Changelog](https://neo4j.com/release-notes/)
 - [Blog](https://neo4j.com/blog/)
-- [Login](https://console.neo4j.io/)
-- [Integrations](https://neo4j.com/partners/)
-- [Agent Skill](https://neo4j.com/blog/developer/introducing-neo4j-agent-skills/)
-- [L L Ms Txt](https://neo4j.com/llms.txt)
+- [Security](https://neo4j.com/blog/security/graphs-for-cybersecurity/)
+- [Compliance](https://trust.neo4j.com/)
+- [Terms of service](https://neo4j.com/terms/)
+- [Privacy policy](https://neo4j.com/privacy-policy/)
+- [GitHub](https://github.com/neo4j)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** API Evangelist
-**Email:** info@apievangelist.com
+**Kin Score 59.8** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 67.9 |
+| Contract quality | 64.0 |
+| Contract governance | 22.0 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 74.4 |
+| Access clarity | 61.8 |
+
+**Agent readiness 44.9** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | yes |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 35.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/neo4j/](https://apis.io/providers/neo4j/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Neo4j: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/neo4j/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
